@@ -1,6 +1,6 @@
 package day11;
 
-public class ClassInheritanceEx1 {
+public class InheritanceEx1 {
 
 	public static void main(String[] args) {
 		Square s1 = new Square();
