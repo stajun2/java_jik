@@ -24,6 +24,7 @@ public class DrawProgram implements DrawProgramFunction {
 		if(drawCount < maxSize) {
 			list[drawCount] = shape;
 			drawCount++;
+			cancleCount = 0;
 		}
 	}
 
