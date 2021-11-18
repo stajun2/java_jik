@@ -25,28 +25,28 @@ public class ExeBaseBallEx1 {
 			return;
 		}
 		
-		System.out.println(com);
 		//반복 : 다 맞출때까지 반복 => 3 스트라이크가 될때까지
 		while(strike != count) {
 			//사용자가 숫자 3개를 입력
-			int i = 0;
-			Set<Integer> useSet = new HashSet<Integer>();
-			while(i < count) {
-				int tmp = scan.nextInt();
-				useSet.add(tmp);
-				use.add(tmp);
-				i++;
-			}
-			if(useSet.size() != count) {
-				System.out.println("중복된 숫자를 입력했습니다.!!!!!!!!");
+			System.out.print("입력(예 : 1 2 3) : ");
+			int inputResult = inputList(use, min, max, count, scan);
+			switch(inputResult) {
+			case -1:
+				System.out.println("중복된 값을 입력했습니다.");
+				break;
+			case 1:
+				System.out.println("잘못된 범위의 정수를 입력했습니다.");
+				break;
 			}
 			//스트라이크 갯수 확인
-		
-			//볼의 갯수 확인
-		
+			strike = getStrike(com, use);
+			//볼의 갯수 확인 : 같은 숫자의 갯수 - 스트라이 갯수
+			ball = getBall(com, use);
 			//판별
+			printResult(strike, ball);
 		}
 		//프로그램 종료라고 알림
+		System.out.println("프로그램 종료!!");
 	}
 	/* 기능 : 정수 리스트가 주어지면 해당 정수 리스트에 min~max 사이의 값을 중복되지
 	 *       않게 count개를 저장하는 메소드
@@ -59,7 +59,7 @@ public class ExeBaseBallEx1 {
 		if(list == null) {
 			//return ;//리스트 비어서 일 안함
 			//리스트가 비어서 문제 발생함
-			throw new NullPointerException("com이 null입니다.");
+			throw new NullPointerException("리스트가 null입니다.");
 		}
 		if(min > max) {
 			int tmp = min;
@@ -67,7 +67,7 @@ public class ExeBaseBallEx1 {
 			max = tmp;
 		}
 		if(count > max - min + 1) {
-			throw new RuntimeException("범위가 배열의 크기보다 작아서 만들 수 없습니다.");
+			throw new RuntimeException("범위가 리스트의 크기보다 작아서 만들 수 없습니다.");
 		}
 		//중복되지 않은 숫자를 생성하기 위한 임시 set을 선언 및 생성
 		Set<Integer> comSet = new HashSet<Integer>();
@@ -85,6 +85,95 @@ public class ExeBaseBallEx1 {
 				com.add(r);
 			}*/
 		}
+	}
+	/* 기능 : 정수 리스트가 주어지면 해당 정수 리스트에 min~max 사이의 값을 스캐너를 통해
+	 *       count개 입력받아 제대로 입력했는지를 알려주는 메소드
+	 *       0 : 제대로 입력, 1 : 범위 잘못, -1 : 중복
+	 * 매개변수 : 리스트, 범위, 갯수, 스캐너 =>
+	 *          List<Integer> list, int min, int max, int count,
+	 *          Scanner scan
+	 * 리턴타입 : 0 또는 1 또는 -1 => 정수 => int
+	 * 메소드명 : inputList
+	 * */
+	public static int inputList(List<Integer> list, int min, int max, int count,Scanner scan) {
+		if(list == null) {
+			throw new NullPointerException("리스트가 null입니다.");
+		}
+		if(min > max) {
+			int tmp = min;
+			min = max;
+			max = tmp;
+		}
+		if(count > max - min + 1) {
+			throw new RuntimeException("범위가 리스트의 크기보다 작아서 만들 수 없습니다.");
+		}
+		if(scan == null) {
+			throw new NullPointerException("scan가 null입니다.");
+		}
+		list.clear();
+		int i = 0;
+		Set<Integer> useSet = new HashSet<Integer>();
+		boolean isOutOfBounds = false;
+		while(i < count) {
+			int tmp = scan.nextInt();
+			useSet.add(tmp);
+			list.add(tmp);
+			//isOutOfBounds = tmp >= min && tmp <= max ? isOutOfBounds : true;
+			if(tmp < min || tmp > max) {
+				isOutOfBounds = true;
+			}
+			i++;
+		}
+		if(useSet.size() != count) {
+			return -1;
+		}
+		//return isOutOfBounds ? 1 : 0;
+		if(isOutOfBounds) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	/* 기능 : 두 정수 리스트가 주어지면 같은 번지에 있는 숫자가 몇개 같은지 알려주는 메소드
+	 * 매개변수 : 두 정수 리스트 => List<Integer> list1, List<Integer> list2
+	 * 리턴타입 : 같은 번지에 있는 수자 중 같은 숫자의 개수 => 정수 => int
+	 * 메소드명 : getStrike  
+	 * */
+	public static int getStrike(List<Integer> list1, List<Integer> list2) {
+		int strike = 0;
+		for(int i = 0; i<list1.size(); i++) {
+			if(list1.get(i).equals(list2.get(i))) {
+				strike++;
+			}
+		}
+		return strike;
+	}
+	/* 기능 : 두 정수 리스트가 주어지면 다른 번지에 있는 숫자가 몇개 같은지 알려주는 메소드
+	 * 매개변수 : 두 정수 리스트 => List<Integer> list1, List<Integer> list2
+	 * 리턴타입 : 다른 번지에 있는 수자 중 같은 숫자의 개수 => 정수 => int
+	 * 메소드명 : getBall  
+	 * */
+	public static int getBall(List<Integer> list1, List<Integer> list2) {
+		int ball = 0;
+		for(int i = 0; i<list1.size(); i++) {
+			if(list1.contains(list2.get(i))) {
+				ball++;
+			}
+		}
+		ball = ball - getStrike(list1, list2);
+		return ball;
+	}
+	public static void printResult(int strike, int ball) {
+		if(strike != 0) {
+			System.out.print(strike + "S");
+		}
+		if(ball != 0) {
+			System.out.print(ball + "B");
+		}
+		if(strike == 0 && ball == 0) {
+			System.out.print("3O");
+		}
+		System.out.println();
 	}
 }
 
