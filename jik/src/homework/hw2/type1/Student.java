@@ -1,19 +1,26 @@
 package homework.hw2.type1;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Student {
 	private int grade, classNum, num;
 	private String name;
-	private ArrayList<Score> score;
+	private List<Score> score;
 
+	public Student(int grade, int classNum, int num, String name, List<Score> score) {
+		this.grade = grade;
+		this.classNum = classNum;
+		this.num = num;
+		this.name = name;
+		this.score = score;
+	}
 	public Student(int grade, int classNum, int num, String name) {
 		this.grade = grade;
 		this.classNum = classNum;
 		this.num = num;
 		this.name = name;
+		this.score = new ArrayList<Score>();;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,11 +81,11 @@ public class Student {
 		this.name = name;
 	}
 
-	public ArrayList<Score> getScore() {
+	public List<Score> getScore() {
 		return score;
 	}
 
-	public void setScore(ArrayList<Score> score) {
+	public void setScore(List<Score> score) {
 		this.score = score;
 	}
 
