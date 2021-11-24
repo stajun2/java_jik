@@ -1,0 +1,26 @@
+과일 - fruit
+과일명 - fr_name  - varchar(30) - 기본키
+가격 - fr_price - int - not null, 기본값 0
+재고 - fr_amount - int - not null, 기본값 0
+단위 - fr_unit - varchar(10)
+
+구매 - buy
+구매번호 - bu_num - int - 기본키, 자동증가
+과일명 - bu_fr_name  - varchar(30), 외래키(과일), not null
+수량 - bu_amount - int - not null, 기본값 0
+날짜 - bu_date - datetime - not null, 기본값 now()
+단위 - bu_unit - varchar(10)
+가게명 bu_st_name - - varchar(20)- 외래키(납품가게), not null
+
+가게 - store
+가게명 - st_name - varchar(20) - 기본키
+위치 - st_address - varchar(50)
+
+판매 - sell
+판매번호 - se_num - int - 기본키, 자동증가
+과일명 - se_fr_name  - varchar(30), 외래키(과일), not null
+판매량 - se_amount - int - not null, 기본값 0
+단위 - se_unit  - varchar(10)
+판매금액 - se_price - int - not null, 기본값 0
+판매일 - se_date - datetime - not null, 기본값 now()
+결재방식 - se_type - varchar(4) - not null
