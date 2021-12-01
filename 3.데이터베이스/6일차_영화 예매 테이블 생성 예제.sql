@@ -145,6 +145,10 @@ ALTER TABLE `theater` ADD CONSTRAINT `PK_THEATER` PRIMARY KEY (
 ALTER TABLE `seat` ADD CONSTRAINT `PK_SEAT` PRIMARY KEY (
 	`st_num`
 );
+ALTER TABLE `cgv`.`seat` 
+CHANGE COLUMN `st_num` `st_num` int NOT NULL auto_increment,
+CHANGE COLUMN `st_state` `st_state` VARCHAR(50) NOT NULL DEFAULT '사용가능' ,
+CHANGE COLUMN `st_type` `st_type` VARCHAR(50) NOT NULL DEFAULT '일반' ;
 
 ALTER TABLE `schedule` ADD CONSTRAINT `PK_SCHEDULE` PRIMARY KEY (
 	`sc_num`
