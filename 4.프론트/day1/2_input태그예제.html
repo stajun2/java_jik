@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>input 태그 예제</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" name="search" placeholder="문자열을 입력하세요"> <br>
+		<input type="password" name="pw" placeholder="비밀번호를 입력하세요"> <br>
+		좋아하는 과일은? (복수 선택 가능) <br>
+		<input type="checkbox" name="fruit" value="apple" checked> 사과
+		<input type="checkbox" name="fruit" value="orange"> 오렌지 <br>
+		성별은? <br>
+		<input type="radio" name="gender" value="M" checked> 남자
+		<input type="radio" name="gender" value="F"> 여자 <br>
+		좋아하는 색상은? <br>
+		<input type="color" name="color" value="#ffffff"> <br>
+		<input type="month" name="month"> <br>
+		<input type="week" name="week"> <br>
+		<input type="date" name="date"> <br>
+		<input type="datetime-local" name="datetime-local"> <br>
+		<input type="time" name="time"> <br>
+		<input type="file" name="file"> <br>
+		<!-- 
+		../ : 상위 폴더, ./ : 현재 폴더 
+		../나 ./는 상대 경로로, 현재 파일을 기준으로 잡음
+		/ : 절대 경로인데, 오픈 폴더로 연 폴더를 기준으로 달라짐
+		-->
+		<input type="image" src="../img/day1_2_cat.jfif" alt="이미지없음">
+		<input type="image" src="/img/day1_2_cat.jfif" alt="이미지없음">
+		<input type="image" src="https://ww.namu.la/s/a964f4ee454a706e88189954596f390c2d027e224a4cecc99b5bf0044329cbf33ed3dbc6aa0663cc7a64b8d00c58ab23a143e9c551b149c176cbadca63aecfdbd3d820786660f0d0b6e61b4d1542e2d27b65b7493ca9376f784d82250b2793a45eaeff7a70a01084e7f6b28b648e3424" alt="이미지없음">
+		<br>
+		<input type="number" name="number" min="1" max="10"><br>
+		<input type="search" name="search"> <br>
+		1<input type="range" name="range" min="1" max="6">6 <br>
+		<input type="hidden" name="hidden" value="123">
+		<input type="email" name="email" placeholder="email">
+		<input type="url" name="url" placeholder="url">
+		<input type="button" value="일반버튼">
+		<input type="submit" value="전송">
+		<input type="reset" value="리셋">
+	</form>
+</body>
+</html>
