@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>상속 예제</title>
+	<style>
+		p{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		p태그에서 상속받아 span 태그, a 태그 모두 글자색이 green으로 상속을 받음
+		그런데, a태그는 기본 글자색이 지정되어 있어서 부모에게 상속받은 글자색을 오버라이딩하여
+		링크 색(방문전은 파랑, 방문후는 보라)으로 변경
+	 -->
+	<p>
+		<span class="red">안녕하세요.</span>
+		<span>만나서 반갑습니다.</span>
+		<a href="#">링크</a>
+	</p>
+</body>
+</html>
