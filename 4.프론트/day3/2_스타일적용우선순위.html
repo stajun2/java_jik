@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스타일 적용 우선순위</title>
+	<style>
+		p{
+			color: green !important;
+		}
+		/* id가 red인 요소에 글자색을 파랑으로 지정하는 스타일을 작성해보세요. */
+		#red{
+			color: red;
+		}
+		.p{
+			font-size: 20px;
+		}
+		.box.blue{
+			font-size: 50px;
+		}
+		body > .box{
+			font-size: 100px;
+		}
+		.blue{
+			background-color: blue;
+		}
+		.box{
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<p id="red" class="box p blue" style="background-color: black;">
+		안녕하세요.
+	</p>
+</body>
+</html>
