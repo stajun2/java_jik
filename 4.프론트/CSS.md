@@ -132,6 +132,8 @@
 
 * em : 배수, 해당 요소의 기본 값의 몇배
 * % : 퍼센트
+  * width, height에서 %는 부모 요소의 크기의 %
+  * 기본 block태그는 높이가 0px이기 때문에 부모의 높이를 지정하지 않고 100%로 하면 높이가 안잡힘
 * px : 픽셀
 * rem : 문서의 기본값의 몇배
 * cm : 센티미터
@@ -140,6 +142,8 @@
 * pt : 포인터, 72pt = 1in
 * pc : 피카소, 1px = 12pt
 * deg : 각도
+* vh : view height의 약자로 브라우저 높이를 의미하고 100vh가 브라우저 높이
+* vw : view width의 약자로 브라우저 가로를 의미하고 100vw가 브라우저 가로
 
 
 
@@ -316,6 +320,12 @@
       * top, bottom, right, left를 이용하여 위치 조절
     * absolute : 웹페이지 특정 위치에 고정
       * top, bottom, right, left를 이용하여 위치 조절
+      * 기준점은 조상들 중에 posotion이 relative를 가진 조상들 중 요소와 가장 가까운 조상
+      * 조상들 중에 position이 relative인 조상이 없으면 브라우저가 기준점이 됨
+      * width 대신에 left와 right를 설정하면 됨
+      * height 대신에 top과 bottom을 설정하면 됨
     * fixed : 웹브라우저 특정 위치에 고정
       * top, bottom, right, left를 이용하여 위치 조절
+      * width 대신에 left와 right를 설정하면 됨
+      * height 대신에 top과 bottom을 설정하면 됨
 
