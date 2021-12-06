@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>그림자 관련 속성</title>
+	<style>
+		.box>div{
+			font-size: 30px; font-weight: bold;
+		}
+		.shdow1{			text-shadow: 10px 10px;		}
+		.shdow2{			text-shadow: 10px 10px red;		}
+		.shdow3{			text-shadow: 10px 10px 5px red;		}
+		.shdow4{			text-shadow: 0px 0px 3px red;		}
+		.shdow5{			text-shadow: 0px 0px 3px red;		color: white;}
+		.shdow6{			text-shadow: 2px 2px 4px black;		color: white;}
+		.shdow7{			
+			text-shadow: 2px 2px 2px black, 0 0 25px blue, 0 0 5px darkblue;		
+			color: yellow;
+		}
+		.box{
+			width: 500px;
+			/* box-shadow: 10px 10px 5px red , 0px 0px 1px black; */
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="shdow1">Text Shadow</div>
+		<div class="shdow2">Color Shadow</div>
+		<div class="shdow3">Blur Shadow</div>
+		<div class="shdow4">Glow Effect</div>
+		<div class="shdow5">Art Effect</div>
+		<div class="shdow6">3D Effect</div>
+		<div class="shdow7">Multiple Shadow Effect</div>
+	</div>
+</body>
+</html>
