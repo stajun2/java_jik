@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>relative 예제</title>
+	<style>
+		.container{
+			height: 500px; background: yellow;
+		}
+		.box{
+			width: 100px;			height: 100px;
+			text-align: center;			font-size: 30px;
+			background: red;	color: white; display: inline-block;
+			position: relative;
+		}
+		/* .box 클래스 요소 중 첫번째 박스의 배경 색을 green으로 수정 */
+		.box:nth-child(1):hover{
+			background: green; top: 30px; left: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">H</div>
+		<div class="box">E</div>
+		<div class="box">L</div>
+		<div class="box">L</div>
+		<div class="box">O</div>
+		<div>123456789123456789123456789</div>
+	</div>
+	
+</body>
+</html>
