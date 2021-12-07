@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>after, before 예제</title>
+	<style>
+		.hi::after{
+			content: ' 만나서 반갑습니다.'; display: inline;
+		}
+		.hi::before{
+			content: '<span>인사 : </span>'; display: inline;
+		}
+		.menu::before{
+			width: 4px; height: 4px; background: black; display: inline-block;
+			content: ''; position: relative; top: -5px; margin-right: 4px;
+			border-radius: 2px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<span class="hi">안녕하세요.</span>
+	</div>
+	<div>
+		<span class="menu">메뉴</span>
+	</div>
+</body>
+</html>
