@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>z-index 예제</title>
+	<style>
+		.box{
+			position: absolute; width: 100px; height: 200px; border: 1px solid black;
+			top: 0; left: 0; text-align: center; line-height: 200px;
+			font-size: 30px; font-weight: bold; background: white;
+			z-index: 5;
+		}
+		.box2{	top: 50px;	left: 50px; z-index: 4;}
+		.box3{	top: 100px;	left: 100px;z-index: 3;}
+		.box4{	top: 150px;	left: 150px;z-index: 2;}
+		.box5{	top: 200px;	left: 200px;z-index: 1;}
+	</style>
+</head>
+<body>
+	<div class="box box1">1</div>
+	<div class="box box2">2</div>
+	<div class="box box3">3</div>
+	<div class="box box4">4</div>
+	<div class="box box5">5</div>
+</body>
+</html>
