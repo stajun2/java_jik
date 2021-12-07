@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>이등분 배치</title>
+	<style>
+		.box1{
+			border: 2px solid red;	padding: 10px;
+		}
+		.box1-1, .box1-2{
+			height: 500px;	box-sizing: border-box;	border: 2px solid blue;
+			width: 50%; float: left;
+		}
+		.box1-2{
+			border-color: #0f0;
+		}
+		.box1::after{
+			clear: both; content: ''; display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="box1-1"></div>
+		<div class="box1-2"></div>
+	</div>
+</body>
+</html>

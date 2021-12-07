@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>float 예제</title>
+	<style>
+		.box1, .box2{	background: yellow; padding: 10px;}
+		.box1-1, .box1-2{ 
+			height: 300px; width: 30%;  background: green; display: inline-block;
+		}
+		.box2-1, .box2-2{
+			height: 300px; width: 30%;  background: green; float: left;
+		}
+		.box2-2{
+			float: right;
+		}
+		.box2::after{
+			clear: both; content: ''; display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="box1-1">1</div>
+		<div class="box1-2">2</div>
+	</div>
+	<div class="box2">
+		<div class="box2-1">1</div>
+		<div class="box2-2"></div>
+	</div>
+</body>
+</html>
