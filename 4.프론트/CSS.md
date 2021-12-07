@@ -328,4 +328,103 @@
       * top, bottom, right, left를 이용하여 위치 조절
       * width 대신에 left와 right를 설정하면 됨
       * height 대신에 top과 bottom을 설정하면 됨
+    
+  * float
+  
+    * 요소를 배치할 때 사용
+  
+    * 값은 left, right
+  
+    * 추가 작업을 하지 않으면 부모가 높이를 계산하지 못함
+  
+      * float 속성을 적용한 부모 요소에 다음 코드를 추가해야한다
+  
+      * ```css
+        부모선택자::after{
+            content : '';
+            clear : both;
+            display : block;
+        }
+        ```
+  
+        
+  
+    * absolute와 fixed 없이 컨텐츠를 왼쪽, 오른쪽 정렬을 할 수 있다. 
+  
+    * float 속성을 지정하면 display가 inline-block처럼 처리가 됨
+
+### calc()
+
+* 단위가 다른 값들을 계산하는 함수
+* 연산자 앞 뒤로 공백을 넣어야함
+
+
+
+### ::after와 ::before
+
+* ::before 
+  * 요소를 생성한 후에 요소 앞에 추가하는 내용
+* ::after 
+  * 요소를 생선한 후에 요소 뒤에 추가하는 내용
+
+### z-index
+
+* 요소들이 겹칠 때 누구를 위로 올리고, 내릴지를 결정해주는 속성
+* 기본적으로 코드 위치상 아래 있는 요소들이 위로 올라감
+* 기본값은 1
+* 숫자가 높을수록 위로 올라간다
+* position이 static 요소 A와 postion이 absolute인 요소 B가 겹치면 A의 z-index의 값과 상관없이 B가 위로 배치
+  * 이를 해결하기 위해 A의 position을 relative로 수정
+* 사촌관계요소(부모가 다른 요소)에서 겹칠때에는 본인 요소의 z-index보다 조상들 중 형제 관계에 있는 요소들의 z-index가 중요
+  * 두 조상 요소들이 position이 relative이어야 함
+
+### visibility
+
+* 텍스트를 안보이게 감추는 속성
+* 테스트 공간은 남겨놓고 안보이게 감춤
+* display:none; 
+  * 안보이는 기능은 같은데 해당 요소의 공간도 같이 감춤
+
+### overflow
+
+* 자식 요소가 부모 요소보다 커서 내용이 넘치는 경우 어떻게 할건지를 결정하는 속성
+* 값
+  * hidden
+    * 부모를 넘어서는 내용을 안보이게 감춤
+  * visible
+    * 부모를 넘어서는 내용을 보이게 함, 기본값
+  * scroll
+    * 부모를 넘어서는 내용을 안보이게 한 후 스크롤을 통해 다른 부분을 확인할 수 있게 함
+    * 이 때 부모를 넘지 않아도 스크롤이 무조건 생김
+  * auto
+    * 부모를 넘어서면 scoll, 안 넘어서면 scroll이 없어짐
+* ...을 할 때 같이 사용되는 속성
+
+
+
+### 리스트 관련 속성
+
+* list-style-type 
+  * disc | armenian | circle | cjk-ideographic | decimal | georgian | lower-alpha | lower-roman | square | upper-alpha | upper-roman | none
+  * 마커를 설정
+  * 마커는 리스트 앞에 있는 숫자나 모양
+* list-style-image
+  * 마커를 대체할 이미지를 설정
+* list-style-position
+  * inside | outside
+  * 마커의 위치, 리스트 안/밖, 기본값은 밖(outside)
+* list-style 
+  * list-style-type , list-style-image, list-style-position를 한번에 쓰는 단축 속성
+
+### 테이블 관련 속성
+
+* border 
+  * 테두리 속성
+* border-collapse 
+  * 중복된 테두리를 합치는 속성
+  * collapse : 합침
+
+
+
+
 
