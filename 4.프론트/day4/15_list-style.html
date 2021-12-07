@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>list-style 예제</title>
+	<style>
+		li{ background: yellow;}
+		ul{
+			background: #0f0;
+			list-style-type: square; list-style-position: inside;
+		}
+		ol{ list-style-image: url(../img/day1_2_cat.jfif); list-style-position: inside;}
+		.list-none{ list-style: none;}
+	</style>
+</head>
+<body>
+	<h1>커피메뉴</h1>
+	<ul>
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ul>
+	<ol>
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ol>
+	<ol class="list-none">
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ol>
+</body>
+</html>
