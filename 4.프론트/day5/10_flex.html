@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>display : flex 예제</title>
+	<style>
+		.box{
+			display: flex;
+		}
+		.inner-box, .inner-box2{
+			height: 50px; border: 1px solid black; text-align: center; 
+			line-height: 50px; width: 100%;
+		}
+		.inner-box:first-child{
+			width: 200%;
+		}
+		.inner-box2{ width: 30px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="inner-box">1</div>
+		<div class="inner-box">2</div>
+		<div class="inner-box">3</div>
+	</div>
+	<div class="box">
+		<div class="inner-box2">1</div>
+		<div class="inner-box2">2</div>
+		<div class="inner-box2">3</div>
+	</div>
+</body>
+</html>
