@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>애니메이션 예제</title>
+	<style>
+		.box{ 
+			width: 200px; height: 100px; background: red; position: relative;
+			animation-name: move-box; animation-duration: 3s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes move-box {
+			0%	{	left: 0;}
+			50%	{	left: calc(100% - 200px);}
+			100%{	left: 0;}
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

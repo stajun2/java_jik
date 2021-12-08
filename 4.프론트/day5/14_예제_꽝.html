@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>애니메이션 예제</title>
+	<style>
+		@keyframes scale-text {
+			0%	{font-size: 20px;}
+			50%	{font-size: 50px;}
+			100%{font-size: 20px;}
+		}
+		.box{
+			font-size: 20px; font-weight: bold;
+			animation-name: scale-text; animation-duration: 2s;
+			animation-iteration-count: infinite;
+		}
+	</style>
+</head>
+<body>
+	<!-- 꽝이라는 글자가 천천히 커졌다가 천천히 작아지는 애니메이션을 적용하는 예제 -->
+	<div class="box">
+		꽝
+	</div>
+</body>
+</html>
