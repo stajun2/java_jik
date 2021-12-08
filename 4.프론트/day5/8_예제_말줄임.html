@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>말줄임 예제</title>
+	<style>
+		.box1{
+			width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+			border: 1px solid black;
+		}
+		.box2{
+			width: 100px; overflow: hidden; display: -webkit-box;
+			-webkit-line-clamp: 2; -webkit-box-orient: vertical;
+			text-overflow: ellipsis; border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<!-- 한줄 말줄임 예제 -->
+	<div class="box1">
+		apple apple apple apple apple apple apple apple 
+	</div>
+	<!-- 두줄 말줄임 예제 -->
+	<div class="box2">
+		apple apple apple apple apple apple apple apple 
+	</div>
+</body>
+</html>
