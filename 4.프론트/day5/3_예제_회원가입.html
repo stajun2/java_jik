@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원 가입 예제</title>
+	<style>
+		.container{ width: 500px; margin: 0 auto; padding: 10px; background: whitesmoke;}
+		.title{ text-align: center;}
+		.container input[type=text],
+		.container input[type=password]
+		{ 
+			display: block; height: 50px; font-size: 30px; border: 1px solid blue;
+			width: 100%; box-sizing: border-box; margin-bottom: 10px; border-radius: 5px;
+		}
+		.btn-submit{ 
+			width: 100%; height: 50px; box-sizing: border-box; 
+			border: 1px solid blue; background: white; font-size: 30px;
+		}
+		.gender-box *{	font-size: 30px;	}
+		.gender-box input[type=radio]{ width: 30px; height: 30px;}
+	</style>
+</head>
+<body>
+	<form action="" method="post">
+		<div class="container">
+			<h1 class="title">회원가입</h1>
+			<input type="text" name="id" placeholder="아이디">
+			<input type="password" name="pw" placeholder="비밀번호">
+			<input type="password" name="pw2" placeholder="비밀번호 확인">
+			<div class="gender-box">
+				<div>성별</div>
+				<div>
+					<label>
+						<input type="radio" name="gender" value="남성"> 남성
+					</label>
+					<label>
+						<input type="radio" name="gender" value="여성"> 여성
+					</label>
+				</div>
+			</div>
+			<button type="submit" class="btn-submit">회원가입</button>
+		</div>
+	</form>
+</body>
+</html>
