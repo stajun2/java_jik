@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>input 태그 꾸미기</title>
+	<style>
+		input[type=text]{
+			color : red; border: none; width: 200px; height: 50px; font-size: 20px;
+		}
+		/* input태그의 placeholder에 스타일을 적용할 때 사용 */
+		input[type=text]::placeholder{
+			color: #00f;
+		}
+		/* input창을 클릭할 때 테두리가 굵어지는 것을 막아줄때눈 outline을 이용 */
+		input[type=text]:focus{
+			outline: none;
+		}
+		input[type=text]:hover{
+			background: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<!-- input 태그를 꾸미는 예제 -->
+	<input type="text" placeholder="입력창"> <br>
+	<input type="password" >
+</body>
+</html>
