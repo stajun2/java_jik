@@ -426,5 +426,137 @@
 
 
 
+### outline
+
+* input태그에 focus 되면 생기는 테두리를 제어하는 속성
+
+* input:focus를 이용하여 outline:none을 하면 focus 되었을 때 테두리를 없앨 수 있다
+
+  * ```css
+    input:focus{
+    	outline: none;
+    }
+    ```
+
+    
+
+### line-height
+
+* 글자의 높이를 조절할 때 사용
+* 같은 글자 크기라도 line-height 다르면 글자 높낮이가 달라진다
+* 글자 크기는 font-size
+
+### white-space
+
+* 공백을 어떻게 처리할건지를 정하는 속성
+* 값
+  * normal 
+    * 기본값, 엔터나 공백을 공백 하나로 처리. 내용이 길면 자동으로 줄을 바꿈
+  * nowrap
+    * 엔터나 공백을 하나로 처리. 줄바꿈은 `<br>` 로만 바뀜
+  * pre
+    * 연속 공백이나 엔터를 유지
+  * pre-wrap
+    * 연속 공백이나 엔터를 유지, 내용이 길면 자동으로 줄을 바꿈
+  * pre-line
+    * 공백을 하나로 합침. 엔터를 유지. 내용이 길면 자동으로 줄을 바꿈
+  * break-space
+    * 다음 차이점을 제외하면 pre-wrap과 동일
+    * 연속 공백이 끝에 위치해도 공간을 차지
+    * 연속 공백의 중간과 끝에서도 자동으로 줄을 바꿈
+
+### word-break
+
+* 라인이 바뀔 때 긴 단어를 어떻게 처리할지를 설정하는 속성
+* 값
+  * normal
+    * 기본값, 기본 줄 바꿈 규칙을 사용
+  * break-all
+    * 오버플로우를 방지하기 위해 두 문자 사이에서 줄바꿈이 발생할 수 있다(한중일 텍스트 제외)
+  * keep-all
+    * 한중일 텍스트에서 줄을 바꿀때 단어를 끊지 않는다
+
+### text-overflow
+
+* 글자가 박스를 넘어갈 때 넘어간 글자를 어떻게 할지를 설정하는 속성
+
+* 값
+
+  * clip
+
+    * 넘어가는 부분을 자름. 문자 중간에서 잘릴수 있다
+
+  * ellipsis
+
+    * 넘어가는 문자열을 줄임표(...)로 표시
+
+    * 1줄 말줄임
+
+    * ```css
+      .box1{
+      			width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      			border: 1px solid black;
+      		}
+      ```
+
+    * 2줄 말줄임
+
+    * ```css
+      .box2{
+          width: 100px; overflow: hidden; display: -webkit-box;
+          -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+          text-overflow: ellipsis; border: 1px solid black;
+      }
+      ```
+
+      
+
+### direction
+
+* 요소의 배치 방향을 정해주는 속성
+
+
+
+### display:flex
+
+* 부모 요소안에 자식 요소들의 가로의 길이합이 부모 요소보다 작으면 그대로 배치
+* 부모 요소안에 자식 요소들의 가록의 길이합이 부모 요소보다 크면 부모 요소 안에서 비율에 맞게 배치
+
+
+
+### cursor
+
+* 마우스 커서 모양을 설정하는 속성
+
+
+
+### animation
+
+* 적용 방법
+
+  1. @keyframes로 애니메이션을 등록
+
+     * ```css
+       /* 시간비율은 0%~100%까지, from(0%), to(100%)*/
+       @keyframes 애니메이션명{
+           시간비율 : {
+               속성명 : 값;
+           }
+           시간비율 : {
+               속성명 : 값;
+           }
+       }
+       ```
+
+  2. 원하는 요소의 css에 애니메이션을 적용
+
+     * ```css
+       선택자{
+           animation-name : 애니메이션명;
+           animation-duration : 정수s; /*애니메이션 실행 시간*/
+           animation-iteration-count : 숫자 | infinite; /*반복횟수*/
+       }
+       ```
+
 
 
