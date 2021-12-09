@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.menu{ 
+	width: 300px; float: left;
+}
+.menu-item{
+	height: 50px; box-sizing: border-box; overflow: hidden;
+	border: 1px solid red; border-bottom: none;
+}
+.menu-item:last-child{
+	border-bottom: 1px solid red;
+}
+.contents{
+	height: 500px; border: 2px solid skyblue; box-sizing: border-box;
+	width: calc(100% - 300px - 10px); float: right;
+}

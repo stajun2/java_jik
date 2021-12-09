@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>반응형 메뉴 예제</title>
+	<style>
+		* { padding: 0; margin: 0;}
+		ul{ list-style: none;}
+		a { color: #000; text-decoration: none;}
+		@media screen and (min-width: 800px){
+			.menu{ 
+				width: 300px; float: left;
+			}
+			.menu-item{
+				height: 50px; box-sizing: border-box; overflow: hidden;
+				border: 1px solid red; border-bottom: none;
+			}
+			.menu-item:last-child{
+				border-bottom: 1px solid red;
+			}
+			.contents{
+				height: 500px; border: 2px solid skyblue; box-sizing: border-box;
+				width: calc(100% - 300px - 10px); float: right;
+			}
+		}
+		@media screen and (max-width : 800px){
+			.menu{ display: flex;}
+			.menu-item{ 
+				width: 100%; height: 50px; box-sizing: border-box; overflow: hidden;
+				border: 1px solid red; border-right: none;
+			}
+			.menu-item:last-child{ border-right: 1px solid red;}
+			.contents{
+				height: 500px; margin-top: 10px;box-sizing: border-box;
+				border: 2px solid skyblue;
+			}
+		}
+		.menu-link{ 
+			width: 100%; height: 100%; text-align: center; display: block;
+			line-height: 48px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="menu">
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴1</a>
+		</li>
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴3</a>
+		</li>
+		<li class="menu-item">
+			<a href="#" class="menu-link">메뉴4</a>
+		</li>
+	</ul>
+	<div class="contents"></div>
+</body>
+</html>

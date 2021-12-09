@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+.menu{ display: flex;}
+.menu-item{ 
+	width: 100%; height: 50px; box-sizing: border-box; overflow: hidden;
+	border: 1px solid red; border-right: none;
+}
+.menu-item:last-child{ border-right: 1px solid red;}
+.contents{
+	height: 500px; margin-top: 10px;box-sizing: border-box;
+	border: 2px solid skyblue;
+}
