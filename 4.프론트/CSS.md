@@ -560,3 +560,57 @@
 
 
 
+### transition
+
+* 요소에 특정 속성이 변화하면 서서히 진행시키게하는 속성
+
+* ```css
+  선택자{
+      transition : 속성명 시간s;
+  }
+  ```
+
+  
+
+### transform
+
+* 요소를 회전, 확대 등 다양하게 변화시켜주는 속성
+
+* ```css
+  선택자{
+      transform : 변환함수();
+  }
+  ```
+
+* 변환함수
+
+  * translate(x,y), translateX(x), translateY(y)
+    * x축으로 x만큼, y축으로 y만큼 이동
+  * scale(w, h) , scaleX(n), scaleY(n)
+    * 요소의 폭과 높이를 확대
+  * rotate(angle)
+    * 회전
+  * skew(x-angle, y-angle), skewX(angle), skewY(angle)
+    * 기울임
+
+### 크기 관련 속성
+
+* width, height
+  * 가로와 세로를 설정
+* min-width, min-height
+  * 최소 가로와 최소 세로를 설정
+* max-width, max-height
+  * 최대 가로와 최대 세로를 설정
+
+### 글자 간격 관련 속성
+
+* letter-spacing
+  * 글자 사이의 간격
+* word-spacing
+  * 단어 사이의 간격
+
+
+
+### vertical-align
+
+* 두 요소에서 높이가 다른 요소들을 배치할 때 높이를 어떻게 맞출지 설정하는 속성
