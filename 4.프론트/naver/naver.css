@@ -107,6 +107,21 @@
 	margin: 9px 2px 0 0; vertical-align: top;
 }
 
+.menu-container .btn-more{
+	float: left; line-height: 30px; margin-left: 17px; font-size: 13px;
+	color: #202020;
+}
+.menu-container .btn-more::after{
+	display: inline-block; width: 11px; height: 7px; margin-left: 7px;
+	vertical-align: 2px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -83px -296px;
+	content: '';
+}
+.menu-container .btn-more:hover{
+	text-decoration: underline;
+}
+
 /* 컨텐츠 박스 */
 .contents-box{
 	min-height: 1000px; background: #00f; padding: 20px 30px;
