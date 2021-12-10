@@ -10,6 +10,9 @@
 .container-fluid{
 	min-width: 1190px;
 }
+.menu-container::after{
+	content: ''; clear: both; display: block;
+}
 
 /* 네이버 웨일 박스 */
 .whale-box{ 
@@ -57,8 +60,53 @@
 	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
 }
 .menu-container-box{
-	height: 100%; 
+	height: 100%;
 }
+.menu-container{
+	padding: 11px 0; float: left; height: 100%; box-sizing: border-box;
+}
+.menu-container .green-menu-box,
+.menu-container .black-menu-box{
+	float: left;
+}
+
+.menu-container .green-menu-box .menu-item,
+.menu-container .black-menu-box .menu-item{
+	float: left; margin-left: 12px;
+}
+.menu-container .green-menu-box .menu-item:first-child{
+	margin-left: 0;
+}
+.menu-container .green-menu-box .menu-link,
+.menu-container .black-menu-box .menu-link{
+	color: #03c75a; font-weight: bold; font-size: 15px; line-height: 30px;
+}
+.menu-container .black-menu-box .menu-link{
+	color: #000;
+}
+.menu-container .icon-mail{
+	display: inline-block; width: 21px; height: 21px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -420px -279px;
+	margin: 3px 9px 0 0; vertical-align: top;
+}
+.menu-container .icon-shopping,
+.menu-container .icon-shopping-live{
+	display: block; width: 24px; height: 20px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -420px -232px;
+	margin-top: 5px;
+}
+.menu-container .icon-shopping-live{
+	width: 54px; background-position: -202px -306px;
+}
+.menu-container .icon-tv{
+	display: inline-block; width: 12px; height: 14px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -256px -212px;
+	margin: 9px 2px 0 0; vertical-align: top;
+}
+
 /* 컨텐츠 박스 */
 .contents-box{
 	min-height: 1000px; background: #00f; padding: 20px 30px;
