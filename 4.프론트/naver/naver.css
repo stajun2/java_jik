@@ -10,7 +10,10 @@
 .container-fluid{
 	min-width: 1190px;
 }
-.menu-container::after{
+.menu-container::after,
+.contents-l-box2 .group-issue::after,
+.after::after
+{
 	content: ''; clear: both; display: block;
 }
 
@@ -124,20 +127,184 @@
 
 /* 컨텐츠 박스 */
 .contents-box{
-	min-height: 1000px; background: #00f; padding: 20px 30px;
+	min-height: 1000px;  padding: 20px 30px;
 }
 .contents-box::after{
 	clear: both; content: ''; display: block;
 }
+
 .contents-l-box{
 	width: 750px; height: 1000px;  float: left;
 }
 .contents-l-box1{
 	height: 135px; margin-bottom: 12px; background: whitesmoke;
 }
+/* 왼쪽 두번째 컨텐츠 박스 */
 .contents-l-box2{
-	height: 367px; background: whitesmoke;
+	height: 367px; 
 }
+.contents-l-box2 .group-issue{
+	padding: 12px 15px 11px 15px; border: 1px solid #dae1e6;
+	background: #f7f9fa; line-height: 24px;
+}
+.contents-l-box2 .issue-area{
+	float: left; height: 24px; overflow: hidden;
+}
+.contents-l-box2 .direct-area{
+	float: right; font-weight: bold;
+}
+.contents-l-box2 .link-media{
+	float: left; font-size: 13px; font-weight: bold;
+}
+.contents-l-box2 .link-media::after{
+	content: ''; display: inline-block; width: 6px; height: 10px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px;	background-position: -64px -396px;
+	margin: auto 4px;
+}
+.contents-l-box2 .link-issue{
+	float: left; font-size: 13px; width: 310px; 
+	overflow: hidden;	white-space: nowrap; text-overflow: ellipsis;
+}
+.contents-l-box2 .link-enter,
+.contents-l-box2 .link-sports,
+.contents-l-box2 .link-economy{
+	float: left; font-size: 13px; color: #202020; margin: 0 4px 0 7px;
+}
+.contents-l-box2 .link-news{
+	float: left; color: #3565c9; font-size: 13px;
+}
+.contents-l-box2 .link-news::after{
+	content: ''; display: inline-block; width: 3px; height: 3px;
+	border-radius: 50%; margin-left: 8px; vertical-align: 3px;
+	background-color: #c8ccd1;	background-color: red;
+}
+.contents-l-box2 .group-title{
+	padding: 22px 0 16px; font-size: 14px; line-height: 18px;
+}
+.contents-l-box2 .group-title-left{
+	float: left;
+}
+.contents-l-box2 .group-title-right{
+	float: right;
+}
+.contents-l-box2 .link-newsstand::before{
+	content: ''; display: inline-block; width: 27px; height: 24px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: 0 -396px;
+	margin: -6px 1px 0 0; vertical-align: top;
+}
+.contents-l-box2 .link-newsstand::after{
+	content: ''; display: inline-block; width: 7px; height: 11px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -410px -213px;
+	margin-left: 6px; vertical-align: -1px;
+}
+.contents-l-box2 .btn-sort{
+	color: #505050;
+}
+.contents-l-box2 .btn-sort.sort-on{
+	color: #000; font-weight: bold;
+}
+.contents-l-box2 .group-title-left>*{
+	float: left;
+}
+#mySort{
+	margin-left: 10px;
+}
+#allSort::before{
+	content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+	background-color: #c7ccd1;
+	margin: 0 8px 0 6px; vertical-align: 3px;
+}
+.contents-l-box2 .link-icon{
+	padding: 0 9px; float: left;
+}
+.contents-l-box2 .icon-list{
+	display: inline-block; width: 14px; height: 13px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -154px -337px;
+	opacity: 0.7;
+}
+.contents-l-box2 .link-icon:hover i{
+	opacity: 1;
+}
+.contents-l-box2 .icon-thumb{
+	display: inline-block; width: 13px; height: 13px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -185px -337px;
+	opacity: 0.7;
+}
+.contents-l-box2 .icon-set{
+	display: inline-block; width: 15px; height: 15px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -47px -396px;
+	opacity: 0.7;
+	margin: -1px 0 1px;
+}
+.contents-l-box2 .on .icon-list{
+	background-position: -138px -337px; opacity: 1;
+}
+.contents-l-box2 .on .icon-thumb{
+	background-position: -170px -337px; opacity: 1;
+}
+.contents-l-box2 .group-news{
+	border: 1px solid #dae1e6; 
+	height: 260px; box-sizing: border-box; position: relative;
+}
+.contents-l-box2 .group-news .row{
+	display: flex;
+}
+.contents-l-box2 .group-news .row .thumb-box{
+	height: 65px; width: 100%; position: relative;
+}
+.contents-l-box2 .group-news .row .thumb-box .thumb{
+	padding: 23px 0 22px; display: block; text-align: center;
+}
+.contents-l-box2 .group-news .row .thumb-box .popup-wrap{
+	position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+	background-color: #f7f9fa; font-size: 0;
+	padding: 19px 0 18px; text-align: center;
+	display: none;
+}
+.contents-l-box2 .group-news .row .thumb-box:hover .popup-wrap{
+	display: block;
+}
+.contents-l-box2 .group-news .row .thumb-box .popup-wrap .btn-popup{
+	display:inline-block ; padding: 7px 8px 5px; background: #fff;
+	border: 1px solid #dae1e6; 
+	font-size: 12px; line-height: 16px; color: #505050;
+}
+.contents-l-box2 .group-news .row .thumb-box .popup-wrap .btn-popup:last-child{
+	margin-left: -1px;
+}
+
+.contents-l-box2 .group-news .line{
+	position: absolute; background-color: #e4e8eb; z-index: 2;
+}
+.contents-l-box2 .group-news .to-bottom1,
+.contents-l-box2 .group-news .to-bottom2,
+.contents-l-box2 .group-news .to-bottom3,
+.contents-l-box2 .group-news .to-bottom4,
+.contents-l-box2 .group-news .to-bottom5{
+	top: 0; bottom: 0; width: 1px;
+}
+.contents-l-box2 .group-news .to-bottom1{ left: 124px;}
+.contents-l-box2 .group-news .to-bottom2{ left: 248px;}
+.contents-l-box2 .group-news .to-bottom3{ left: 373px;}
+.contents-l-box2 .group-news .to-bottom4{ left: 498px;}
+.contents-l-box2 .group-news .to-bottom5{ left: 622px;}
+
+.contents-l-box2 .group-news .to-right1,
+.contents-l-box2 .group-news .to-right2,
+.contents-l-box2 .group-news .to-right3{
+	left: 0; right: 0; height: 1px;
+}
+.contents-l-box2 .group-news .to-right1{top: 65px;}
+.contents-l-box2 .group-news .to-right2{top: 130px;}
+.contents-l-box2 .group-news .to-right3{top: 195px;}
+
+
 .contents-r-box{
 	width: 350px; height: 1000px;  float: right;
 }
@@ -186,6 +353,7 @@
 .contents-r-box2 > .btn-box > .next-btn:hover i{
 	color: red;
 }
+
 /* 푸터 박스 */
 .footer-box{
 	height: 423px; background: plum;
