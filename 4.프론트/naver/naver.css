@@ -404,6 +404,9 @@
 .contents-l-box3 .category-link.game.sel{ background-color: #5bb8e1}
 .contents-l-box3 .category-link.movie.sel{ background-color: #1a2f63}
 
+.contents-l-box3 .group-container{
+	position: relative;
+}
 
 
 .contents-r-box{
