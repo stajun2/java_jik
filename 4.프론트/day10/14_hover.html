@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>hover 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box1{ height: 100px; background-color: yellow;}
+		.box2{ height: 100px; background-color: red;}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+	<script>
+		$('.box1').hover(function(){
+			console.log('hover 중입니다.');
+		});
+		$('.box2').hover(function(){
+			console.log('hover 중입니다.');
+		}, function(){
+			console.log('hover 끝났습니다.');
+		})
+	</script>
+</body>
+</html>
