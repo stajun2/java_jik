@@ -7,6 +7,7 @@
 	<title>NAVER</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link rel="stylesheet" href="naver.css">
+	<script src="../js/jquery.min.js"></script>
 </head>
 <body>
 	<div class="whale-box container-fluid"></div>
@@ -24,6 +25,7 @@
 		</div>
 	</div>
 	<div class="menu-box container-fluid">
+		<div class="service-box"></div>
 		<div class="menu-container-box container">
 			<!-- 메일~ 더보기전까지 메뉴 -->
 			<div class="menu-container">
@@ -379,7 +381,8 @@
 					</div>
 					<div class="group-container">
 						<div class="btn-box">
-							<!-- 여기에 이전, 다음버튼 추가 -->
+							<a href="#" class="btn-next"></a>
+							<a href="#" class="btn-prev"></a>
 						</div>
 						<div class="group-category">
 							<div class="main-category after">
@@ -451,5 +454,10 @@
 		</div>
 	</div>
 	<footer class="footer-box container"></footer>
+	<script>
+		$('.menu-box .btn-more').on('click', function(){
+			$('.service-box').toggle();
+		});
+	</script>
 </body>
 </html>
