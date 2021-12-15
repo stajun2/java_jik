@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>함수 예제</title>
+</head>
+<body>
+	<script>
+		//숫자와 산술 연산자가 주어지면 산술 연산 결과를 알려주는 함수를 만들고, 테스트하세요.
+		//단, 입력이 올바로 됐다고 가정. 잘못된 값이 입력된 경우는 고려하지 않아도 됨.
+		function calculate(num1, op, num2){
+			switch(op){
+				case '+': return num1 + num2;
+				case '-': return num1 - num2;
+				case '*': return num1 * num2;
+				case '/': return num1 / num2;
+				case '%': return num1 % num2;
+			}
+		}
+		console.log('1 + 2 = ' + calculate(1, '+' , 2));
+		console.log('1 - 2 = ' + calculate(1, '-' , 2));
+		console.log('1 * 2 = ' + calculate(1, '*' , 2));
+		console.log('1 / 2 = ' + calculate(1, '/' , 2));
+		console.log('1 % 2 = ' + calculate(1, '%' , 2));
+	</script>
+</body>
+</html>

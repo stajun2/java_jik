@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>배열</title>
+</head>
+<body>
+	<script>
+		var arr1 = [];
+		var arr2 = new Array();
+		var arr3 = new Array(3);
+		console.log(arr1);
+		console.log(arr2);
+		console.log(arr3);
+		//push(값) : 배열 맨뒤에 값을 추가
+		arr1.push(1);
+		console.log(arr1);
+		arr1.push("안녕");
+		console.log(arr1);
+		//unshift(값) : 배열 맨 앞에 값을 추가
+		arr1.unshift('3');
+		console.log(arr1);
+		//원하는 번지의 값을 수정
+		arr1[0] = 33;
+		console.log(arr1);
+		//concat(배열) : 두 배열을 하나로 이어서 새로운 배열을 반환. 새 배열은 복사해서 만듬
+		arr2 = arr2.concat(arr1);
+		//복사한 arr1이 수정되도 새로 만든 arr2는 변경되지 않음
+		arr1[0] = 22;
+		console.log(arr2);
+		//pop() : 배열 맨 뒤에 있는 값을 제거하고, 해당 값을 반환
+		console.log(arr1.pop());
+		console.log(arr1);
+		//shift() : 배열 맨 앞에 있는 값을 제거하고, 해당 값을 반환
+		console.log(arr1.shift());
+		console.log(arr1);
+		//slice(시작번지) : 시작번지부터 끝까지 복사본을 만들어서 반환		
+		//slice(시작번지, 끝번지) : 시작번지부터 끝번지까지 복사본을 만들어서 반환
+		console.log('slice');
+		console.log('arr2 : ' + arr2);
+		console.log(arr2.slice(2));
+		var arr4 = arr2.slice(2);
+		console.log('arr4 : ' + arr4);
+		arr2[2] = 4;
+		console.log('arr2 : ' + arr2);
+		console.log('arr4 : ' + arr4);
+		console.log('arr2.slice(0,1) : ' + arr2.slice(0,2));
+		//splice(시작번지) : 시작번지부터 끝까지 잘라내서 반환
+		//splice(시작번지, 갯수) : 시작번지부터 갯수만큼 잘라내서 반환
+		console.log('splice');
+		console.log('arr2 : ' + arr2);
+		console.log(arr2.splice(2));
+		console.log('arr2 : ' + arr2);
+		//length : 배열의 길이
+		console.log('arr2 배열의 길이 : ' + arr2.length);
+		//indexOf(값) : 해당 값이 몇번지에 있는지 알려줌. 없으면 -1
+		console.log('arr2에 1이 있는 번지 : ' + arr2.indexOf(1));
+		console.log('arr2에 10이 있는 번지 : ' + arr2.indexOf(10));
+		
+	</script>
+</body>
+</html>
