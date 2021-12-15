@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>show,hide,toggle 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ height: 50px; width: 100%; background-color: yellow; display: none;}
+	</style>
+</head>
+<body>
+	<button id="btn1">클릭</button>
+	<button id="btn2">클릭</button>
+	<div class="box"></div>
+	<div>테스트</div>
+	<script>
+		// 버튼을 클릭하면 상자가 천천히 나타났다 바로 천천히 사라지도록 코드를 작성하세요.
+		$('#btn1').on('click',function(){
+			//show()한번, hide()한번 호출해서 show() 다 끝난 다음에 자동으로 hide()호출
+			$('.box').show(3000);
+			$('.box').hide(3000);
+			console.log('방법1 종료');
+		});
+		$('#btn2').on('click',function(){
+			//show()를 호출한 후, show() 다 끝나면 hide()를 호출
+			$('.box').show(3000, function(){
+				$('.box').hide(3000);
+				console.log('방법2 종료');
+			});
+		});
+	</script>
+</body>
+</html>

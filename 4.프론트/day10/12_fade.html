@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>fade 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ height: 100px; background-color: red; display: none;}
+	</style>
+</head>
+<body>
+	<button class="fade-in">fade-in</button>
+	<button class="fade-out">fade-out</button>
+	<button class="fade-toggle">fade-toggle</button>
+	<button class="fade-to">fade-to</button>
+	<div class="box"></div>
+	<div>테스트</div>
+	<script>
+		$('.fade-in').on('click', function(){
+			$('.box').fadeIn(2000);
+		});
+		$('.fade-out').on('click', function(){
+			$('.box').fadeOut(2000);
+		});
+		$('.fade-toggle').on('click', function(){
+			$('.box').fadeToggle(2000);
+		});
+		$('.fade-to').on('click', function(){
+			$('.box').fadeTo(2000,0.5);
+		});
+	</script>
+</body>
+</html>

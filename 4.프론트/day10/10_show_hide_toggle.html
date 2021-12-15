@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>show,hide,toggle 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ height: 100px; background-color: yellow; display: none; }
+	</style>
+</head>
+<body>
+	<button id="show">show</button>
+	<button id="hide">hide</button>
+	<button id="toggle">hide/show</button>
+	<div class="box"></div>
+	<script>
+		//1. show 버튼에 클릭 이벤트 등록
+		$('#show').click(function(){
+			//2. show 버튼을 클릭 했을 때 box가 보이도록 작업
+			//$('.box').show();
+			$('.box').show(5000,function(){
+				console.log('박스가 보입니다.');
+			});
+		});
+		
+		//1. hide 버튼에 클릭 이벤트 등록
+		$('#hide').click(function(){
+			//2. hide 버튼을 클릭 했을 때 box가 사라지도록 작업
+			$('.box').hide();
+			//$('.box').hide(5000);
+		});
+
+		//1. toggle 버튼에 클릭 이벤트 등록
+		$('#toggle').click(function(){
+			//2. toggle 버튼을 클릭 했을 때 box가 보이면 사라지고, 안보이면 보이게 하는 작업
+			//$('.box').toggle();
+			$('.box').toggle(5000);
+		});
+	</script>
+</body>
+</html>

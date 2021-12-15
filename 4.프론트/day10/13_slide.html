@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>slide 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ height: 100px; background-color: red; display: none;}
+	</style>
+</head>
+<body>
+	<button class="slide-up">slide-up</button>
+	<button class="slide-down">slide-down</button>
+	<button class="slide-toggle">slide-toggle</button>
+	<div class="box"></div>
+	<div>테스트</div>
+	<script>
+		$('.slide-up').on('click', function(){
+			$('.box').slideUp(2000);
+		});
+		$('.slide-down').on('click', function(){
+			$('.box').slideDown(2000);
+			$('.box').slideDown(2000);
+		});
+		$('.slide-toggle').on('click', function(){
+			$('.box').slideToggle(2000);
+		});
+	</script>
+</body>
+</html>
