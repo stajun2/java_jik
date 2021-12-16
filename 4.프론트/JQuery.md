@@ -82,6 +82,76 @@
 
 * 요소의 display를 block으로 만든 후 높이를 0에서 지정된 크기로 변화시킴
 
+### animate()
+
+* 요소에 속성을 변경하여 애니메이션을 부여하는 메소드
+
+* 모든 속성을 적용할 수 없다
+
+* 대체로 수치로 설정가능한 속성들이 가능
+
+  * backgroundPositionX, backgroundPositionY, 
+  * borderBottomWidth, borderLeftWidth,borderRightWidth, borderTopWidth, borderWidth, borderSpacing
+  * margin, marginBottom, marginLeft, marginRight, marginTop, 
+  * maxHeight, maxWidth, minHeight, minWidth
+  * opacity
+  * padding, paddingBottom, paddingLeft, paddingRight, paddingTop
+  * right, top, bottom, left
+  * textIndent, wordSpacing, fontSize, letterSpacing, lineHeight
+
+* width, height, outlineWidth
+
+* ```js
+  $('선택자').animate(params, speed, callback);
+  
+  $('선택자').animate({
+      //속성명에 -가 있는 경우 ''를 붙여야함
+      속성명 : 값,
+      속성명 : 값
+  },'fast'|'slow'|밀리초, function(){
+      //애니메이션 종료 후 작업할 내용
+  });
+  ```
+
+
+
+### stop()
+
+* 진행중인 요소의 애니메이션을 정지시키는 메소드
+
+
+
+### 요소 정보 가져오기
+
+* text() 
+  * 요소 안의 문자 정보를 문자열로 가져오는 메소드
+  * 모든 태그 가능
+* html() 
+  * 요소 안의 html 코드를 문자열로 가져오는 메소드
+  * 모든 태그 가능
+* val()
+  * 입력된 값을 문자열로 가져오는 메소드
+  * input 태그, select 태그, textarea태그 처럼 정보를 입력하는 태그만 가능
+
+
+
+### 요소 정보 설정하기
+
+* text(값)
+  * 요소 안의 문자 정보를 값으로 덮어쓰는 메소드
+  * 모든 태그 가능
+
+* html(값)
+  * 요소 안의 html 코드를 값으로 덮어쓰는 메소드
+  * 모든 태그 가능
+* val(값)
+  * 입력된 값을 주어진 값으로 덮어쓰는 메소드
+  * input 태그, select 태그, textarea태그 처럼 정보를 입력하는 태그만 가능
+
+
+
+
+
 ### hover 이벤트
 
 * 마우스가 요소 안으로 들어갈때와 나올때 각각 동작한다
@@ -99,4 +169,4 @@
     })
     ```
 
-    
+* 
