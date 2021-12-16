@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>stop 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box-container{ position: relative; height: 200px;}
+		.box{ width: 100px; height: 100px; background-color: red;}
+		.box1{position: relative; width: 100%; display: none;}
+		.box2{position: absolute;}
+	</style>
+</head>
+<body>
+	<button class="btn-stop">중지</button>
+	<div class="box-container">
+		<div class="box box1"></div>
+	</div>
+	<div class="box-container">
+		<div class="box box2"></div>
+	</div>
+	<script>
+		$('.box1').slideDown(5000);
+		$('.box2').animate({left: '300px'},5000);
+
+		$('.btn-stop').click(function(){
+			$('.box1').stop();
+			$('.box2').stop();
+		})
+	</script>
+</body>
+</html>
