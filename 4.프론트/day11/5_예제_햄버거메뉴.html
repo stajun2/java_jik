@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>햄버거메뉴</title>
+	<script src="../js/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<style>
+		*{ padding: 0; margin: 0;}
+		ul,ol{ list-style: none;}
+		a{text-decoration: none; color: #000;} 
+		.nav{ position: relative;}
+		.menu{ 
+			height: 50px; border: 2px solid red; box-sizing: border-box;
+		}
+		.ham-menu{
+			position: absolute; top: 0; bottom: 0; right: 0; width: 50px;
+			box-sizing: border-box; border: 2px solid red; 
+			text-align: center;
+		}
+		.ham-menu>i{
+			font-size: 30px; line-height: 50px; color: red;
+		}
+		.main-menu{
+			position: fixed; top: 0; bottom: 0; right: -404px; width: 400px; 
+			background-color: #fff; border: 2px solid red; 
+		}
+		.main-menu>.menu-item{
+			height: 50px; margin-top: -2px; box-sizing: border-box;
+			border-top: 2px solid red; border-bottom: 2px solid red;  
+			line-height: 46px; text-align: center;
+		}
+		.main-menu>.menu-item:first-child{
+			margin-top: 46px;
+		}
+		.main-menu>.menu-item.menu-item-close{
+			width: 50px; height: 50px; position: absolute; border: 2px solid red;
+			box-sizing: border-box;top: 0; right: -2px; font-size: 30px;
+		}
+		.main-menu>.menu-item>.menu-link{
+			display: block; height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nav">
+		<div class="menu">
+			<a href="#" class="ham-menu">
+				<i class="fas fa-bars"></i>
+			</a>
+			<ul class="main-menu">
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴1</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴2</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴3</a>
+				</li>
+				<li class="menu-item menu-item-close">
+					<a href="#" class="btn-close">
+						<i class="fas fa-times"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		$('.ham-menu').click(function(){
+			$('.main-menu').animate({right : 0});
+		});
+		$('.main-menu .btn-close').click(function(){
+			$('.main-menu').animate({right : -404});
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>animate 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ 
+			width: 100px; height: 100px; background: red; top: 0; left: 0; 
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		$('.box').animate({left : 400}, 2000)
+			.animate({top : 400}, 2000)
+			.animate({left : 0}, 2000)
+			.animate({top : 0}, 2000);
+
+		$('.box').animate({left : 400}, 2000);
+		$('.box').animate({top : 400}, 2000);
+		$('.box').animate({left : 0}, 2000);
+		$('.box').animate({top : 0}, 2000);
+	</script>
+</body>
+</html>
