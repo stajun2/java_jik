@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>, 설정하기 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn-text">text</button>
+	<button class="btn-html">html</button>
+	<button class="btn-val">val</button>
+	<div class="container1"></div>
+	<div class="container2"></div>
+	<input type="text" class="id">
+	<script>
+		var box = '<div class="box">상자</box>';
+		$('.btn-text').click(function(){
+			$('.container1').text(box);
+		});
+		$('.btn-html').click(function(){
+			$('.container2').html(box);
+		});
+		$('.btn-val').click(function(){
+			$('.id').val(123);
+		})
+	</script>
+</body>
+</html>

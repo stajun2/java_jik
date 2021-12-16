@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>val 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	정수1 : 
+	<input type="text" name="num1">
+	정수2 : 
+	<input type="text" name="num2">
+	합 : 
+	<input type="text" name="res">
+	<br>
+	<button class="btn">계산</button>
+	<script>
+		$('.btn').click(function(){
+			var num1 = $('input[name=num1]').val();
+			var num2 = $('input[name=num2]').val();
+			//parseInt(문자열) : 문자열을 정수로 변환
+			//parseFloat(문자열) : 문자열을 실수로 변환
+			var res = parseInt(num1) + parseInt(num2);
+			$('input[name=res]').val(res);
+		});
+	</script>
+</body>
+</html>

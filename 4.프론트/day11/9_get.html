@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>정보 가져오기 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<a href="//naver.com">네이버</a>
+		<p><b>안녕</b>하세요.</p>
+		<input type="text" name="id" value="123"> <br>
+		<select name="fruit">
+			<option>과일</option>
+			<option value="apple" selected>사과</option>
+			<option value="orange">오렌지</option>
+		</select>
+		<br>
+		<input type="radio" name="gender1" > 남성
+		<input type="radio" name="gender2" value="female"> 여성
+	</div>	
+	<script>
+		var text = $('.container').text();
+		var html = $('.container').html();
+		var val = $('.container').val();
+
+		console.log('text : ' + text);
+		console.log('html : ' + html);
+		console.log('val : ' + val);
+
+		text = $('input[name=id]').text();
+		html = $('input[name=id]').html();
+		val = $('input[name=id]').val();
+
+		console.log('text : ' + text);
+		console.log('html : ' + html);
+		console.log('val : ' + val);
+
+		text = $('select[name=fruit]').text();
+		html = $('select[name=fruit]').html();
+		val = $('select[name=fruit]').val();
+
+		console.log('text : ' + text);
+		console.log('html : ' + html);
+		console.log('val : ' + val);
+
+		text = $('input[name=gender1]').text();
+		html = $('input[name=gender1]').html();
+		val = $('input[name=gender1]').val();
+
+		console.log('text : ' + text);
+		console.log('html : ' + html);
+		console.log('val : ' + val);
+	</script>
+</body>
+</html>

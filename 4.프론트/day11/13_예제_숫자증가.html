@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>숫자 증가 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="minus">-</button>
+	<span class="num">0</span>
+	<button class="plus">+</button>
+	<script>
+	
+		$('.minus').click(function(){
+			//화면에 적힌 숫자를 문자열로 읽어옴
+			var num = $('.num').text();
+			//읽어온 숫자 문자열을 정수로 변환
+			num = parseInt(num);
+			//읽어온 숫자에 1을 감소
+			num--;
+			//화면에 덮어씀
+			$('.num').text(num);
+		});
+		$('.plus').click(function(){
+			//화면에 적힌 숫자를 문자열로 읽어옴
+			var num = $('.num').text();
+			//읽어온 숫자 문자열을 정수로 변환
+			num = parseInt(num);
+			//읽어온 숫자에 1을 증가
+			num++;
+			//화면에 덮어씀
+			$('.num').text(num);
+		});
+		/*
+		$('button').click(function(){
+			var num = $('.num').text();
+			num = parseInt(num);
+			if($(this).text() == '-'){
+				num--;
+			}else{
+				num++;
+			}
+			$('.num').text(num);
+		});
+		*/
+	</script>
+</body>
+</html>

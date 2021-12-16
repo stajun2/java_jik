@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>html 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn">클릭</button> 
+	<button class="btn">클릭</button>
+	<div class="container"></div>
+	<script>
+		// 버튼 클릭 후 생성 된 버튼을 클릭하면 동작하지 않음
+		// 아래 클릭 이벤트는 .btn 갯수에 따라 이벤트 갯수가 정해짐
+		/*
+		$('.btn').click(function(){
+			$('.container').html('<button class="btn">클릭</button>');
+			console.log('버튼 생성');
+		});
+		*/
+		//요소가 나중에 추가되도 동일하게 실행
+		$(document).on('click', '.btn', function(){
+			$('.container').html('<button class="btn">클릭</button>');
+			console.log('버튼 생성');
+		});
+	</script>
+</body>
+</html>
