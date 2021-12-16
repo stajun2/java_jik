@@ -457,6 +457,12 @@
 	<script>
 		$('.menu-box .btn-more').on('click', function(){
 			$('.service-box').toggle();
+			var text = $('.menu-box .btn-more').text();
+			if(text == '더보기'){
+				$('.menu-box .btn-more').text('접기');
+			}else{
+				$('.menu-box .btn-more').text('더보기');
+			}
 		});
 	</script>
 </body>
