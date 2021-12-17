@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>this유의사항</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			position: absolute; top: 40px; left: 0; width: 100px; height: 100px;
+			background: red; 
+		}
+	</style>
+</head>
+<body>
+	<button class="btn">클릭</button>
+	<button class="btn">클릭</button>
+	<button class="btn">클릭</button>
+	<div class="box"></div>
+	<script>
+		$('.btn').click(function(){
+			//이 때 this는 클릭 이벤트가 발생한 버튼
+			$(this).text('이동중');
+			var $thisobj = $(this);
+			$('.box').animate({left : '500px'}, 2000, function(){
+				//이 때 this는 클릭 이벤트가 발생한 버튼이 아니라 애니메이션이 적용중인 박스
+				$(this).css('background', 'yellow');
+				//애니메이션 종료 후 버튼 배경색을 노랑색으로 변경
+				$thisobj.css('background', 'yellow');
+			});
+		});
+	</script>
+</body>
+</html>

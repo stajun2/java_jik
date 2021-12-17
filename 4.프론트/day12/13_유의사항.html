@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery 유의사항 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ width: 100px; height: 100px; display: inline-block; background: yellow;}
+		.box:nth-child(2){ width: 200px;}
+	</style>
+</head>
+<body>
+	<div class="box" id="box1">1</div>
+	<div class="box">2</div>
+	<div class="box">3</div>
+	<script>
+		//$('선택자')를 통해 선택한 요소는 0,1,여러개 일 수 있다는걸 보여주는 예제
+		var boxCount = $('.box').length;
+		var box1Count = $('#box1').length;
+		var box2Count = $('#box2').length;
+		console.log('.box의 갯수 : ' + boxCount);
+		console.log('#box1의 갯수 : ' + box1Count);
+		console.log('#box2의 갯수 : ' + box2Count);
+		//$('선택자').메소드()를 통해 선택자와 일치하는 요소들에 동일하게 적용하는 걸 보여주는
+		//예제. 여기서 메소드는 효과나 이벤트 같은 메소드
+		$('.box').css('background', 'red');
+		//.box와 일치하는 묘든 요소의 문자열들을 하나로 묶어서 반환
+		console.log($('.box').text());
+		//.box와 일치하는 첫번째 요소의 width를 반환
+		console.log($('.box').css('width'));
+	</script>
+</body>
+</html>
