@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>클래스 관련 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.active{ background-color: yellow;}
+	</style>
+</head>
+<body>
+	<button class="btn">클릭</button>
+	<script>
+		$('.btn').click(function(){
+			$(this).toggleClass('active');
+		});
+	</script>
+</body>
+</html>
