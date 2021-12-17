@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<label>
+		<input type="checkbox" name="food" value="짜장"> 짜장
+	</label>
+	<div class="box"></div>
+	<script>
+		$('[name=food]').click(function(){
+			//체크박스에서 prop('checked')가 true이면 체크된 상태이고,
+			//false이면 해제된 상태이다
+			if($('[name=food]').prop('checked')){
+				$('.box').text('짜장');
+			}else{
+				$('.box').text('');
+			}
+		});
+	</script>
+</body>
+</html>

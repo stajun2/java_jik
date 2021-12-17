@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>탭 메뉴 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{padding: 0; margin: 0;}
+		.menu{ list-style: none; display: flex; }
+		.menu-item{
+			width: 100%; height: 50px;
+		}
+		.menu-link{
+			display: block; height: 100%; box-sizing: border-box;
+			border: 2px solid red; margin-left: -2px;
+			text-align: center; line-height: 46px; color: #000;
+			font-size: 20px; font-weight: bold; text-decoration: none;
+		}
+		.menu-item:first-child .menu-link{
+			margin-left: 0; 
+		}
+		.contents-item{
+			height: 500px; border: 2px solid red; margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul class="menu">
+			<li class="menu-item menu-item1" data-target=".item1" data-res="">
+				<a href="#" class="menu-link">메뉴1</a>
+			</li>
+			<li class="menu-item menu-item2" data-target=".item2">
+				<a href="#" class="menu-link">메뉴2</a>
+			</li>
+			<li class="menu-item menu-item3" data-target=".item3">
+				<a href="#" class="menu-link">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+	<main>
+		<ul class="contents">
+			<li class="contents-item item1">1</li>
+			<li class="contents-item item2">2</li>
+			<li class="contents-item item3">3</li>
+		</ul>
+	</main>
+	<script>
+		$('.contents-item').hide();
+		$('.item1').show();
+		/*
+		$('.menu-item1').click(function(){
+			$('.contents-item').hide();
+			$('.item1').show();
+		});
+		$('.menu-item2').click(function(){
+			$('.contents-item').hide();
+			$('.item2').show();
+		});
+		$('.menu-item3').click(function(){
+			$('.contents-item').hide();
+			$('.item3').show();
+		});
+		*/
+		$('.menu-item').click(function(){
+			//var target = $(this).attr('data-target');
+			var target = $(this).data('target');
+			//data-res라는 속성에 target 변수에 저장된 값을 저장하는데, 화면상으로 확인이 안됨
+			$(this).data('res', target);
+			$('.contents-item').hide();
+			$(target).show();
+		});
+	</script>
+</body>
+</html>

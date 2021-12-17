@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<label>
+		<input type="checkbox" name="food" value="짜장"> 짜장
+	</label>
+	<label>
+		<input type="checkbox" name="food" value="짬뽕"> 짬뽕
+	</label>
+	<div class="box"></div>
+	<script>
+		var arr = [];
+		$('[name=food]').click(function(){
+			//클릭된 체크박스의 value
+			var value = $(this).val();
+			//클릭된 체크박스에 체크 여부를 확인
+			if($(this).prop('checked')){
+				//체크 된 상태이면 배열에 체크된 체크박스의 value를 추가
+				arr.push(value);
+			}
+			else{
+				//체크가 해제된 상태이면 해제된 체크박스의 value를 배열에서 제거
+					//배열에 value가 몇 번지에 있는 확인
+					var index = arr.indexOf(value);
+					//해당 번지에 있는 값을 제거
+					arr.splice(index, 1);
+			}
+			
+			//배열에 있는 값을 .box에 출력
+			$('.box').text(arr);
+		});
+	</script>
+</body>
+</html>
