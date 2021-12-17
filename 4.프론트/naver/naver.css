@@ -130,7 +130,12 @@
 .menu-container .btn-more:hover{
 	text-decoration: underline;
 }
-
+.menu-container .btn-more.fold{
+	color: #0ecd5a;
+}
+.menu-container .btn-more.fold::after{
+	background-position: -70px -296px;
+}
 /* 컨텐츠 박스 */
 .contents-box{
 	min-height: 1000px;  padding: 20px 30px;

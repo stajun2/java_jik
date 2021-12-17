@@ -381,8 +381,8 @@
 					</div>
 					<div class="group-container">
 						<div class="btn-box">
-							<a href="#" class="btn-next"></a>
-							<a href="#" class="btn-prev"></a>
+							<a href="#" class="btn btn-next"></a>
+							<a href="#" class="btn btn-prev"></a>
 						</div>
 						<div class="group-category">
 							<div class="main-category after">
@@ -414,7 +414,28 @@
 								</ul>
 								<ul class="category-list">
 									<li class="category-item">
-										<a href="#" class="category-link">JOB&</a>
+										<a href="#" class="category-link enter">JOB&</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link sports sel">스포츠</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link car">자동차</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link webtoon">웹툰</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link economy">경제M</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link recipe">레시피</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link game">게임</a>
+									</li>
+									<li class="category-item">
+										<a href="#" class="category-link movie">영화</a>
 									</li>
 								</ul>
 							</div>
@@ -455,14 +476,37 @@
 	</div>
 	<footer class="footer-box container"></footer>
 	<script>
-		$('.menu-box .btn-more').on('click', function(){
+		$('.menu-box .btn-more').on('click', function(e){
+			e.preventDefault();
 			$('.service-box').toggle();
-			var text = $('.menu-box .btn-more').text();
-			if(text == '더보기'){
+			
+			if(!$(this).hasClass('fold')){
 				$('.menu-box .btn-more').text('접기');
 			}else{
 				$('.menu-box .btn-more').text('더보기');
 			}
+			$(this).toggleClass('fold');
+		});
+		$('.btn').click(function(e){
+			e.preventDefault();
+		});
+		$('.contents-l-box3 .category-link').click(function(e){
+			e.preventDefault();
+			$('.contents-l-box3 .category-link').removeClass('sel');
+			$(this).addClass('sel');
+		});
+
+		var min3 = 0, max3 = 1;
+		var num3 = min3;
+
+		$('.contents-l-box3 .btn-box .btn').click(function(){
+			console.log(1)
+			if($(this).hasClass('btn-prev')){
+				num3 = --num3 < min3 ? min3 : num3;
+			}else{
+				num3 = ++num3 > max3 ? max3 : num3;
+			}
+			$('.contents-l-box3 .main-category').animate({marginLeft:-750 * num3});
 		});
 	</script>
 </body>
