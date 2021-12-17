@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>기본 이벤트 막는 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ height: 1000px;}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<a href="#">클릭</a>
+	<script>
+		$('a').click(function(e){
+			e.preventDefault();
+		});
+	</script>
+</body>
+</html>
