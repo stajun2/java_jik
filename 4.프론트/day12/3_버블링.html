@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>버블링 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<a href="#" class="btn">버튼</a>
+		</div>
+	</div>
+	<script>
+		$('.btn').click(function(e){
+			//버블링을 막아주는 코드
+			e.stopPropagation();
+			console.log(e);
+			console.log('.btn 클릭');
+		});
+		$('.box').click(function(e){
+			console.log(e);
+			console.log('.box 클릭');
+		});
+		$('.container').click(function(e){
+			console.log(e);
+			console.log('.container 클릭');
+		});
+	</script>
+</body>
+</html>
