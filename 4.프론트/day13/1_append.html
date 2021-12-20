@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>append 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn1">html 클릭</button>
+	<button class="btn2">append 클릭</button>
+	<button class="btn3">appendTo 클릭</button>
+	<div class="box-container">
+		<div class="box box1">1</div>
+	</div>
+	<script>
+		var num = 1;
+		$('.btn1').click(function(){
+			//기존 html 코드를 가져옴
+			var html = $('.box-container').html();
+			++num;
+			//추가할 html 코드를 뒤에 이어 붙임
+			//html = html + '<div class="box box'+num+'">'+num+'</div>';
+			html += '<div class="box box'+num+'">'+num+'</div>';
+			//요소 안에 합쳐진 html 코드를 덮어씀
+			$('.box-container').html(html);
+		});
+		$('.btn2').click(function(){
+			++num;
+			var html = '<div class="box box'+num+'">'+num+'</div>';
+			//요소 안 마지막에 append를 이용하여 추가
+			$('.box-container').append(html);
+		});
+		$('.btn3').click(function(){
+			++num;
+			var html = '<div class="box box'+num+'">'+num+'</div>';
+			//요소 안 마지막에 append를 이용하여 추가
+			$(html).appendTo('.box-container');
+		});
+	</script>
+</body>
+</html>

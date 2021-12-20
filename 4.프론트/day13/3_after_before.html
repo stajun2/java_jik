@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>after,before 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box-container{ background-color: red; }
+		.box{ 
+			background-color: yellow; width: 100px; height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+		<div class="box">1</div>
+	</div>
+	<script>
+		$('.box-container').after('<div>after 어디에?</div>');
+		$('.box-container').before('<div>before 어디에?</div>');
+		$('.box-container').append('<div>append 어디에?</div>');
+		$('.box-container').prepend('<div>prepend 어디에?</div>');
+	</script>
+</body>
+</html>
