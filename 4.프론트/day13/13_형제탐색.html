@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>형제탐색</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="box">1</div>
+		<p>2</p>
+		<div class="title">3</div>
+		<button class="btn">버튼</button>
+		<ul class="menu">메뉴
+			<li>4-1</li>
+			<li>4-2</li>
+		</ul>
+		<button class="btn">버튼</button>
+		<a href="//naver.com">네이버</a>
+		<footer>푸터</footer>
+	</div>
+	<script>
+		$('.menu').siblings().css('color','red');
+		$('.menu').siblings('div').css('color','blue');
+		console.log($('.menu').siblings('div').length);
+		$('.menu').prev().css('font-weight','bold');
+		$('.menu').next().css('font-weight','bold');
+		$('.menu').prevAll().css('font-size','30px');
+		$('.menu').prevAll('button').css('background','yellow');
+		$('.menu').prevUntil('p').css('border','1px solid red');
+	</script>
+</body>
+</html>

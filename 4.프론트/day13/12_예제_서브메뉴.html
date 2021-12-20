@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>서브 메뉴 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{ padding: 0; margin: 0;}
+		ul,ol{ list-style: none;}
+		a{ text-decoration: none; color: #000;}
+		.main-menu{ display: flex;}
+		.main-menu>.menu-item{ width: 100%; height: 50px; position: relative;}
+		.main-menu>.menu-item>.menu-link{
+			display: block; width: 100%; height: 100%; text-align: center;
+			box-sizing: border-box; border: 2px solid red; line-height: 48px;
+			font-size: 26px; font-weight: bold; border-left: none;
+		}
+		.main-menu>.menu-item:first-child>.menu-link{
+			border-left: 2px solid red;
+		}
+		.sub-menu{width: 100%; position: absolute; top: 50px; left: 0; display: none; }
+		.sub-menu>.menu-item{ height: 50px; margin-left: -2px;}
+		.main-menu>.menu-item:first-child .sub-menu>.menu-item{ margin-left: 0;}
+		.sub-menu>.menu-item>.menu-link{
+			display: block; height: 100%; border: 2px solid red;
+			font-size: 26px; font-weight: bold; text-align: center;
+			line-height: 48px; box-sizing: border-box; margin-top: -2px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="main-menu">
+		<li class="menu-item main-item1">
+			<a href="#" class="menu-link">메뉴1</a>
+			<ul class="sub-menu sub-menu1">
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴1-1</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴1-2</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴1-3</a>
+				</li>
+			</ul>
+		</li>
+		<li class="menu-item  main-item2">
+			<a href="#" class="menu-link">메뉴2</a>
+			<ul class="sub-menu sub-menu2">
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴2-1</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴2-2</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴2-3</a>
+				</li>
+			</ul>
+		</li>
+		<li class="menu-item  main-item3">
+			<a href="#" class="menu-link">메뉴3</a>
+			<ul class="sub-menu sub-menu3">
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴3-1</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴3-2</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" class="menu-link">메뉴3-3</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<script>
+		$('.menu-item').hover(function(){
+			$(this).children('.sub-menu').toggle();
+			//$(this).find('.sub-menu').toggle();
+		});
+		
+	</script>
+</body>
+</html>

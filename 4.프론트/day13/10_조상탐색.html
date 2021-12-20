@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>조상 탐색</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		body *{
+			padding: 10px; border: 1px solid black; background: #fff;
+			color: #000; font-weight: 100; font-size: 14px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		.container
+		<div class="box">
+			.box
+			<nav class="menu-box">
+				nav
+				<ul class="menu-list">
+					ul
+					<li class="menu-item menu-item1">li
+						<a href="#" class="menu-link">메뉴1</a>
+					</li>
+					<li class="menu-item">li
+						<a href="#" class="menu-link">메뉴2</a>
+					</li>
+					<li class="menu-item">li
+						<a href="#" class="menu-link">메뉴3</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<script>
+		$('.menu-item1').parent().css('background-color','yellow');
+		$('.menu-item1>a').parents().css('color','red');
+		$('.menu-item1>a').parents('div').css('font-weight','bold');
+		$('.menu-item1>a').parentsUntil('.box').css('font-size','30px');
+	</script>
+</body>
+</html>
