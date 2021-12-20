@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>width, height 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			width: 300px; height: 300px;
+			padding: 20px 30px;
+			border: 3px solid red;
+			margin: 40px 50px;
+			/* box-sizing: border-box; */
+		}
+	</style>	
+</head>
+<body>
+	<div class="box"></div>
+	<div class="result"></div>
+	<script>
+		//$('.box').width(200); //컨텐츠를 200으로 설정	
+		//컨텐츠+패딩을 200으로 설정=> 200에서 패딩을 뺀 값이 컨텐츠로 설정 => 200-60=>140
+		//$('.box').innerWidth(200); 
+		//컨텐츠+패딩+보더을 200으로 설정=> 200에서 패딩과 보더를 뺀 값이 컨텐츠로 설정
+		//200 - 60 - 6 = 134
+		//$('.box').outerWidth(200); 
+		//컨텐츠+패딩+보더+마진을 200으로 설정=> 200에서 패딩과 보더와 마진을 뺀 값이 컨텐츠로 설정
+		//200 - 60 - 6 + 100 = 34
+		$('.box').outerWidth(200,true); 
+		var str = '';
+		str += '컨텐츠 가로 길이 : ' + $('.box').width();
+		str += '<br>컨텐츠 + 패딩 가로 길이 : ' + $('.box').innerWidth();
+		str += '<br>컨텐츠 + 패딩 + 보더 가로 길이 : ' + $('.box').outerWidth();
+		str += '<br>컨텐츠 + 패딩 + 보더 + 마진 가로 길이 : ' + $('.box').outerWidth(true);
+		$('.result').html(str);
+	</script>
+</body>
+</html>
