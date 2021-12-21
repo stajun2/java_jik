@@ -49,7 +49,7 @@
 		}
 		.container{
 			width: 100%; height: 100%; box-sizing: border-box; border: 2px solid red; 
-			/* overflow: hidden; */
+			overflow: hidden;
 		}
 		.container-menu{
 			width: 200%; height: 100%; 
@@ -132,19 +132,36 @@
 			$('.btn-prev').show();
 			$('.btn-next').show();
 			//메뉴1이 클릭된 경우 이전 메뉴가 없기 때문에 이전 버튼을 감춤
-			if( $('.menu-item.sel').prev().length == 0){
+			if( $('.menu-item.sel').prev().length == 0 && $('.menu-item.sel').parent().prev().length == 0){
 				$('.btn-prev').hide();
 			}
 			//메뉴5가 클릭된 경우 다음 메뉴가 없기 때문에 다음 버튼을 감춤
-			if( $('.menu-item.sel').next().length == 0){
+			if( $('.menu-item.sel').next().length == 0 && $('.menu-item.sel').parent().next().length == 0 ){
 				$('.btn-next').hide();
 			}
 		});
 		//이전버튼
 		$('.btn-prev').click(function(e){
 			e.preventDefault();
+			//이전 버튼 클릭시 같은 화면에서 이전 요소가 있는 경우
+			//메뉴2~5, 메뉴7~10
 			if( $('.menu-item.sel').prev().length == 1){
 				$('.menu-item.sel').prev().click();
+			}
+			//이전 버튼 클릭시 같은 화면에서 이전 요소가 없는 경우
+			//메뉴1, 메뉴6
+			else{
+				//메뉴6인 경우
+				//현재 선택된 메뉴의 부모요소의 앞요소가 있는 경우
+					//현재 선택된 메뉴의 부모 요소의 앞 요소를 선택한 후, 마지막 메뉴를 선택
+					//하여 클릭
+				if($('.menu-item.sel').parent().prev().length == 1){
+					$('.menu-item.sel').parent().prev().children().last().click();
+					$('.container-menu').animate({'margin-left':'0px'},500);
+				}
+				//메뉴1인 경우
+				//현재 선택된 메뉴의 부모요소의 앞요소가 없는 경우
+					//아무것도 안해도됨
 			}
 		});
 		//다음버튼
@@ -152,6 +169,13 @@
 			e.preventDefault();
 			if( $('.menu-item.sel').next().length == 1){
 				$('.menu-item.sel').next().click();
+			}
+			else{
+				if($('.menu-item.sel').parent().next().length == 1){
+					$('.menu-item.sel').parent().next().children().first().click();
+					var width = $('.menu-item.sel').parent().width();
+					$('.container-menu').animate({'margin-left':'-'+width+'px'},500);
+				}
 			}
 		});
 		$('.menu-list:first-of-type .menu-item:first-child').click();
