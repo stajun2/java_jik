@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 선택 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box-container::after{
+			clear: both; content: ''; display: block;
+		}
+		.box{
+			width: 150px; height: 50px; box-sizing: border-box;
+			border: 1px solid red; float: left; margin-right: 10px;
+		}
+		.box.checked{
+			border: none; width: auto; line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+		<div class="box">1</div>
+		<div class="box">2</div>
+		<div class="box">3</div>
+	</div>
+	<div class="check-box-container">
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="사과">사과
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="배">배
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="바나나">바나나
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="키위">키위
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="딸기">딸기
+			</label>
+		</div>
+	</div>
+	<script>
+		var arr = [];
+		$('input[type=checkbox]').click(function(){
+			//모든 box에 글자를 제거하고, checked 클래스를 제거
+			$('.box').removeClass('checked').text('');
+
+			var value = $(this).val();
+			//클릭한 체크박스가 체크된 상태이면 배열에 값을 추가
+			if($(this).prop('checked')){
+				arr.push(value);
+			}
+			//클릭한 체크박스가 체크 해제된 상태이면 배열에서 값을 제거
+			else{
+				var index = arr.indexOf(value);
+				arr.splice(index, 1);
+			}
+			
+			//배열에 있는 글자들을 순서에 맞게 box에 채워 넣고 checked 클래스를 추가
+			for(var i in arr){
+				$('.box').eq(i).addClass('checked').text(arr[i]);
+			}
+			/*
+			for(var i = 0 ; i < arr.length; i++){
+				$('.box').eq(i).text(arr[i]);
+			}
+			*/
+		});
+
+	</script>
+</body>
+</html>
