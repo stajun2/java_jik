@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴 이동</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{ padding: 0; margin: 0;}
+		ul{ list-style: none;}
+		a{ color: #000; text-decoration: none;}
+		nav{
+			width: 80%; position: relative; margin: 0 auto;
+		}
+		.menu-list{
+			display: flex; box-sizing: border-box;
+			height: 50px; float: left; width: 50%;
+		}
+		.menu-item{
+			width: 100%; height: 100%; box-sizing: border-box; 
+			border-right: 2px solid red;
+		}
+		.menu-item:last-child{
+			border-right: none;
+		}
+		.menu-link{
+			display: block; height: 100%; line-height: 46px; text-align: center;
+			font-size: 20px; font-weight: bold;
+		}
+		.menu-item.sel .menu-link{
+			background-color: yellow;
+		}
+		.btn-box>.btn-prev,.btn-box>.btn-next{
+			width: 30px; height: 30px; background: #fff; border-radius: 50%;
+			border: 1px solid black; position: absolute; text-align: center;
+			font-size: 20px; line-height: 26px;
+			top: 10px; left: -16px;
+		}
+		.btn-box>.btn-next{
+			left: auto; right: -16px;
+		}
+		.contents-box>div{
+			width: 80%; box-sizing: border-box; height: 300px; border: 2px solid red;
+			margin: 20px auto 0; display: none;
+		}
+		.contents-box>.sel{
+			display: block;
+		}
+		.container{
+			width: 100%; height: 100%; box-sizing: border-box; border: 2px solid red; 
+			overflow: hidden;
+		}
+		.container-menu{
+			width: 200%; height: 100%; 
+		}
+		.container-menu::after{
+			display: block; content: ''; clear: both;
+		}
+	</style>
+</head>
+<body>
+	<nav class="nav">
+		<div class="btn-box">
+			<a href="#" class="btn-prev"><</a>
+			<a href="#" class="btn-next">></a>
+		</div>
+		<div class="container">
+			<div class="container-menu">
+				<ul class="menu-list">
+					<li class="menu-item" data-target="#contents1">
+						<a href="#" class="menu-link">메뉴1</a>
+					</li>
+					<li class="menu-item" data-target="#contents2">
+						<a href="#" class="menu-link">메뉴2</a>
+					</li>
+					<li class="menu-item" data-target="#contents3">
+						<a href="#" class="menu-link">메뉴3</a>
+					</li>
+					<li class="menu-item" data-target="#contents4">
+						<a href="#" class="menu-link">메뉴4</a>
+					</li>
+					<li class="menu-item menu-item5" data-target="#contents5">
+						<a href="#" class="menu-link">메뉴5</a>
+					</li>
+				</ul>
+				<ul class="menu-list">
+					<li class="menu-item menu-item6" data-target="#contents6">
+						<a href="#" class="menu-link">메뉴6</a>
+					</li>
+					<li class="menu-item" data-target="#contents7">
+						<a href="#" class="menu-link">메뉴7</a>
+					</li>
+					<li class="menu-item" data-target="#contents8">
+						<a href="#" class="menu-link">메뉴8</a>
+					</li>
+					<li class="menu-item" data-target="#contents9">
+						<a href="#" class="menu-link">메뉴9</a>
+					</li>
+					<li class="menu-item" data-target="#contents10">
+						<a href="#" class="menu-link">메뉴10</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="contents-box">
+		<div id="contents1">1</div>
+		<div id="contents2">2</div>
+		<div id="contents3">3</div>
+		<div id="contents4">4</div>
+		<div id="contents5">5</div>
+		<div id="contents6">6</div>
+		<div id="contents7">7</div>
+		<div id="contents8">8</div>
+		<div id="contents9">9</div>
+		<div id="contents10">10</div>
+	</div>
+	<script>
+		
+		//메뉴 클릭
+		$('.menu-item').click(function(e){
+			e.preventDefault();
+			$('.menu-item').removeClass('sel');
+			$(this).addClass('sel');
+			var target = $(this).data('target');
+			$('.contents-box>div').removeClass('sel');
+			$(target).addClass('sel');
+			
+			//이전/다음 버튼 처리
+			$('.btn-prev').show();
+			$('.btn-next').show();
+			//메뉴1이 클릭된 경우 이전 메뉴가 없기 때문에 이전 버튼을 감춤
+			if(target == '#contents1'){
+				$('.btn-prev').hide();
+			}
+			//메뉴10이 클릭된 경우 다음 메뉴가 없기 때문에 다음 버튼을 감춤
+			if(target == '#contents10'){
+				$('.btn-next').hide();
+			}
+		});
+		//이전버튼
+		$('.btn-prev').click(function(e){
+			e.preventDefault();
+			var target = $('.menu-item.sel').data('target');
+			if( target != '#contents1' && target != '#contents6'){
+				$('.menu-item.sel').prev().click();
+			}
+			else{
+				if(target == '#contents6'){
+					$('.menu-item.menu-item5').click();
+					$('.container-menu').animate({'margin-left':'0px'},500);
+				}
+			}
+		});
+		//다음버튼
+		$('.btn-next').click(function(e){
+			e.preventDefault();
+			var target = $('.menu-item.sel').data('target');
+			if(target != '#contents5' && target != '#contents10'){
+				$('.menu-item.sel').next().click();
+			}
+			else{
+				if(target == '#contents5'){
+					$('.menu-item.menu-item6').click();
+					var width = $('.menu-list').width();
+					$('.container-menu').animate({'margin-left':'-'+width+'px'},500);
+				}
+			}
+		});
+		$('.menu-list:first-of-type .menu-item:first-child').click();
+	</script>
+</body>
+</html>
