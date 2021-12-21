@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>필터 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{
+			width: 100px; height: 100px; background: yellow; font-size: 20px;
+			line-height: 100px; text-align: center; display: inline-block; 
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">1</div>
+	<div class="box">2</div>
+	<div class="box box3">3</div>
+	<div class="box">4</div>
+	<div class="box">5</div>
+	<script>
+		$('.box:first-child').css('border','1px solid black');
+		$('.box').first().css('color','red');
+		$('.box').last().css('color','blue');
+		$('.box').filter('.box3').css('font-size','40px');
+		$('.box').not('.box3').css('background','#0f0');
+	</script>
+</body>
+</html>
