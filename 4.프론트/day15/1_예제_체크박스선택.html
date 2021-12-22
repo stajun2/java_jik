@@ -102,8 +102,13 @@
 			
 			//배열에 있는 글자들을 순서에 맞게 box에 채워 넣고 checked 클래스를 추가
 			for(var i in arr){
-				$('.box').eq(i).addClass('checked').text(arr[i]);
+				//$('.box').eq(i).addClass('checked').text(arr[i]);
 			}
+			$('.box').each(function(i){
+				if(i < arr.length){
+					$(this).addClass('checked').text(arr[i]);
+				}
+			});
 			$('.box.red-box').removeClass('focus');
 			$('.box.red-box').not('.checked').first().addClass('focus');
 		});
@@ -136,7 +141,7 @@
 			alert('초기 설정으로 돌아갑니다.');
 			$('.btn-box').hide();
 			$('.btn-set').show();
-			$('.box').removeClass('red-box checked');
+			$('.box').removeClass('red-box checked focus');
 			$('.check-box-container input[type=checkbox]').prop('disabled',true);
 			$('.check-box-container input[type=checkbox]').hide();
 			//메뉴 설정에서 체크된 메뉴들을 해제
@@ -147,13 +152,14 @@
 			for(var i in baseArr){
 				$('.box').eq(i).text(baseArr[i]);
 			}
+			
 		});
 		//설정을 클릭했을때
 		$('.btn-ok').click(function(){
 			
 			$('.btn-box').hide();
 			$('.btn-set').show();
-			$('.box').removeClass('red-box checked');
+			$('.box').removeClass('red-box checked focus');
 			$('.check-box-container input[type=checkbox]').prop('disabled',true);
 			$('.check-box-container input[type=checkbox]').hide();
 			
