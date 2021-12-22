@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 선택 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box-container::after{
+			clear: both; content: ''; display: block;
+		}
+		.box{
+			float: left; margin-right: 10px; box-sizing: border-box;
+			height: 50px; line-height: 50px;
+		}
+		.red-box{
+			width: 150px; border: 1px solid red; float: left;
+		}
+		.red-box.checked{
+			border: none; width: auto; line-height: 50px;
+		}
+		.check-box-container input[type=checkbox]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+		<div class="box">사과</div>
+		<div class="box">배</div>
+		<div class="box">바나나</div>
+		<div class="box">키위</div>
+	</div>
+	<div class="check-box-container">
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="사과">사과
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="배">배
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="바나나">바나나
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="키위">키위
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="딸기">딸기
+			</label>
+		</div>
+	</div>
+	<button class="btn-set">메뉴설정</button>
+	<button class="btn-init">초기화</button>
+	<script>
+		$('.check-box-container input[type=checkbox]').prop('disabled',true);
+		$('.btn-init').hide();
+		var arr = [];
+		var baseArr = ['사과','배','바나나','키위'];
+		//선택 가능한 최대 갯수 3개
+		var maxCount = 3;
+		//과일을 클릭했을 때
+		$('input[type=checkbox]').click(function(){
+			//최대 갯수 체크해서 최대 갯수만큼 저장되어 있으면 추가하지 않음
+			if(maxCount == arr.length && $(this).prop('checked')){
+				//최대 갯수이면 알림창 띄움
+				alert('최대 ' + maxCount + '개 선택이 가능합니다.');
+				//선택된 체크박스를 선택 해제
+				$(this).prop('checked', false);
+				//아래 추가/제거하는 작업을 하지 않기 위해 return을 통해 함수 종료
+				return;
+			}
+
+			//모든 box에 글자를 제거하고, checked 클래스를 제거
+			$('.box').removeClass('checked').text('');
+
+			var value = $(this).val();
+			//클릭한 체크박스가 체크된 상태이면 배열에 값을 추가
+			if($(this).prop('checked')){
+				arr.push(value);
+			}
+			//클릭한 체크박스가 체크 해제된 상태이면 배열에서 값을 제거
+			else{
+				var index = arr.indexOf(value);
+				arr.splice(index, 1);
+			}
+			
+			//배열에 있는 글자들을 순서에 맞게 box에 채워 넣고 checked 클래스를 추가
+			for(var i in arr){
+				$('.box').eq(i).addClass('checked').text(arr[i]);
+			}
+		});
+		//메뉴설정을 클릭했을 때
+		$('.btn-set').click(function(){
+			$(this).hide();
+			$('.box').hide();
+			$('.btn-init').show();
+
+			//빨간 테두리 박스 설정
+			for(var i=0; i<maxCount; i++){
+				$('.box').eq(i).addClass('red-box').text('').show();
+			}
+			//체크박스 보여주기
+			$('.check-box-container input[type=checkbox]').prop('disabled',false);
+			$('.check-box-container input[type=checkbox]').show();
+		});
+		//초기화를 클릭했을 때
+		$('.btn-init').click(function(){
+			alert('초기 설정으로 돌아갑니다.');
+			$(this).hide();
+			$('.btn-set').show();
+			$('.box').removeClass('red-box checked');
+			$('.check-box-container input[type=checkbox]').prop('disabled',true);
+			$('.check-box-container input[type=checkbox]').hide();
+			//메뉴 설정에서 체크된 메뉴들을 해제
+			$('.check-box-container input[type=checkbox]').prop('checked',false);
+
+			$('.box').show();
+			for(var i in baseArr){
+				$('.box').eq(i).text(baseArr[i]);
+			}
+		});
+	</script>
+</body>
+</html>
