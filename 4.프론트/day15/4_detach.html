@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>detach() 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.container{
+			border: 2px solid black; height: 50px; overflow: hidden;
+		}
+		.box{ 
+			height: 50px; line-height: 50px;
+		}
+		.box1{ background: yellow;}
+		.box2{ background: gray;}
+		.box3{ background: #0f0;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+	</div>
+	<button class="btn">클릭</button>
+	<script>
+		$(function(){
+			$('.btn').click(function(){
+				//$(this) : 1
+				$('.box').first().animate({marginTop:-50},1000,function(){
+					// $(this) : 2
+					// 1. 클릭한 버튼 2. .box의 첫번째 요소
+					$(this).detach().appendTo('.container').removeAttr('style');
+				});
+			});
+		});
+	</script>
+</body>
+</html>
