@@ -23,6 +23,9 @@
 		.check-box-container input[type=checkbox]{
 			display: none;
 		}
+		.focus{
+			border: 1px solid blue;
+		}
 	</style>
 </head>
 <body>
@@ -60,10 +63,13 @@
 		</div>
 	</div>
 	<button class="btn-set">메뉴설정</button>
-	<button class="btn-init">초기화</button>
+	<div class="btn-box">
+		<button class="btn-init">초기화</button>
+		<button class="btn-ok">설정</button>
+	</div>
 	<script>
 		$('.check-box-container input[type=checkbox]').prop('disabled',true);
-		$('.btn-init').hide();
+		$('.btn-box').hide();
 		var arr = [];
 		var baseArr = ['사과','배','바나나','키위'];
 		//선택 가능한 최대 갯수 3개
@@ -98,17 +104,29 @@
 			for(var i in arr){
 				$('.box').eq(i).addClass('checked').text(arr[i]);
 			}
+			$('.box.red-box').removeClass('focus');
+			$('.box.red-box').not('.checked').first().addClass('focus');
 		});
 		//메뉴설정을 클릭했을 때
 		$('.btn-set').click(function(){
 			$(this).hide();
 			$('.box').hide();
-			$('.btn-init').show();
+			$('.btn-box').show();
 
 			//빨간 테두리 박스 설정
 			for(var i=0; i<maxCount; i++){
-				$('.box').eq(i).addClass('red-box').text('').show();
+				//기존 선택된 메뉴 출력
+				if(i<arr.length){
+					$('.box').eq(i).addClass('red-box checked').text(arr[i]).show();
+				}
+				//선택된 메뉴 외의 빨간박스 출력
+				else{
+					$('.box').eq(i).addClass('red-box').text('').show();
+				}
 			}
+			//파란색 테두리 설정
+			$('.box.red-box').removeClass('focus');
+			$('.box.red-box').not('.checked').first().addClass('focus');
 			//체크박스 보여주기
 			$('.check-box-container input[type=checkbox]').prop('disabled',false);
 			$('.check-box-container input[type=checkbox]').show();
@@ -116,17 +134,37 @@
 		//초기화를 클릭했을 때
 		$('.btn-init').click(function(){
 			alert('초기 설정으로 돌아갑니다.');
-			$(this).hide();
+			$('.btn-box').hide();
 			$('.btn-set').show();
 			$('.box').removeClass('red-box checked');
 			$('.check-box-container input[type=checkbox]').prop('disabled',true);
 			$('.check-box-container input[type=checkbox]').hide();
 			//메뉴 설정에서 체크된 메뉴들을 해제
 			$('.check-box-container input[type=checkbox]').prop('checked',false);
+			arr =[];
 
 			$('.box').show();
 			for(var i in baseArr){
 				$('.box').eq(i).text(baseArr[i]);
+			}
+		});
+		//설정을 클릭했을때
+		$('.btn-ok').click(function(){
+			
+			$('.btn-box').hide();
+			$('.btn-set').show();
+			$('.box').removeClass('red-box checked');
+			$('.check-box-container input[type=checkbox]').prop('disabled',true);
+			$('.check-box-container input[type=checkbox]').hide();
+			
+			if(arr.length == 0){
+				alert('선택된 메뉴가 없습니다. 초기 설정으로 돌아갑니다.');
+			}
+			$('.box').hide();
+			var tmpArr = arr.length == 0 ? baseArr : arr;
+
+			for(var i in tmpArr){
+				$('.box').eq(i).show().text(tmpArr[i]);
 			}
 		});
 	</script>
