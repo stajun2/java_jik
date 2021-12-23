@@ -457,35 +457,36 @@
 .contents-r-box2{
 	height: 49px; background: whitesmoke; position: relative;
 }
-.contents-r-box2 > .btn-box{
+.contents-r-box2  .btn-box{
 	width: 47px;	height: 24px; 
 	position: absolute; top: 11px; right: 10px;
 }
-.contents-r-box2 > .btn-box > .prev-btn,
-.contents-r-box2 > .btn-box > .next-btn{
+.contents-r-box2  .btn-box > .prev-btn,
+.contents-r-box2  .btn-box > .next-btn{
 	width: 24px; height: 24px; box-sizing: border-box; border: 1px solid #e4e8eb;
 	border: 1px solid red;
 	display: block; float: left; text-align: center; 
+	background: #fff;
 }
-.contents-r-box2 > .btn-box > .next-btn{
+.contents-r-box2  .btn-box > .next-btn{
 	margin-left: -1px;
 }
-.contents-r-box2 > .btn-box i{
+.contents-r-box2  .btn-box i{
 	font-size: 20px; color: gray; line-height: 23px;
 }
-.contents-r-box2 > .btn-box > .prev-btn:hover i,
-.contents-r-box2 > .btn-box > .next-btn:hover i{
+.contents-r-box2   .btn-box > .prev-btn:hover i,
+.contents-r-box2   .btn-box > .next-btn:hover i{
 	color: red;
 }
 
 .contents-r-box2 .contents-view{
-	width: 281px; height: 100%; overflow: hidden;
+	width: 350px; height: 100%; overflow: hidden;
 }
 .contents-r-box2 .contents-list{
 	width: 500%; height: 100%; 
 }
 .contents-r-box2 .contents-item{
-	width: 281px; height: 100%; float: left; 
+	width: 350px; height: 100%; float: left; 
 }
 .contents-r-box2 .contents-link{
 	width: 100%; height: 100%; display: block;
