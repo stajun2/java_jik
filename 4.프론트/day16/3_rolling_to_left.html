@@ -10,10 +10,21 @@
 		.box.box1 {background: yellow;}
 		.box.box2 {background: gray;}
 		.box.box3 {background: #0f0;}
-		.container{ height: 50px; border: 1px solid black; overflow: hidden;}
+		.container{ height: 50px; border: 1px solid black; overflow: hidden; position: relative;}
 		.wrap-box{ width: 300%; }
 		.wrap-box::after{ clear: both; content: ''; display: block;}
 		.box{ width: calc(100% / 3); float: left; height: 50px; line-height: 50px;}
+		.btn-box{
+			position: absolute; top: 10px; right: 10px;
+		}
+		.btn-prev, .btn-next{
+			width: 30px; height: 30px; box-sizing: border-box; float: left; border: 1px solid red;
+			text-align: center; line-height: 28px; background: #fff;
+			text-decoration: none; color: #000; font-weight: bold;
+		}
+		.btn-next{
+			margin-left: -1px;
+		}
 	</style>
 </head>
 <body>
@@ -22,6 +33,10 @@
 			<div class="box box1">1</div>
 			<div class="box box2">2</div>
 			<div class="box box3">3</div>
+		</div>
+		<div class="btn-box">
+			<a href="#" class="btn-prev"><</a>
+			<a href="#" class="btn-next">></a>
 		</div>
 	</div>
 	<script>
@@ -32,6 +47,23 @@
 				clearInterval(rollingId);
 			},function(){
 				rollingId = startRolling();
+			});
+			//>버튼클릭
+			$('.btn-next').click(function(){
+				if(!$('.box').first().is(':animated')){
+					var width = $('.container').width();
+					$('.box').first().animate({marginLeft : -width}, 1000, function(){
+						$(this).removeAttr('style').detach().appendTo('.wrap-box');
+					});
+				}
+			});
+			//<버튼 클릭
+			$('.btn-prev').click(function(){
+				if(!$('.box').first().is(':animated')){
+					var width = $('.container').width();
+					$('.box').last().detach().css('margin-left',-width+'px')
+						.prependTo('.wrap-box').animate({marginLeft : 0}, 1000);
+				}
 			});
 		});
 		function startRolling(){
