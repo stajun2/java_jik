@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링 예제(위로)</title>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/rolling.js"></script>
+	<style>
+		.container{ height: 50px; border: 1px solid black; overflow: hidden;}
+		.box{ height: 50px; line-height: 50px;}
+		.box.box1 {background: yellow;}
+		.box.box2 {background: gray;}
+		.box.box3 {background: #0f0;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box box1">1</div>
+		<div class="box box2">2</div>
+		<div class="box box3">3</div>
+	</div>
+	<script>
+		var rollingId;
+		$(function(){
+			rollingId = rollingToTop('.container','.box',2000, 1000);
+
+			//hover이벤트 등록
+			$('.container').hover(function(){
+				//들어갈땐 clearInterval을 통해 등록된 애니메이션을 제거
+				clearInterval(rollingId);
+			},function(){
+				//나올땐 setInterval을 통해 애니메이션을 등록
+				rollingId = rollingToTop('.container','.box',2000, 1000);
+			});
+
+		});
+		
+	</script>
+</body>
+</html>
