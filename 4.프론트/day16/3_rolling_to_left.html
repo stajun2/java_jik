@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링 예제(왼쪽으로)</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box.box1 {background: yellow;}
+		.box.box2 {background: gray;}
+		.box.box3 {background: #0f0;}
+		.container{ height: 50px; border: 1px solid black; overflow: hidden;}
+		.wrap-box{ width: 300%; }
+		.wrap-box::after{ clear: both; content: ''; display: block;}
+		.box{ width: calc(100% / 3); float: left; height: 50px; line-height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="wrap-box">
+			<div class="box box1">1</div>
+			<div class="box box2">2</div>
+			<div class="box box3">3</div>
+		</div>
+	</div>
+	<script>
+		var rollingId;
+		$(function(){
+			rollingId = startRolling();
+			$('.container').hover(function(){
+				clearInterval(rollingId);
+			},function(){
+				rollingId = startRolling();
+			});
+		});
+		function startRolling(){
+			return setInterval(function(){
+				if(!$('.box').first().is(':animated')){
+					var width = $('.container').width();
+					$('.box').first().animate({marginLeft : -width}, 1000, function(){
+						$(this).removeAttr('style').detach().appendTo('.wrap-box');
+					});
+				}
+			},2500);
+		}
+	</script>
+</body>
+</html>
