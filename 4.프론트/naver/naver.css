@@ -65,11 +65,60 @@
 }
 .menu-box .service-box{
 	position: absolute;
-	left: 0; right: 0; top: 53px; height: 400px;
+	left: 0; right: 0; top: 53px;
 	background-color: gray; z-index: 4; display: none;
+	padding: 20px 0 22px;
 }
+.menu-box .service-wrap-box{
+	width: 1128px; margin: 0 auto; background-color: #fff;
+	border: 1px solid #e4e8eb; border: 1px solid red; border-width: 0 1px; 
+	display: flex;
+}
+.menu-box .service-list{
+	padding: 0 14px 0 15px; font-size: 13px; line-height: 26px; letter-spacing: -.25px;
+	height: 263px; border-left: 1px solid #e4e8eb; border-left: 1px solid red;
+	width: 100%;
+}
+.menu-box .service-list:first-child{
+	border-left: none;
+}
+.menu-box .service-item{
+	overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.menu-box .service-item:first-child{
+	font-weight: bold; margin-bottom: 3px;
+}
+.menu-box .service-item .check-menu{
+	margin: 4px 9px 0 0;	vertical-align: top; display: none;
+}
+.menu-box .service-btn-box{ display: none;}
+.menu-box .service-btn-box1,.menu-box .service-btn-box2{
+	width: 270px; height: 52px; position: absolute; top: 0; right: 30px;
+	background-color: #fff; padding: 11px 0; text-align: right;
+	box-sizing: border-box;
+}
+.menu-box .service-btn-box2{
+	display: none;
+}
+.menu-box .btn-service-all, .menu-box .btn-service-set{
+	display: inline-block; padding: 7px 13px 5px; border: 1px solid #dae1e6;
+	border: 1px solid red; border-radius: 15px; line-height: 16px; font-size: 12px;
+	margin-left: 3px;
+}
+.menu-box .btn-service-set::before{
+	display: inline-block; content: ''; width: 11px; height: 11px; 
+	margin: 2px 5px 0 0;
+	background: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_bf79fd.png);
+	background-size: 444px 439px; background-position: -407px -306px;
+}
+.menu-box .btn-service-all:hover, .menu-box .btn-service-set:hover{
+	text-decoration: underline;
+}
+
+
+
 .menu-container-box{
-	height: 100%;
+	height: 100%; position: relative;
 }
 .menu-container{
 	padding: 11px 0; float: left; height: 100%; box-sizing: border-box;

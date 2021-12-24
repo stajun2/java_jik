@@ -26,8 +26,84 @@
 		</div>
 	</div>
 	<div class="menu-box container-fluid">
-		<div class="service-box"></div>
+		<div class="service-box">
+			<div class="service-wrap-box">
+				<ul class="service-list">
+					<li class="service-item">ㄱ-ㅁ</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="날씨" class="check-menu">날씨
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="네이버 MY CAR" class="check-menu">네이버 MY CAR
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="네이버 게임" class="check-menu">네이버 게임
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="네이버 예약" class="check-menu">네이버 예약
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="네이버 프리미엄콘텐츠" class="check-menu">네이버 프리미엄콘텐츠
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="네이버플러스 멤버쉽" class="check-menu">네이버플러스 멤버쉽
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="뉴스" class="check-menu">뉴스
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="데이터랩" class="check-menu">데이터랩
+						</label>
+					</li>
+					<li class="service-item">
+						<label>
+							<input type="checkbox" name="menu" value="메모" class="check-menu">메모
+						</label>
+					</li>
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+				<ul class="service-list">
+					
+				</ul>
+			</div>
+		</div>
 		<div class="menu-container-box container">
+			<div class="service-btn-box">
+				<div class="service-btn-box1">
+					<a href="#" class="btn-service-all">서비스 전체보기</a>
+					<a href="#" class="btn-service-set">메뉴 설정</a>
+				</div>
+				<div class="service-btn-box2"></div>
+			</div>
 			<!-- 메일~ 더보기전까지 메뉴 -->
 			<div class="menu-container">
 				<ul class="green-menu-box menu">
@@ -489,7 +565,9 @@
 	</div>
 	<footer class="footer-box container"></footer>
 	<script>
+		//더보기 버튼 클릭
 		$('.menu-box .btn-more').on('click', function(e){
+			$('.menu-box .service-btn-box').toggle();
 			e.preventDefault();
 			$('.service-box').toggle();
 			
