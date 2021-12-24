@@ -102,7 +102,10 @@
 					<a href="#" class="btn-service-all">서비스 전체보기</a>
 					<a href="#" class="btn-service-set">메뉴 설정</a>
 				</div>
-				<div class="service-btn-box2"></div>
+				<div class="service-btn-box2">
+					<a href="#" class="btn-service-init">초기화</a>
+					<a href="#" class="btn-service-save btn-green">저장</a>
+				</div>
 			</div>
 			<!-- 메일~ 더보기전까지 메뉴 -->
 			<div class="menu-container">
@@ -565,16 +568,19 @@
 	</div>
 	<footer class="footer-box container"></footer>
 	<script>
-		//더보기 버튼 클릭
+		//더보기/접기 버튼 클릭
 		$('.menu-box .btn-more').on('click', function(e){
 			$('.menu-box .service-btn-box').toggle();
 			e.preventDefault();
 			$('.service-box').toggle();
-			
+			//더보기 클릭
 			if(!$(this).hasClass('fold')){
 				$('.menu-box .btn-more').text('접기');
-			}else{
+			}
+			//접기 클릭
+			else{
 				$('.menu-box .btn-more').text('더보기');
+				$('.menu-box .service-box').removeClass('set');
 			}
 			$(this).toggleClass('fold');
 		});
@@ -702,7 +708,13 @@
 			});
 		});
 		
-		
+		//메뉴 설정 버튼 클릭
+		$('.menu-box .btn-service-set').click(function(e){
+			e.preventDefault();
+			$('.menu-box .service-box').addClass('set');
+			$('.menu-box .service-btn-box1').hide();
+			$('.menu-box .service-btn-box2').show();
+		});
 	</script>
 </body>
 </html>
