@@ -37,7 +37,7 @@
 					</li>
 					<li class="service-item">
 						<label>
-							<input type="checkbox" name="menu" value="네이버 MY CAR" class="check-menu">네이버 MY CAR
+							<input type="checkbox" name="menu" value="MY CAR" class="check-menu">네이버 MY CAR
 						</label>
 					</li>
 					<li class="service-item">
@@ -47,17 +47,17 @@
 					</li>
 					<li class="service-item">
 						<label>
-							<input type="checkbox" name="menu" value="네이버 예약" class="check-menu">네이버 예약
+							<input type="checkbox" name="menu" value="예약" class="check-menu">네이버 예약
 						</label>
 					</li>
 					<li class="service-item">
 						<label>
-							<input type="checkbox" name="menu" value="네이버 프리미엄콘텐츠" class="check-menu">네이버 프리미엄콘텐츠
+							<input type="checkbox" name="menu" value="프리미엄콘텐츠" class="check-menu">네이버 프리미엄콘텐츠
 						</label>
 					</li>
 					<li class="service-item">
 						<label>
-							<input type="checkbox" name="menu" value="네이버플러스 멤버쉽" class="check-menu">네이버플러스 멤버쉽
+							<input type="checkbox" name="menu" value="멤버쉽" class="check-menu">네이버플러스 멤버쉽
 						</label>
 					</li>
 					<li class="service-item">
@@ -752,7 +752,6 @@
 		//저장
 		$('.btn-service-save').click(function(){
 			arr = tmpArr;
-			tmpArr = [];
 			if(arr.length == 0){
 				alert('선택된 메뉴가 없습니다. 초기화합니다.');
 			}
@@ -760,7 +759,7 @@
 		});
 		//초기화
 		$('.btn-service-init').click(function(){
-			arr = tmpArr = [];
+			arr = [];
 			alert('초기화합니다.');
 			$('.btn-more').click();
 		});
