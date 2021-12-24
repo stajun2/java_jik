@@ -146,11 +146,22 @@
 .menu-container .green-menu-box .menu-item:first-child{
 	margin-left: 0;
 }
+.menu-container .black-menu-box .menu-item.set{
+	width: 70px; box-sizing: border-box; height: 30px; border: 1px solid #dae1e6 ;
+	background-color: #f7f9fa;
+}
+.menu-container .black-menu-box .menu-item.set.focus{
+	border: 1px solid #19ce60; background-color: #fff;
+}
+
 .menu-container .green-menu-box .menu-link,
-.menu-container .black-menu-box .menu-link{
+.menu-container .black-menu-box .menu-link,
+.menu-container .black-menu-box .menu-item
+{
 	color: #03c75a; font-weight: bold; font-size: 15px; line-height: 30px;
 }
-.menu-container .black-menu-box .menu-link{
+.menu-container .black-menu-box .menu-link,
+.menu-container .black-menu-box .menu-item{
 	color: #000;
 }
 .menu-container .icon-mail{
