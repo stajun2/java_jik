@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>아이디 중복 체크 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 
+		아이디 입력창과 아이디 중복에크 버튼, 회원가입 버튼을 구성 후
+		회원 가입 버튼을 눌렀을 때 아이디 중복체크를 했으면 회원가입 완료됐습니다라고
+		알림창을 띄우고, 중복체크를 하지 않았으면 아이디 중복체크를 하세요라고 알림창을
+		띄우는 코드를 작성하세요.
+		- 단, 아이디를 입력 후, 중복체크 한후, 아이디를 변경하면 다시 중복체크해야한다
+		- 단, 아이디를 입력하지 않으면 중복체크를 해도 회원가입이 되지 않도록 해야한다.
+		- 아이디를 입력하지 않으면 회원가입 버튼을 눌렀을 때 아이디를 입력하세요라고 출력해야한다
+	 -->
+	<input type="text" name="id"> 
+	<button id="btnDup">중복체크</button>
+	<br>
+	<button id="btnSubmit">회원가입</button>
+	<script>
+
+		var isDuplicated = false;
+		$('input[name=id]').change(function(){
+			isDuplicated = false;
+		});
+		$('#btnDup').click(function(){
+			if($('input[name=id]').val() == ''){
+				alert('아이디를 입력하세요.');
+				return;
+			}
+			isDuplicated = true;
+			alert('중복체크했습니다.');
+		});
+		$('#btnSubmit').click(function(){
+			if($('input[name=id]').val() == ''){
+				alert('아이디를 입력하세요.');
+				return;
+			}
+			if(isDuplicated){
+				alert('회원가입을 완료했습니다.');
+			}else{
+				alert('아이디 중복체크를 하세요.');
+			}
+		});
+	</script>
+</body>
+</html>

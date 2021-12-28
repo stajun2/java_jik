@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>change 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 
+		좋아하는 과일을 select 태그를 이용하여 구성한 후, 값이 바뀌면 바뀐 값을
+		콘솔에 출력하는 코드를 작성하세요. 
+	-->
+	좋아하는 과일은? <br>
+	<select name="fruit">
+		<option value="">과일선택</option>
+		<option value="사과">사과</option>
+		<option value="배">배</option>
+		<option value="오렌지">오렌지</option>
+	</select>
+	<script>
+		$('select[name=fruit]').change(function(){
+			console.log($(this).val());
+		});
+	</script>
+</body>
+</html>
