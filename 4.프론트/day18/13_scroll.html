@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>스크롤 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		*{padding: 0; margin: 0;}
+		.container{ overflow: scroll;	}
+		.box1{ height: 100vh; background-color: yellow;}
+		.box2{ height: 100vh; background-color: red;}
+		.box3{ height: 100vh; background-color: green;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="box3"></div>
+	</div>
+	<script>
+		var lastScrollTop = 0;
+		var scrollOk = false;
+		$(function(){
+			$(window).scroll(function(e){
+				scrollOk = true;
+			});
+			//스크롤을 조금만 내리거나 올려도 scroll 이벤트가 여러번 실행 됨
+			//일정시간동안 실행된 여러번의 scroll 이벤트를 한번에 처리하기 위해 setInterval()를 이용
+			setInterval(function(){
+				//활성화가 되면
+				if(scrollOk){
+					//스크롤을 움직이고
+					setScroll(50);
+					//비활성화 시킴
+					scrollOk = false;
+				}
+			}, 300);
+		});
+
+		function setScroll(delta){
+			//현재 스크롤 위치
+			var nowScrollTop = $(window).scrollTop();
+			//한 박스씩 이동할거기 때문에 한 박스의 높이
+			var height = $('.box1').height();
+			//이전 스크롤 기준으로 현재 스크롤 위치가 기준치(delta)보다 작으면 다음 화면으로 이동할 필요가 없음
+			if(Math.abs(nowScrollTop - lastScrollTop) < delta){
+				return;
+			}
+			//위로
+			if(lastScrollTop > nowScrollTop){
+				$(window).scrollTop(lastScrollTop-height);
+				lastScrollTop -= height;
+			}else{
+				$(window).scrollTop(lastScrollTop+height);
+				lastScrollTop += height;
+			}
+		}
+	</script>
+</body>
+</html>
