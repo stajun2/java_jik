@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>마우스 관련 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.container{ padding: 100px; border: 1px solid black;}
+		.box{ height: 300px; border: 1px solid red;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			over 횟수 : <span class="over-count">0</span> <br>
+			enter 횟수 : <span class="enter-count">0</span> <br>
+			leave 횟수 : <span class="leave-count">0</span> <br>
+			out 횟수 : <span class="out-count">0</span> <br>
+		</div>
+	</div>
+	<script>
+		var overCount = 0, enterCount = 0;
+		var outCount = 0, leaveCount = 0;
+		$('.container').mouseover(function(){
+			overCount++;
+			$('.over-count').text(overCount);
+		});
+		$('.container').mouseenter(function(){
+			enterCount++;
+			$('.enter-count').text(enterCount);
+		});
+		$('.box').mouseover(function(e){
+			e.stopPropagation();
+		});
+		$('.container').mouseleave(function(){
+			leaveCount++;
+			$('.leave-count').text(leaveCount);
+		});
+		$('.container').mouseout(function(){
+			outCount++;
+			$('.out-count').text(outCount);
+		});
+		$('.box').mouseout(function(e){
+			e.stopPropagation();
+		})
+		$('.box').click(function(){
+			console.log('클릭했습니다.');
+		});
+		$('.box').dblclick(function(){
+			console.log('더블 클릭했습니다.');
+		});
+		$('.box').mousedown(function(e){
+			console.log('눌렸습니다.');
+			console.log(e.originalEvent.x + "," + e.originalEvent.y);
+		});
+		$('.box').mouseup(function(e){
+			console.log('땠습니다.');
+			console.log(e.originalEvent.x + "," + e.originalEvent.y);
+		});
+		$('.box').mousemove(function(e){
+			console.log('이동중입니다');
+			console.log(e.originalEvent.x + "," + e.originalEvent.y);
+		});
+	</script>
+</body>
+</html>

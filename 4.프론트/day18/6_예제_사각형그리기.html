@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>사각형 그리기</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box{ border: 2px solid black; position: absolute;}
+		body{margin: 0; padding: 0; height: 100vh;}
+	</style>
+</head>
+<body>
+	<!-- 
+		마우스를 누르고 이동한후 마우스를 땠을 때 눌렀던 위치에서 시작하여 땠을때
+		위치로 이루어진 사각형을 그리도록 코드를 작성하세요. -->
+	<script>
+		var left, topY, width, height;
+		var drawing = false;
+		$('body').mousedown(function(e){
+			var x = e.originalEvent.x;
+			var y = e.originalEvent.y;
+			$(this).append('<div class="box"></div>');
+			$(this).children().last().css({left:x, top:y, width:0, height:0});
+			left = x;		
+			topY = y;
+			drawing = true;
+		});
+		$('body').mouseup(function(e){
+			var x = e.originalEvent.x;
+			var y = e.originalEvent.y;
+			
+			//$(this).children().last().css({left:left, top:topY, width:width, height:height});
+			drawRect($(this).children().last(), left, topY, x, y);
+			drawing = false;
+		});
+		$('body').mousemove(function(e){
+			var x = e.originalEvent.x;
+			var y = e.originalEvent.y;
+			
+			if(drawing){
+				drawRect($(this).children().last(), left, topY, x, y);
+			}
+		});
+		function drawRect($obj, x1, y1, x2, y2 ){
+			var width = Math.abs(x2 - x1);
+			var height= Math.abs(y2 - y1);
+			var left = x1 < x2 ? x1 : x2;
+			var topY = y1 < y2 ? y1 : y2;
+			$obj.css({left:left, top:topY, width:width, height:height});
+		}
+		
+	</script>
+</body>
+</html>
