@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>focus, blur 이벤트 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<input type="text" name="id"> <br>
+	<input type="password" name="pw">
+	<script>
+		$('input[name=id]').click(function(){
+			console.log('click');
+		});
+		$('input[name=id]').focus(function(){
+			$(this).css('background','yellow');
+			console.log('focus');
+		});
+		$('input[name=id]').blur(function(){
+			$(this).css('background','#fff');
+			console.log('blur');
+		});
+	</script>
+</body>
+</html>
