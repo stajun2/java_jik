@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 
+		아이디와 비밀번호를 입력하는 회원가입창을 만들고, 아이디와 비밀번호가
+		입력된 상태에서 회원가입을 누르면 서버에 전송하고, 아이디 또는 비밀번호가
+		입력되지 않으면 회원가입버튼을 눌렀을 대 서버에 전송하지 않은 코드를 작성하세요.
+	 -->
+	<form action="">
+		<input type="text" name="id"> <br>
+		<input type="password" name="pw" > <br>
+		<button type="submit">회원가입</button>
+	</form>
+	<script>
+		$('form').submit(function(){
+			var id = $('input[name=id]').val();
+			var pw = $('input[name=pw]').val();
+			if(id.trim() == '' || pw.trim() == ''){
+				alert('아이디 또는 비밀번호를 입력하세요.');
+				return false;
+			}
+			return true;
+		});
+	</script>
+</body>
+</html>
