@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 전체 선택하기 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<label>
+			<input type="checkbox" id="all"> 전체선택
+		</label>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" name="menu"> 메뉴1
+		</label>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" name="menu"> 메뉴2
+		</label>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" name="menu"> 메뉴3
+		</label>
+	</div>
+	<script>
+		$('#all').click(function(){
+			var isChecked = $(this).is(':checked');
+			$('input[name=menu]').prop('checked', isChecked);
+		});
+	</script>
+</body>
+</html>
