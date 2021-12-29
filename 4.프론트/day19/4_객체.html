@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>객체 예제</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		var arr = [1, 'abc', 1.23, true];
+		var obj = {
+			background : 'red',
+			height : 100
+		};
+		$('.box').css(obj);
+		var obj2 = {
+			name     : '홍길동',
+			grade    : 1,
+			classNum : 1,
+			num      : 1,
+			subject  : {
+				kor : 100,
+				eng : 10,
+				math : 100
+			},
+			print : function(){
+				//this 안붙이면 정상 동작하지 않음
+				return '이름 : ' + this.name + ', 학년 : ' + this.grade;
+			}
+		}
+		console.log(obj2);
+		console.log(obj2.name);
+		console.log(obj2['name']);
+		console.log(obj2.subject.kor);
+		console.log(obj2['subject']['kor']);
+		console.log(obj2.print());
+		obj2.schoolName = '청주그린';
+		console.log(obj2)
+		obj2.print2 = function(){
+			console.log('프린트2입니다.');
+		}
+		obj2.print2();
+		//객체의 속성을 제거할때 delete
+		delete obj2.schoolName;
+		console.log(obj2.schoolName);
+	</script>
+</body>
+</html>
