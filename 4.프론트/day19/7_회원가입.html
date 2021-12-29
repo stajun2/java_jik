@@ -50,12 +50,12 @@
 		<div class="form-group">
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="gender">남성
+					<input type="radio" class="form-check-input" name="gender" value="남성">남성
 				</label>
 			</div>
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="gender">여성
+					<input type="radio" class="form-check-input" name="gender" value="여성">여성
 				</label>
 			</div>
 		</div>
@@ -66,10 +66,60 @@
 			</div>
 			<input type="text" id="address" placeholder="주소" class="form-control mb-2">
 			<input type="text" id="detailAddress" placeholder="상세주소" class="form-control mb-2">
+			<input type="hidden" name="address">
 		</div>
 		<button class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script>
+		$('form').submit(function(){
+			var id = $('[name=id]').val().trim();
+			var pw = $('[name=pw]').val().trim();
+			var pw2 = $('[name=pw2]').val().trim();
+			var name = $('[name=name]').val().trim();
+			var birth = $('[name=birth]').val().trim();
+			var genderObj = $('[name=gender]:checked');
+			var gender = genderObj.length == 0 ? '' : genderObj.val();
+			var isAgree = $('[name=agree]').is(':checked');
+			//동의에 체크되지 않으면
+			if(!isAgree){
+				alert('동의에 체크해야합니다.');
+				$('[name=agree]').focus();
+				return false;
+			}
+			if(id == ''){
+				alert('아이디를 입력하세요.');
+				$('[name=id]').focus();
+				return false;
+			}
+			if(pw == ''){
+				alert('비밀번호를 입력하세요.');
+				$('[name=pw]').focus();
+				return false;
+			}
+			if(pw2 != pw){
+				alert('비밀번호가 일치하지 않습니다.');
+				$('[name=pw2]').focus();
+				return false;
+			}
+			if(name == ''){
+				alert('이름을 입력하세요.');
+				$('[name=name]').focus();
+				return false;
+			}
+			if(birth == ''){
+				alert('생일을 입력하세요.');
+				$('[name=birth]').focus();
+				return false;
+			}
+			if(gender == ''){
+				alert('성별을 선택하세요.');
+				$('[name=gender]').focus();
+				return false;
+			}
+			var address = $('#address').val() + ' ' +$('#detailAddress').val();
+			$('[name=address]').val(address);
+		});
+
 		$('#birth').datepicker();
 		$('#birth').datepicker('option','dateFormat', 'yy-mm-dd');
 
