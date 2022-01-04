@@ -1,14 +1,19 @@
 package kr.green.spring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MemberVO;
 //@Controller가 있어야 URL을 분석하여 처리
 @Controller
 public class HomeController {
+	
+	@Autowired
+	MemberService memberService;
 	
 	//URL을 확인하는 곳, 필수
 	//value는 localhost:8080/패키지명을 제외한 부분
