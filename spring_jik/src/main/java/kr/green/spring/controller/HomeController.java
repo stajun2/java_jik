@@ -42,6 +42,19 @@ public class HomeController {
 		mv.setViewName("/member/login");
 		return mv;
 	}
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public ModelAndView signupGet(ModelAndView mv) {
+		System.out.println("/signup:get :");
+		mv.setViewName("/member/signup");
+		return mv;
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ModelAndView signupPost(ModelAndView mv, MemberVO user) {
+		System.out.println("/signup:Post :" + user);
+		memberService.signup(user);
+		mv.setViewName("/member/signup");
+		return mv;
+	}
 }
 
 
