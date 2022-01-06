@@ -36,4 +36,13 @@
       </beans:property>
   </beans:bean>
 	
+	<beans:bean id="loginInterceptor" 
+		class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+		<!-- 등록된 인터셉터가 어떤 URL에 동작하는지를 설정  -->
+	  <interceptor>
+	    <mapping path="/login"/>
+	    <beans:ref bean="loginInterceptor"/>
+	  </interceptor>
+	</interceptors>
 </beans:beans>
