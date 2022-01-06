@@ -27,19 +27,19 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="아이디" name="me_id">
+			<input type="text" class="form-control" placeholder="아이디" name="me_id" value="${user.me_id}">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw">
+			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호확인" name="me_pw2">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="이름" name="me_name">
+			<input type="text" class="form-control" placeholder="이름" name="me_name" value="${user.me_name}">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="생년월일" name="birth" id="birth">
+			<input type="text" class="form-control" placeholder="생년월일" name="me_birth" id="birth">
 		</div>
 		<div class="form-group">
 			<div class="form-check-inline">
@@ -73,7 +73,7 @@
 			var pw = $('[name=me_pw]').val().trim();
 			var pw2 = $('[name=me_pw2]').val().trim();
 			var name = $('[name=me_name]').val().trim();
-			var birth = $('[name=birth]').val().trim();
+			var birth = $('[name=me_birth]').val().trim();
 			var genderObj = $('[name=me_gender]:checked');
 			var gender = genderObj.length == 0 ? '' : genderObj.val();
 			var isAgree = $('[name=agree]').is(':checked');
@@ -105,7 +105,7 @@
 			}
 			if(birth == ''){
 				alert('생일을 입력하세요.');
-				$('[name=birth]').focus();
+				$('[name=me_birth]').focus();
 				return false;
 			}
 			if(gender == ''){
