@@ -20,12 +20,14 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr>
-	        <td>1</td>
-	        <td><a href="#">제목</a></td>
-	        <td>abc123</td>
-	        <td>2022-01-06</td>
-	      </tr>
+	    	<c:forEach items="${list}" var="board">
+		      <tr>
+		        <td>${board.bd_num}</td>
+		        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+		        <td>${board.bd_me_id}</td>
+		        <td>${board.bd_reg_date_str}</td>
+		      </tr>
+	      </c:forEach>
 	    </tbody>
 	  </table>
 	  <c:if test="${user != null}">

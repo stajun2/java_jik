@@ -12,5 +12,12 @@
   			ifnull(max(bd_num),0)+1, 'N'
   			from board;
   </insert>
+  <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board 
+  		where bd_type = #{type} order by bd_num desc
+  </select>
+  <select id="getBoard" resultType="kr.green.spring.vo.BoardVO">
+  	select * from board where bd_num = #{bd_num}
+  </select>
 </mapper>
 
