@@ -14,10 +14,16 @@
   </insert>
   <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
   	select * from board 
-  		where bd_type = #{type} order by bd_num desc
+  		where bd_type = #{type} and bd_del = 'N' order by bd_num desc
   </select>
   <select id="getBoard" resultType="kr.green.spring.vo.BoardVO">
-  	select * from board where bd_num = #{bd_num}
+  	select * from board where bd_num = #{bd_num} and bd_del = 'N'
   </select>
+  <update id="deleteBoard">
+  	update board set
+  		bd_del = 'Y',
+  		bd_del_date = now()
+  		where bd_num = #{bd_num} 
+  </update>
 </mapper>
 

@@ -60,4 +60,17 @@ public class BoardController {
 		mv.addObject("board", board);
 		return mv;
 	}
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public ModelAndView boardDeleteGet(ModelAndView mv,Integer bd_num, HttpServletRequest request) {
+		//게시글 번호 확인
+		//System.out.println("게시글 번호 : " + bd_num);
+		//로그인한 유저 정보를 확인
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		//System.out.println(user);
+		//서비스에게 게시글 번호와 로그인한 유저 정보를 주면서 게시글 삭제하라고 시킴
+		//boardSercie.게시글삭제(게시글 번호, 로그인한 유저정보);
+		boardService.deleteBoard(bd_num, user);
+		mv.setViewName("redirect:/board/list");
+		return mv;
+	}
 }
