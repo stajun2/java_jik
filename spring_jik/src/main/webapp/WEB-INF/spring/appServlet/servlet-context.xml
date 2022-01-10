@@ -38,11 +38,26 @@
 	
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="memberInterceptor" 
+		class="kr.green.spring.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="guestInterceptor" 
+		class="kr.green.spring.interceptor.GuestInterceptor"></beans:bean>
 	<interceptors>
 		<!-- 등록된 인터셉터가 어떤 URL에 동작하는지를 설정  -->
 	  <interceptor>
 	    <mapping path="/login"/>
 	    <beans:ref bean="loginInterceptor"/>
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/board/register"/>
+	    <mapping path="/board/modify"/>
+	    <mapping path="/board/delete"/>
+	    <beans:ref bean="memberInterceptor"/>
+	  </interceptor>
+	  <interceptor>
+	    <mapping path="/login"/>
+	    <mapping path="/signup"/>
+	    <beans:ref bean="guestInterceptor"/>
 	  </interceptor>
 	</interceptors>
 </beans:beans>
