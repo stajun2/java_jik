@@ -23,7 +23,14 @@
   	update board set
   		bd_del = 'Y',
   		bd_del_date = now()
-  		where bd_num = #{bd_num} 
+  	where bd_num = #{bd_num} 
+  </update>
+  <update id="updateBoard">
+  	update board set
+  		bd_title = #{board.bd_title},
+  		bd_contents = #{board.bd_contents},
+  		bd_up_date = #{board.bd_up_date}
+  	where bd_num = #{board.bd_num}
   </update>
 </mapper>
 

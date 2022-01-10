@@ -1,5 +1,6 @@
 package kr.green.spring.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,22 @@ public class BoardServiceImp implements BoardService {
 		if(board == null || !board.getBd_me_id().equals(user.getMe_id()))
 			return null;
 		return board;
+	}
+
+	@Override
+	public void updateBoard(BoardVO board) {
+		//다오에게 게시글 번호와 일치하는 게시글을 가져오라고 시킴
+		//게시글 = 다오.게시글가져오기(게시글번호)
+		BoardVO dbBoard = boardDao.getBoard(board.getBd_num());
+		
+		//가져온 게시글의 제목과 내용을 board의 제목과 내용으로 덮어쓰기를 함
+		dbBoard.setBd_title(board.getBd_title());
+		dbBoard.setBd_contents(board.getBd_contents());
+		
+		//가져온 게시글의 수정일을 현재 시간으로 업데이트
+		dbBoard.setBd_up_date(new Date());
+		
+		//다오에게 수정된 게시글 정보를 주면서 업데이트 하라고 시킴
+		boardDao.updateBoard(dbBoard);
 	}
 }
