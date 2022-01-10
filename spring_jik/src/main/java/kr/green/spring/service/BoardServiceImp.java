@@ -73,4 +73,10 @@ public class BoardServiceImp implements BoardService {
 		boardDao.updateBoard(board);
 		*/
 	}
+
+	@Override
+	public BoardVO getBoard(Integer bd_num, MemberVO user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

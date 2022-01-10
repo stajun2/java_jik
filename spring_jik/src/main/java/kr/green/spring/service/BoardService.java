@@ -14,5 +14,7 @@ public interface BoardService {
 	BoardVO getBoard(Integer bd_num);
 
 	void deleteBoard(Integer bd_num, MemberVO user);
+
+	BoardVO getBoard(Integer bd_num, MemberVO user);
 	
 }
