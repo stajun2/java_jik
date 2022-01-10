@@ -76,7 +76,15 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public BoardVO getBoard(Integer bd_num, MemberVO user) {
-		// TODO Auto-generated method stub
-		return null;
+		//게시글 번호가 유효한지 체크 => 번호가 없거나 0이하이면 작업할 필요 없음
+		if(bd_num == null || bd_num <= 0)
+			return null;
+		//다오에게 게시글을 가져오라고 시킴
+		//게시글 = 다오.게시글가져옴(게시글 번호)
+		BoardVO board = boardDao.getBoard(bd_num);
+		//가져온 게시글이 있으면 작성자와 user와 비교하여 같은 아이디인지 체크
+		if(board == null || !board.getBd_me_id().equals(user.getMe_id()))
+			return null;
+		return board;
 	}
 }
