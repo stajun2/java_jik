@@ -10,4 +10,7 @@
 			values(#{user.me_id},#{user.me_pw},#{user.me_name},#{user.me_gender},
 				#{user.me_birth},#{user.me_address},#{user.me_phone})
 	</insert>
+	<select id="selectMember" resultType="kr.green.green.vo.MemberVO">
+		select * from member where me_id = #{me_id}
+	</select>
 </mapper>
