@@ -24,7 +24,7 @@
 	        <td>${board.bd_num}</td>
 	        <td><a href="#">${board.bd_title}</a></td>
 	        <td>${board.bd_me_id}</td>
-	        <td>${board.bd_reg_date}</td>
+	        <td>${board.bd_reg_date_str}</td>
 	      </tr>
       </c:forEach>
     </tbody>
