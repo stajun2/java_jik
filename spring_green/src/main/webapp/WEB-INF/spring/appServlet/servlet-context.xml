@@ -39,10 +39,25 @@
 	
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.green.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="guestInterceptor" 
+		class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>		
+	<beans:bean id="memberInterceptor" 
+		class="kr.green.green.interceptor.MemberInterceptor"></beans:bean>
 	<interceptors>
     <interceptor>
 	    <mapping path="/login"/>
 	    <beans:ref bean="loginInterceptor"/>
+    </interceptor>
+    <interceptor>
+	    <mapping path="/login"/>
+	    <mapping path="/signup"/>
+	    <beans:ref bean="guestInterceptor"/>
+    </interceptor>
+    <interceptor>
+	    <mapping path="/board/register"/>
+	    <mapping path="/board/modify"/>
+	    <mapping path="/board/delete"/>
+	    <beans:ref bean="memberInterceptor"/>
     </interceptor>
 	</interceptors>
 </beans:beans>
