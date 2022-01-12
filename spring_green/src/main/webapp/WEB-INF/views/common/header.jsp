@@ -9,6 +9,9 @@
   	</button>
   	<div class="collapse navbar-collapse" id="collapsibleNavbar">
     	<ul class="navbar-nav">
+    		<li class="nav-item">
+        	<a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시글</a>
+      	</li>
     		<c:if test="${user == null }">
 	      	<li class="nav-item">
 	        	<a class="nav-link" href="<%=request.getContextPath()%>/signup">회원가입</a>
