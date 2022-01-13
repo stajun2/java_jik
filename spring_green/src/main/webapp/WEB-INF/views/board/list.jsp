@@ -22,12 +22,15 @@
     	<c:forEach var="board" items="${list}">
 	      <tr>
 	        <td>${board.bd_num}</td>
-	        <td><a href="#">${board.bd_title}</a></td>
+	        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
 	        <td>${board.bd_me_id}</td>
 	        <td>${board.bd_reg_date_str}</td>
 	      </tr>
       </c:forEach>
     </tbody>
   </table>
+  <a href="<%=request.getContextPath()%>/board/register">
+  	<button class="btn btn-outline-success">등록</button>
+ 	</a>
 </body>
 </html>
