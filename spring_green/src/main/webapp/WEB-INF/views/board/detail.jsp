@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,5 +25,10 @@
 	  <label>내용</label>
 	  <textarea class="form-control" rows="10" readonly>${board.bd_contents}</textarea>
 	</div>
+	<c:if test="${user.me_id == board.bd_me_id }">
+		<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}">
+			<button class="btn btn-outline-success">수정</button>
+		</a>
+	</c:if>
 </body>
 </html>

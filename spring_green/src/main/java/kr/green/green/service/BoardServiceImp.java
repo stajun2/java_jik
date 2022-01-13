@@ -40,4 +40,21 @@ public class BoardServiceImp implements BoardService {
 		board.setBd_me_id(user.getMe_id());
 		boardDao.insertBoard(board);
 	}
+
+	@Override
+	public void modifyBoard(BoardVO board, MemberVO user) {
+		if(board == null || user == null || board.getBd_num() <= 0 )
+			return;
+		
+		BoardVO dbBoard = boardDao.selectBoard(board.getBd_num());
+		
+		if(dbBoard == null)
+			return;
+		
+		if(!dbBoard.getBd_me_id().equals(user.getMe_id()))
+			return;
+		
+		boardDao.updateBoard(board);
+		
+	}
 }
