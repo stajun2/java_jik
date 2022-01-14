@@ -46,7 +46,7 @@ public class BoardServiceImp implements BoardService {
 				//DB에 저장
 				FileVO fileVo = 
 					new FileVO(tmpFile.getOriginalFilename(), path, board.getBd_num());
-				System.out.println(fileVo);
+				boardDao.insertFile(fileVo);
 			}
 		}
 		
@@ -130,5 +130,12 @@ public class BoardServiceImp implements BoardService {
 		
 		//다오에게 수정된 게시글 정보를 주면서 업데이트 하라고 시킴
 		boardDao.updateBoard(dbBoard);
+	}
+
+	@Override
+	public List<FileVO> getFileList(Integer bd_num) {
+		if(bd_num == null || bd_num <= 0)
+			return null;
+		return boardDao.selectFileList(bd_num);
 	}
 }
