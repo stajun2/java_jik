@@ -41,11 +41,10 @@ public class BoardController {
 	}
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, 
-			HttpServletRequest request, List<MultipartFile> files) {
+			HttpServletRequest request, List<MultipartFile> files) throws Exception {
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
 		board.setBd_type("일반");
-		System.out.println(board);
 		boardService.registerBoard(board, files);
 		mv.setViewName("redirect:/board/list");
 		return mv;

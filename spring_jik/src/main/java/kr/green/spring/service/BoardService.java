@@ -9,7 +9,7 @@ import kr.green.spring.vo.MemberVO;
 
 public interface BoardService {
 
-	void registerBoard(BoardVO board, List<MultipartFile> files);
+	void registerBoard(BoardVO board, List<MultipartFile> files) throws Exception;
 
 	List<BoardVO> getBoardList(String string);
 

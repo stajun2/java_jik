@@ -3,7 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.spring.dao.BoardDAO">
-  <insert id="insertBoard">
+  <insert id="insertBoard" 
+  	useGeneratedKeys="true" 
+  	keyProperty="board.bd_num"
+  	parameterType="kr.green.spring.vo.BoardVO">
   	insert into 
   		board(bd_title, bd_contents, bd_reg_date,
   			bd_type, bd_me_id, bd_ori_num, bd_del)
