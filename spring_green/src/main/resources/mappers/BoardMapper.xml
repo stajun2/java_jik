@@ -38,4 +38,10 @@
 			bd_up_date = now()
 		where bd_num = #{board.bd_num}
 	</update>
+	<update id="deleteBoard">
+		update board set
+			bd_del = 'Y',
+			bd_del_date = now()
+		where bd_num = #{bd_num}
+	</update>
 </mapper>
