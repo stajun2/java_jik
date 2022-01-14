@@ -42,6 +42,6 @@
 		update board set
 			bd_del = 'Y',
 			bd_del_date = now()
-		where bd_num = #{bd_num}
+		where bd_num = #{b}
 	</update>
 </mapper>
