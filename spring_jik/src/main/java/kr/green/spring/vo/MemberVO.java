@@ -12,7 +12,7 @@ public class MemberVO {
 	private String me_pw;
 	private String me_name;
 	private String me_gender;
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date me_birth;
 	private String me_address;
 	private String me_phone;
