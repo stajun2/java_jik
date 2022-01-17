@@ -1,18 +1,27 @@
 package kr.green.green.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.green.service.BoardService;
 import kr.green.green.vo.BoardVO;
+import kr.green.green.vo.FileVO;
 import kr.green.green.vo.MemberVO;
 
 @Controller
@@ -32,6 +41,9 @@ public class BoardController {
 	@RequestMapping(value="/board/detail", method=RequestMethod.GET)
 	public ModelAndView boardDetailGet(ModelAndView mv, Integer bd_num) {
 		BoardVO board = boardService.getBoard(bd_num);
+		//게시글 번호와 일치하는 첨부파일을 가져오라고 시킴
+		List<FileVO> fileList = boardService.getFileList(bd_num);
+		mv.addObject("fileList",fileList);
 		mv.addObject("board", board);
 		mv.setViewName("/board/detail");
 		return mv;
@@ -83,5 +95,29 @@ public class BoardController {
 		boardService.deleteBoard(bd_num, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
+	}
+	@ResponseBody
+	@RequestMapping("/board/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+	    InputStream in = null;
+	    ResponseEntity<byte[]> entity = null;
+	    String uploadPath = "D:\\JAVA_JIK\\upload";
+	    try{
+	        String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
+	        HttpHeaders headers = new HttpHeaders();
+	        in = new FileInputStream(uploadPath+fileName);
+
+	        fileName = fileName.substring(fileName.indexOf("_")+1);
+	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	        headers.add("Content-Disposition",  "attachment; filename=\"" 
+				+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
+	        entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.CREATED);
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+	    }finally {
+	        in.close();
+	    }
+	    return entity;
 	}
 }
