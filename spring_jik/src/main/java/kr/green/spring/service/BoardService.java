@@ -20,7 +20,7 @@ public interface BoardService {
 
 	BoardVO getBoard(Integer bd_num, MemberVO user);
 
-	void updateBoard(BoardVO board);
+	void updateBoard(BoardVO board, List<MultipartFile> files, Integer[] fileNums);
 
 	List<FileVO> getFileList(Integer bd_num);
 	

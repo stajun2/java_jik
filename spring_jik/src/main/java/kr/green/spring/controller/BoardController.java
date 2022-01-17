@@ -2,6 +2,7 @@ package kr.green.spring.controller;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,6 +105,9 @@ public class BoardController {
 		if(board == null) {
 			mv.setViewName("redirect:/board/list");
 		}else {
+			//첨부파일을 가져옴
+			List<FileVO> fileList = boardService.getFileList(bd_num);
+			mv.addObject("fileList",fileList);
 			mv.addObject("board", board);
 			mv.setViewName("/board/modify");
 		}
@@ -114,12 +118,14 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public ModelAndView boardModifyPost(ModelAndView mv,BoardVO board) {
+	public ModelAndView boardModifyPost(ModelAndView mv,BoardVO board, 
+			List<MultipartFile> files, Integer [] fileNums) {
+		//기존 첨부파일 번호인 fileNums 확인
 		//화면에서 수정한 게시글 정보가 넘어오는지 확인
-		System.out.println("게시글 : " + board);
+		//System.out.println("게시글 : " + board);
 		//서비스에게 게시글 정보를 주면서 업데이트하라고 시킴
 		//서비스.게시글업데이트(게시글정보)
-		boardService.updateBoard(board);
+		boardService.updateBoard(board, files, fileNums);
 		//게시글 번호를 넘겨줌
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");

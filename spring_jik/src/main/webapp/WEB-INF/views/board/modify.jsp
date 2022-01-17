@@ -17,7 +17,29 @@
 		  <textarea class="form-control" name="bd_contents"rows="10">${board.bd_contents}</textarea>
 		</div>
 		<input type="hidden" name="bd_num" value="${board.bd_num }">
+		<div class="form-group attachment">
+			<c:forEach items="${fileList}" var="file">
+				<div class="form-control">
+					<input type="hidden" name="fileNums" value="${file.fi_num}">
+					<span>${file.fi_ori_name}</span>
+					<a class="btn-close" href="#">X</a>
+				</div>
+			</c:forEach>
+			<c:forEach begin="1" end="${3-fileList.size() }">
+				<input type="file" class="form-control" name="files">
+			</c:forEach>
+		</div>
 		<button class="btn btn-outline-success col-12">등록</button>
 	</form>
+	<script>
+		$(function(){
+			$('.attachment .btn-close').click(function(e){
+				e.preventDefault();
+				$(this).parent().remove();
+				var str = '<input type="file" class="form-control" name="files">';
+				$('.attachment').append(str);
+			});
+		});
+	</script>
 </body>
 </html>

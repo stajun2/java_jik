@@ -23,4 +23,6 @@ public interface BoardDAO {
 
 	List<FileVO> selectFileList(@Param("bd_num")Integer bd_num);
 
+	void deleteFile(@Param("fi_num")int fi_num);
+
 }
