@@ -43,7 +43,7 @@ public class BoardController {
 		List<BoardVO> list = boardService.getBoardList("일반", cri);
 		
 		//페이지메이커를 만들어서 화면에 전달해야함
-		int totalCount = boardService.getTotalCount("일반");
+		int totalCount = boardService.getTotalCount("일반", cri);
 		PageMaker pm = new PageMaker(totalCount, 5, cri);
 		
 		mv.addObject("pm",pm);
