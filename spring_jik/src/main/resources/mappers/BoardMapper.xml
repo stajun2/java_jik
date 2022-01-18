@@ -50,5 +50,8 @@
   		fi_del_date = now()
   	where fi_num = #{fi_num}
   </update>
+  <select id="selectCountBoard" resultType="int">
+  	select count(*) from board where bd_type = #{type} and bd_del = 'N'
+  </select>
 </mapper>
 

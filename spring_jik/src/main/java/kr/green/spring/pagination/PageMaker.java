@@ -34,9 +34,12 @@ public class PageMaker {
 		 * 이전 버튼 클릭하면 현재 페이지에서 이전 페이지로 이동
 		 * */
 		//위 설정에서 이전 버튼은 1페이지에만 비활성화시키면됨
-		prev = startPage == 1 ? false : true;
+		prev = criteria.getPage() == 1 ? false : true;
+		//startPage가 1페이지이면 이전 버튼을 비활성화
+		//prev = startPage == 1 ? false : true;
 		//위 설정에서 다음 버튼은 마지막 페이지에서만 비활성화시키면됨
-		next = endPage * criteria.getPerPageNum() >= totalCount ? false:true;
+		next = criteria.getPage() == tempEndPage? false : true;
+		//next = endPage * criteria.getPerPageNum() >= totalCount ? false:true;
 	}
 
 	public PageMaker(int totalCount, int displayPageNum, Criteria criteria) {

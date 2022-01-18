@@ -24,5 +24,7 @@ public interface BoardService {
 	void updateBoard(BoardVO board, List<MultipartFile> files, Integer[] fileNums);
 
 	List<FileVO> getFileList(Integer bd_num);
+
+	int getTotalCount(String type);
 	
 }
