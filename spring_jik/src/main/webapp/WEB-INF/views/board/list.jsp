@@ -20,9 +20,14 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	    	<c:forEach items="${list}" var="board">
+	    	<!-- 
+	    		varStatus="vs" 일때
+	    		vs.index : 0부터 시작해서 현재 반복된 횟수
+	    		vs.count : 1부터 시작해서 현재 반복된 횟수
+	    	-->
+	    	<c:forEach items="${list}" var="board" varStatus="vs">
 		      <tr>
-		        <td>${board.bd_num}</td>
+		        <td>${pm.totalCount - pm.criteria.pageStart - vs.index }</td>
 		        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
 		        <td>${board.bd_me_id}</td>
 		        <td>${board.bd_reg_date_str}</td>
