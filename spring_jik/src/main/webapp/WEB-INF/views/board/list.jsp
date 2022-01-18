@@ -34,7 +34,12 @@
 	    	<c:forEach items="${list}" var="board" varStatus="vs">
 		      <tr>
 		        <td>${pm.totalCount - pm.criteria.pageStart - vs.index }</td>
-		        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+		        <c:if test="${board.bd_num == board.bd_ori_num }">
+		        	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+		        </c:if>
+		        <c:if test="${board.bd_num != board.bd_ori_num }">
+		        	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">└답변:${board.bd_title}</a></td>
+		        </c:if>
 		        <td>${board.bd_me_id}</td>
 		        <td>${board.bd_reg_date_str}</td>
 		      </tr>

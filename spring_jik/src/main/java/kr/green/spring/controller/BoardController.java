@@ -38,7 +38,7 @@ public class BoardController {
 	@RequestMapping(value="/list")
 	//@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
-		cri.setPerPageNum(2);
+		cri.setPerPageNum(5);
 		//등록된 게시글 중 현재 페이지와 일치하는 게시글을 가져옴
 		List<BoardVO> list = boardService.getBoardList("일반", cri);
 		
@@ -52,7 +52,9 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public ModelAndView boardRegisterGet(ModelAndView mv) {
+	public ModelAndView boardRegisterGet(ModelAndView mv
+			,Integer bd_ori_num) {
+		mv.addObject("bd_ori_num", bd_ori_num);
 		mv.setViewName("/board/register");
 		return mv;
 	}

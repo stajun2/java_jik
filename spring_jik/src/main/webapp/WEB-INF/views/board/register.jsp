@@ -25,6 +25,9 @@
 			  <input type="file" class="form-control" name="files2">
 			  <input type="file" class="form-control" name="files2">
 			</div>
+			<c:if test="${bd_ori_num != null}">
+				<input type="hidden" name="bd_ori_num" value="${bd_ori_num}">
+			</c:if>
 			<button class="btn btn-outline-success col-12">등록</button>
 		</form>
 	</div>
