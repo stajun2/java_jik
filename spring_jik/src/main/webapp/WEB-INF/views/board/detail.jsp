@@ -42,7 +42,7 @@
 					<button class="btn btn-outline-success">삭제</button>
 				</a>
 			</c:if>
-			<c:if test="${board.bd_num == board.bd_ori_num }">
+			<c:if test="${board.bd_type != '공지' && board.bd_num == board.bd_ori_num }">
 				<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}">
 					<button class="btn btn-outline-success">답변</button>
 				</a>

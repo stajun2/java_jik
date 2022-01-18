@@ -40,8 +40,8 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(String type , Criteria cri) {
-		return boardDao.getBoardList(type, cri);
+	public List<BoardVO> getBoardList(Criteria cri) {
+		return boardDao.getBoardList(cri);
 	}
 
 	@Override
@@ -183,7 +183,7 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public int getTotalCount(String type , Criteria cri) {
-		return boardDao.selectCountBoard(type, cri);
+	public int getTotalCount(Criteria cri) {
+		return boardDao.selectCountBoard(cri);
 	}
 }

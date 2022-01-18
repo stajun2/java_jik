@@ -10,11 +10,14 @@ public class Criteria {
 	private int perPageNum;
 	//검색어
 	private String search;
+	//게시글 타입
+	private String type;
 	//Criteria 디폴트 생성자 : 현재 페이지를 1페이지로, 한 페이지에 10개의 컨텐츠
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;
 		this.search = "";
+		this.type = "일반";
 	}
 	public Criteria(int page, int perPageNum) {
 		this.page = page <= 0 ? 1 : page;
