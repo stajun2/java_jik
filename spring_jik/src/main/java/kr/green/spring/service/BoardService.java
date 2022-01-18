@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
@@ -12,7 +13,7 @@ public interface BoardService {
 
 	void registerBoard(BoardVO board, List<MultipartFile> files) throws Exception;
 
-	List<BoardVO> getBoardList(String string);
+	List<BoardVO> getBoardList(String string, Criteria cri);
 
 	BoardVO getBoard(Integer bd_num);
 

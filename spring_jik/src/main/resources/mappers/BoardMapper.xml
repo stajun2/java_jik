@@ -18,6 +18,7 @@
   <select id="getBoardList" resultType="kr.green.spring.vo.BoardVO">
   	select * from board 
   		where bd_type = #{type} and bd_del = 'N' order by bd_num desc
+  		limit #{cri.pageStart}, #{cri.perPageNum}
   </select>
   <select id="getBoard" resultType="kr.green.spring.vo.BoardVO">
   	select * from board where bd_num = #{bd_num} and bd_del = 'N'
