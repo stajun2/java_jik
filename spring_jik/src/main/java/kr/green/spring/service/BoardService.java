@@ -26,5 +26,7 @@ public interface BoardService {
 	List<FileVO> getFileList(Integer bd_num);
 
 	int getTotalCount(Criteria cri);
+
+	void updateViews(Integer bd_num);
 	
 }

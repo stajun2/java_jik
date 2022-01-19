@@ -87,6 +87,7 @@ public class BoardController {
 		//게시글 = boardService.게시글가져오기(게시글번호);
 		BoardVO board = boardService.getBoard(bd_num);
 		List<FileVO> files = boardService.getFileList(bd_num);
+		boardService.updateViews(bd_num);
 		//가져온 게시글 확인
 		//System.out.println(board);
 		//화면에게 게시글을 전달

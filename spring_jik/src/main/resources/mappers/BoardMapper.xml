@@ -65,5 +65,10 @@
   	select count(*) from board 
   		where bd_type = #{cri.type} and bd_del = 'N' and bd_title like concat('%',#{cri.search},'%')
   </select>
+  <update id="updateViews">
+  	update board set
+  		bd_views = bd_views+1
+  	where bd_num = #{bd_num}
+  </update>
 </mapper>
 

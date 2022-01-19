@@ -29,6 +29,7 @@
 	        <th>제목</th>
 	        <th>작성자</th>
 	        <th>작성날짜</th>
+	        <th>조회수</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -48,6 +49,7 @@
 		        </c:if>
 		        <td>${board.bd_me_id}</td>
 		        <td>${board.bd_reg_date_str}</td>
+		        <td>${board.bd_views}</td>
 		      </tr>
 	      </c:forEach>
 	    </tbody>
