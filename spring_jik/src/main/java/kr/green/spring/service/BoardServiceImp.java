@@ -79,6 +79,13 @@ public class BoardServiceImp implements BoardService {
 		//게시글의 bd_del을 Y로 수정
 		//다오에게 수정된 게시글을 업데이트하라고 시킴
 		//boardDao.게시글삭제(게시글 번호);
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("관리자");
+		authorityAdmin.add("슈퍼 관리자");
+		if( board.getBd_type().equals("공지") &&
+				authorityAdmin.indexOf(user.getMe_authority()) < 0) {
+			return;
+		}
 		boardDao.deleteBoard(bd_num);
 		
 		/*

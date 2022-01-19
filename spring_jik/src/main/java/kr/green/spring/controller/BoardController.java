@@ -64,9 +64,19 @@ public class BoardController {
 			HttpServletRequest request, List<MultipartFile> files2) throws Exception {
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
-		boardService.registerBoard(board, files2);
-		mv.addObject("type", board.getBd_type());
-		mv.setViewName("redirect:/board/list");
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("관리자");
+		authorityAdmin.add("슈퍼 관리자");
+		//공지사항을 작성하는데 권한이 회원이 경우
+		if( board.getBd_type().equals("공지") &&
+				authorityAdmin.indexOf(user.getMe_authority()) < 0) {
+			mv.addObject("type","공지");
+			mv.setViewName("redirect:/board/list");
+		}else {
+			boardService.registerBoard(board, files2);
+			mv.addObject("type", board.getBd_type());
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	@RequestMapping(value="/detail")
@@ -140,6 +150,7 @@ public class BoardController {
 		//게시글 번호를 넘겨줌
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
+		
 		return mv;
 	}
 	@ResponseBody
