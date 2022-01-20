@@ -85,16 +85,7 @@ public class BoardServiceImp implements BoardService {
 			fileList.removeAll(remainFileList);
 		}
 		//실제 서버에서 삭제 후 DB에서 삭제처리
-		if(fileList != null && fileList.size()!= 0) {
-			for(FileVO tmp : fileList) {
-				String fileName = tmp.getFi_name().replace("/",File.separator);
-				File file = new File(uploadPath + fileName);
-				boardDao.deleteFile(tmp);
-				if(file.exists()) {
-					file.delete();
-				}
-			}
-		}
+		deleteFile(fileList);
 		
 		//새로 추가한 첨부파일을 업로드
 		uploadFile(files2, board.getBd_num());
@@ -107,8 +98,12 @@ public class BoardServiceImp implements BoardService {
 		BoardVO board = boardDao.selectBoard(bd_num);
 		if(board == null)
 			return;
-		if(user != null && board.getBd_me_id().equals(user.getMe_id()))
+		if(user != null && board.getBd_me_id().equals(user.getMe_id())) {
 			boardDao.deleteBoard(bd_num);
+			//첨부파일 삭제하기 위해서 해당 게시글과 일치하는 첨부파일들을 가져옴
+			List<FileVO> fileList = boardDao.selectFileList(bd_num);
+			deleteFile(fileList);
+		}
 	}
 
 	@Override
@@ -138,7 +133,16 @@ public class BoardServiceImp implements BoardService {
 			}
 		}
 	}
-	private void deleteFile() {
-		
+	private void deleteFile(List<FileVO> fileList) {
+		if(fileList != null && fileList.size()!= 0) {
+			for(FileVO tmp : fileList) {
+				String fileName = tmp.getFi_name().replace("/",File.separator);
+				File file = new File(uploadPath + fileName);
+				boardDao.deleteFile(tmp);
+				if(file.exists()) {
+					file.delete();
+				}
+			}
+		}
 	}
 }

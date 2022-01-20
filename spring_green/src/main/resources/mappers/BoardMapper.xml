@@ -45,7 +45,7 @@
 		update board set
 			bd_del = 'Y',
 			bd_del_date = now()
-		where bd_num = #{b}
+		where bd_num = #{bd_num}
 	</update>
 	<insert id="insertFile">
 		insert into file(fi_ori_name, fi_name, fi_bd_num)
