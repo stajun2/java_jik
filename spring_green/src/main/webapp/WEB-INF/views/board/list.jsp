@@ -28,7 +28,12 @@
     	<c:forEach var="board" items="${list}">
 	      <tr>
 	        <td>${board.bd_num}</td>
-	        <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+	        <c:if test="${board.bd_num == board.bd_ori_num }">
+	        	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+	        </c:if>
+	        <c:if test="${board.bd_num != board.bd_ori_num }">
+	        	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">└답변:${board.bd_title}</a></td>
+	        </c:if>
 	        <td>${board.bd_me_id}</td>
 	        <td>${board.bd_reg_date_str}</td>
 	      </tr>
