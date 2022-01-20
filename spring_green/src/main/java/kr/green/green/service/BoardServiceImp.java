@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.green.dao.BoardDAO;
+import kr.green.green.pagination.Criteria;
 import kr.green.green.utils.UploadFileUtils;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
@@ -24,8 +25,8 @@ public class BoardServiceImp implements BoardService {
 	//String uploadPath = "D:\\JAVA_JIK\\upload";
 
 	@Override
-	public List<BoardVO> getBoardList(String bd_type) {
-		return boardDao.selectBoardList(bd_type);
+	public List<BoardVO> getBoardList(String bd_type, Criteria cri) {
+		return boardDao.selectBoardList(bd_type, cri);
 	}
 
 	@Override
@@ -144,5 +145,10 @@ public class BoardServiceImp implements BoardService {
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getTotalCount(String type) {
+		return boardDao.selectBoardCount(type);
 	}
 }
