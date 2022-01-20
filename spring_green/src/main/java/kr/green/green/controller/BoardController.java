@@ -34,14 +34,13 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
 	public ModelAndView boardListGet(ModelAndView mv, Criteria cri) {
+		cri.setPerPageNum(4);
 		List<BoardVO> list = boardService.getBoardList("일반", cri);
 		//페이지메이커를 생성
 		//=>총 게시글 수, 한 페이지네이션에서 페이지 갯수, 현재 페이지 정보
 		
-		int totalCount = boardService.getTotalCount("일반");
+		int totalCount = boardService.getTotalCount("일반", cri);
 		PageMaker pm = new PageMaker(totalCount, 2, cri);
-		
-		System.out.println(pm);
 		
 		mv.addObject("pm", pm);
 		mv.addObject("list", list);

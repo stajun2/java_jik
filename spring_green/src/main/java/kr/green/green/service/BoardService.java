@@ -23,6 +23,6 @@ public interface BoardService {
 
 	List<FileVO> getFileList(Integer bd_num);
 
-	int getTotalCount(String type);
+	int getTotalCount(String type, Criteria cri);
 
 }

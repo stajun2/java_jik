@@ -26,6 +26,6 @@ public interface BoardDAO {
 
 	void deleteFile(@Param("file")FileVO tmp);
 
-	int selectBoardCount(@Param("type")String type);
+	int selectBoardCount(@Param("type")String type,@Param("cri")Criteria cri);
 
 }
