@@ -51,4 +51,12 @@ public class MemberServiceImp implements MemberService {
 		memberDao.insertMember(user);
 		return true;
 	}
+
+	@Override
+	public boolean idDuplicated(String id) {
+		MemberVO user = memberDao.getMember(id);
+		if(user == null)
+			return false;
+		return true;
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.MemberService;
@@ -76,6 +77,15 @@ public class HomeController {
 		request.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value ="/idcheck")
+	public String ajaxtTest1(String id){
+		
+		if(!memberService.idDuplicated(id))
+			return "ok";
+		return "no";
 	}
 }
 
