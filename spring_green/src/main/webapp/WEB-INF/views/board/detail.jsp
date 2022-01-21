@@ -23,7 +23,7 @@
 	</div>
 	<div class="form-group">
 	  <label>내용</label>
-	  <textarea class="form-control" rows="10" readonly>${board.bd_contents}</textarea>
+	  <div class="form-control" style="height: auto; min-height: 400px">${board.bd_contents}</div>
 	</div>
 	<div class="form-group">
 	  <label>첨부파일</label>

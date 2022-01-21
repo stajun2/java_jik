@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<h1>게시글 수정</h1>
@@ -42,6 +44,11 @@
 				$('.attachment').append(str);
 				$(this).parent().remove();
 			});
+			$('[name=bd_contents]').summernote({
+	      placeholder: '내용을 작성하세요.',
+	      tabsize: 2,
+	      height: 400
+	    });
 		});
 	</script>
 </body>
