@@ -25,4 +25,6 @@ public interface BoardService {
 
 	int getTotalCount(Criteria cri);
 
+	void updateViews(Integer bd_num);
+
 }

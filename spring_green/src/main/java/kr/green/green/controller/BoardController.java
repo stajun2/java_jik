@@ -52,6 +52,7 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(bd_num);
 		//게시글 번호와 일치하는 첨부파일을 가져오라고 시킴
 		List<FileVO> fileList = boardService.getFileList(bd_num);
+		boardService.updateViews(bd_num);
 		mv.addObject("fileList",fileList);
 		mv.addObject("board", board);
 		mv.setViewName("/board/detail");
