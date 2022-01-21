@@ -5,7 +5,7 @@
 <mapper namespace="kr.green.green.dao.BoardDAO">
 	<select id="selectBoardList" resultType="kr.green.green.vo.BoardVO">
 		select * from board 
-			where bd_type = #{bd_type} and bd_del = 'N'
+			where bd_type = #{cri.type} and bd_del = 'N'
 				and bd_title like concat('%', #{cri.search} ,'%')
 			order by bd_ori_num desc, bd_num asc
 			limit #{cri.pageStart}, #{cri.perPageNum}
@@ -61,7 +61,7 @@
 	</update>
 	<select id="selectBoardCount" resultType="int">
 		select count(*) from board
-			where bd_type = #{type} and bd_del = 'N'
+			where bd_type = #{cri.type} and bd_del = 'N'
 				and bd_title like concat('%', #{cri.search} ,'%')
 	</select>
 </mapper>

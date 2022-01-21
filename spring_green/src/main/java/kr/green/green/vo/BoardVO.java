@@ -22,4 +22,19 @@ public class BoardVO {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		return format.format(bd_reg_date);
 	}
+	public String getTypeTitle() {
+		if(bd_type != null && bd_type.equals("공지"))
+			return "공지사항";
+		if(bd_type != null && bd_type.equals("qna"))
+			return "QnA";
+		return "게시글";
+	}
+	public boolean isAccessAuthority(String authority) {
+		if(bd_type.equals("일반") || bd_type.equals("qna"))
+			return true;
+		if(bd_type.equals("공지") && 
+				(authority.equals("관리자") || authority.equals("슈퍼 관리자")))
+			return true;
+		return false;
+	}
 }

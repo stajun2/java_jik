@@ -8,10 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>게시글 등록</h1>
+	<h1>${board.typeTitle} 등록</h1>
 	<form method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
-		<c:if test="${bd_ori_num != null }">
-			<input type="hidden" name="bd_ori_num" value="${bd_ori_num }">
+		<input type="hidden" name="bd_type" value="${board.bd_type }">
+		<c:if test="${board.bd_ori_num != null }">
+			<input type="hidden" name="bd_ori_num" value="${board.bd_ori_num }">
 		</c:if>
 		<div class="form-group">
 		  <label>제목</label>

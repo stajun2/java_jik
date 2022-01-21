@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>게시글</h1>
+	<h1>${pm.criteria.typeTitle}</h1>
 	<form class="input-group mb-3" action="<%=request.getContextPath()%>/board/list">
 	  <input type="text" class="form-control" placeholder="검색어를 입력하세요." name="search" value="${pm.criteria.search}">
 	  <div class="input-group-append">
@@ -54,8 +54,10 @@
     	<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&search=${pm.criteria.search}">다음</a>
    	</li>
   </ul>
-  <a href="<%=request.getContextPath()%>/board/register">
-  	<button class="btn btn-outline-success">등록</button>
- 	</a>
+  <c:if test="${pm.criteria.type != '공지' || (user.me_authority == '관리자' || user.me_authority == '슈퍼 관리자') }">
+	  <a href="<%=request.getContextPath()%>/board/register?bd_type=${pm.criteria.type}">
+	  	<button class="btn btn-outline-success">등록</button>
+	 	</a>
+ 	</c:if>
 </body>
 </html>
