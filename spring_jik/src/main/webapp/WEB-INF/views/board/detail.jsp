@@ -51,6 +51,7 @@
 		<c:if test="${board == null}">
 			<h1>없는 게시글이거나 삭제된 게시글입니다.</h1>
 		</c:if>
+		<hr class="mt-3">
 		<div class="comment-list mt-3">
 			<div class="comment-box">
 				<div class="co_me_id">qwe</div>
@@ -59,7 +60,14 @@
 				<button class="btn-reply-comment btn btn-outline-success">답글</button>
 			</div>
 		</div>
-		<div class="comment-pagination mt-3"></div>
+		<div class="comment-pagination mt-3">
+			<ul class="pagination justify-content-center">
+		    <li class="page-item"><a class="page-link" href="javascript:void(0);" data-page="">이전</a></li>
+		    <li class="page-item"><a class="page-link" href="javascript:void(0);" data-page="1">1</a></li>
+		    <li class="page-item"><a class="page-link" href="javascript:void(0);" data-page="2">2</a></li>
+		    <li class="page-item"><a class="page-link" href="javascript:void(0);" data-page="">다음</a></li>
+		  </ul>
+		</div>
 		<div class="comment-box mt-3">
 			<div class="input-group mb-3">
 			  <textarea class="form-control text-comment" placeholder="댓글입력"></textarea>
@@ -83,6 +91,12 @@
 				var co_bd_num = '${board.bd_num}';
 				//댓글 원본 번호(나중에)
 				
+				if(co_contents == ''){
+					alert('댓글 내용을 입력하세요.');
+					return;
+				}
+					
+				
 				var comment = {
 					co_contents : co_contents,
 					co_bd_num : co_bd_num
@@ -100,7 +114,7 @@
 							$('.text-comment').val('');
 							alert('댓글 등록이 완료되었습니다.');
 							//새로운 댓글들을 가져옴
-							readComment(co_bd_num);
+							readComment(co_bd_num, 1);
 						}else{
 							alert('댓글 등록에 실패했습니다.');
 						}
@@ -108,8 +122,19 @@
 				});
 			});
 		});
+		//요소에 이벤트를 등록하는게 아니라 document에 등록해서 요소가 나중에 추가되도
+		//해당 선택자만 맞으면 이벤트가 실행됨
+		$(document).on('click','.comment-pagination .page-link', function(){
+			var co_bd_num = '${board.bd_num}';
+			var page = $(this).data('page');
+			readComment(co_bd_num, page);
+		});
+		
+		
+		//화면 로딩 후 댓글과 댓글 페이지네이션 배치
 		var co_bd_num = '${board.bd_num}';
-		readComment(co_bd_num);
+		readComment(co_bd_num, 1);
+		
 		
 		//Date 객체를 yyyy-MM-dd hh:mm형태의 문자열로 변환하는 함수
 		function getDateStr(date){
@@ -130,24 +155,43 @@
 				'<hr>'+
 			'</div>';
 		}
-		function readComment(co_bd_num){
+		function readComment(co_bd_num, page){
 			if(co_bd_num != ''){
 				$.ajax({
 					async:false,
 					type:'get',
-					url:"<%=request.getContextPath()%>/comment/list?co_bd_num="+co_bd_num,
+					url:"<%=request.getContextPath()%>/comment/list?co_bd_num="+co_bd_num + '&page='+page,
 					dataType:"json",
 					success : function(res){
 						var str = '';
-				    for(tmp of res){
+				    for(tmp of res.list){
 				    	var date = new Date(tmp.co_reg_date);
 				    	str +=
 				    		createCommentStr(tmp.co_me_id, tmp.co_contents, getDateStr(date) );
 				    }
 				    $('.comment-list').html(str);
+				    //페이지네이션 생성
+				    var paginationStr = createCommentPagination(res.pm);
+				    $('.comment-pagination').html(paginationStr);
 					}
 				});
 			}
+		}
+		function createCommentPagination(pm){
+			var str = ''
+			str +=
+			'<ul class="pagination justify-content-center">';
+			var startDisabled = pm.prev ? '' : 'disabled';
+			var endDisabled = pm.next ? '' : 'disabled';
+			
+		  str += '<li class="page-item '+startDisabled+'"><a class="page-link" href="javascript:void(0);" data-page="'+(pm.criteria.page-1)+'">이전</a></li>';
+	    for(i = pm.startPage; i<= pm.endPage; i++){
+	    	var currentActive = pm.criteria.page == i ? 'active' : '';
+		    str += '<li class="page-item '+currentActive+'"><a class="page-link" href="javascript:void(0);" data-page="'+i+'">'+i+'</a></li>';
+	    }
+	    str += '<li class="page-item '+endDisabled+'"><a class="page-link" href="javascript:void(0);" data-page="'+(pm.criteria.page+1)+'">다음</a></li>';
+		  str +='</ul>';
+		  return str;
 		}
 	</script>
 </body>
