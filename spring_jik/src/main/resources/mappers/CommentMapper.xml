@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.spring.dao.CommentDAO">
+	<insert id="insertComment">
+		insert into 
+			comment(co_bd_num, co_me_id, co_contents, co_ori_num)
+			select 
+				#{comment.co_bd_num}, 
+				#{comment.co_me_id},
+				#{comment.co_contents}, 
+				ifnull(max(co_num),0) + 1 
+			from comment
+	</insert>
+</mapper>
