@@ -1,5 +1,7 @@
 package kr.green.spring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,13 @@ public class CommentServiceImp implements CommentService{
 		comment.setCo_me_id(user.getMe_id());
 		commentDao.insertComment(comment);
 		return true;
+	}
+
+	@Override
+	public List<CommentVO> selectCommentList(Integer co_bd_num) {
+		if(co_bd_num == null || co_bd_num <= 0)
+			return null;
+		return commentDao.selectCommentList(co_bd_num);
 	}
 	
 }
