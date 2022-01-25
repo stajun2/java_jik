@@ -180,6 +180,8 @@
 				$(this).parent().children('button').show();
 				//등록 버튼을 없앰(댓글 수정을 위한 등록 버튼)
 				$(this).siblings('.btn-mod-comment2').remove();
+				//답글 등록버튼 없앰
+				$(this).siblings('.btn-reply-comment2').remove();
 				//textarea태그를 제거(수정하기 위한 입력창)
 				$(this).remove();
 			});
@@ -193,7 +195,7 @@
 			//등록 버튼을 위한 html(수정 완료를 위한 버튼)
 			var btnStr = 
 				'<button class="btn-mod-comment2 btn btn-outline-warning ml-2">'+
-					'등록'+
+					'수정 등록'+
 				'</button>'
 			//기존 댓글을 감춤
 			$(this).siblings('.co_contents').hide();
@@ -239,6 +241,81 @@
 			});
 		});
 		
+		//답글 버튼 클릭
+		$(document).on('click','.btn-reply-comment', function(){
+			//답글 달려는 원본 댓글
+			var co_num = $(this).data('num');
+			//로그인한 아이디를 가져옴
+			var id = '${user.me_id}';
+			//로그인 안하면 답글 못달게 함
+			if(id == ''){
+				alert('답글은 로그인한 회원만 작성가능합니다.');
+				return;
+			}
+			
+			//이전 답글창 제거
+			$('.co_contents2').each(function(){
+				$(this).siblings('.btn-reply-comment2').remove();
+				$(this).parent().children('button').show();
+				$(this).siblings('.co_contents').show();
+				$(this).siblings('.btn-mod-comment2').remove();
+				$(this).remove();
+			});
+			
+			//답글창 추가
+			//textarea태그를 꾸며주기 위한 html
+			var str = 
+				'<div class="form-group co_contents2 mt-2">'+ 
+					'<textarea class="form-control"></textarea>' +
+				'</div>';
+			//등록 버튼을 위한 html(답글 등록을 위한 버튼)
+			var btnStr = 
+				'<button class="btn-reply-comment2 btn btn-outline-warning ml-2">'+
+					'답글 등록'+
+				'</button>'
+					//textarea태그를 아이디 밑에 배치
+			$(this).siblings('.co_reg_date').after(str);
+			//등록 버튼을 날짜 밑에 배치
+			$(this).siblings('hr').before(btnStr);
+			//답글, (수정, 삭제) 버튼을 감춤
+			$('.btn-reply-comment2').siblings('button').hide();
+		});
+		
+		//답글등록 버튼 클릭
+		$(document).on('click','.btn-reply-comment2',function(){
+			//원래 댓글 번호, 내용, 게시글 번호
+			var co_contents = $('.co_contents2 textarea').val();
+			var co_ori_num = $(this).siblings('.btn-reply-comment').data('num');
+			var co_bd_num = '${board.bd_num}';
+			
+			var comment = {
+					co_contents : co_contents,
+					co_ori_num : co_ori_num,
+					co_bd_num :co_bd_num
+			};
+			
+			$.ajax({
+				async:false,
+				type:'POST',
+				data: JSON.stringify(comment),
+				url:"<%=request.getContextPath()%>/comment/reply/insert",
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(res){
+					//답글 등록에 성공하면
+					if(res){	
+				    var page = $('.comment-pagination .active').text();
+				    var co_bd_num = '${board.bd_num}';
+				    //현재 페이지와 게시글 번호에 맞게 댓글을 새로고침
+						readComment(co_bd_num, page);
+					}else{
+						alert('답글 입력에 실패했습니다.');
+					}
+				}
+			});
+			
+		});
+		
 		//화면 로딩 후 댓글과 댓글 페이지네이션 배치
 		var co_bd_num = '${board.bd_num}';
 		readComment(co_bd_num, 1);
@@ -263,7 +340,7 @@
 				'<div class="co_me_id">'+comment.co_me_id+'</div>' +
 				'<div class="co_contents mt-2">'+comment.co_contents+'</div>' + 
 				'<div class="co_reg_date mt-2">'+co_reg_date+'</div>' +
-				'<button class="btn-reply-comment btn btn-outline-danger">답글</button>';
+				'<button class="btn-reply-comment btn btn-outline-danger" data-num="'+comment.co_num+'">답글</button>';
 				if('${user.me_id}' == comment.co_me_id){
 					str +=
 						'<button class="btn-mod-comment btn btn-outline-warning ml-2" data-num="'+comment.co_num+'">수정</button>'+
