@@ -50,6 +50,13 @@ public class CommentController {
 		
 	  return commentService.deleteComment(co_num, user);
 	}
+	@RequestMapping(value ="/comment/modify")
+	public String commentModify(@RequestBody CommentVO comment,
+			HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		
+	  return commentService.updateComment(comment, user);
+	}
 }
 
 
