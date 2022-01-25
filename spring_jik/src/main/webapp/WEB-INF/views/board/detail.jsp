@@ -79,6 +79,7 @@
 		</div>
 	</div>
 	<script>
+		commentService.setContextPath('<%=request.getContextPath()%>');
 		$(function(){
 			
 			//등록 버튼(댓글등록)을 클릭
@@ -328,33 +329,25 @@
 		function readComment(co_bd_num, page){
 			//게시글 번호가 없으면 가져올 게시글이 없어서 작업하지 않음
 			if(co_bd_num != ''){
-				$.ajax({
-					async:false,
-					//get방식으로 url에 정보를 다 포함해서 보냄
-					type:'get',
-					url:"<%=request.getContextPath()%>/comment/list?co_bd_num="+co_bd_num + '&page='+page,
-					//서버에서 보낸 데이터의 타입
-					dataType:"json",
-					//ajax가 성공적으로 완료되면 서버에서 보낸 댓글 리스트와 페이지메이커를 res에 담음
-					success : function(res){
-						//res.list : 댓글 리스트(페이지번호에 맞는)
-						//res.pm : 댓글의 페이지메이커
-						var str = '';
-						//댓글을 하나씩 가져와서 html로 이루어진 문자열을 만든 후 이어 붙임
-				    for(tmp of res.list){
-				    	//정수로 넘어온 댓글 날짜를 날짜타입으로 변환 
-				    	var date = new Date(tmp.co_reg_date);
-				    	//댓글정보를 html로 만들어진 문자열로 만든 후 이어 붙임
-				    	str +=
-				    		createCommentStr(tmp, getDateStr(date));
-				    }
-						//html로 된 댓글들을 지정된 위치에 배치
-				    $('.comment-list').html(str);
-				    //서버에서 보낸 페이지메이커를 이용하여 html로 이루어진 페이지네이션을 만듬 
-				    var paginationStr = createCommentPagination(res.pm);
-				    //만들어진 html 페이지네이션을 배치
-				    $('.comment-pagination').html(paginationStr);
-					}
+				var url = '/comment/list?co_bd_num='+co_bd_num + '&page='+page;
+				commentService.list(url, function(res){
+					//res.list : 댓글 리스트(페이지번호에 맞는)
+					//res.pm : 댓글의 페이지메이커
+					var str = '';
+					//댓글을 하나씩 가져와서 html로 이루어진 문자열을 만든 후 이어 붙임
+			    for(tmp of res.list){
+			    	//정수로 넘어온 댓글 날짜를 날짜타입으로 변환 
+			    	var date = new Date(tmp.co_reg_date);
+			    	//댓글정보를 html로 만들어진 문자열로 만든 후 이어 붙임
+			    	str +=
+			    		createCommentStr(tmp, getDateStr(date));
+			    }
+					//html로 된 댓글들을 지정된 위치에 배치
+			    $('.comment-list').html(str);
+			    //서버에서 보낸 페이지메이커를 이용하여 html로 이루어진 페이지네이션을 만듬 
+			    var paginationStr = createCommentPagination(res.pm);
+			    //만들어진 html 페이지네이션을 배치
+			    $('.comment-pagination').html(paginationStr);
 				});
 			}
 		}
@@ -374,8 +367,6 @@
 		  str +='</ul>';
 		  return str;
 		}
-		commentService.setContextPath('<%=request.getContextPath()%>');
-		console.log(commentService);
 	</script>
 </body>
 </html>
