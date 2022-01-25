@@ -57,13 +57,6 @@ public class CommentController {
 		
 	  return commentService.updateComment(comment, user);
 	}
-	@RequestMapping(value ="/comment/reply/insert")
-	public String commentReplyInsert(@RequestBody CommentVO comment,
-			HttpServletRequest request){
-		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-
-	  return "";
-	}
 }
 
 

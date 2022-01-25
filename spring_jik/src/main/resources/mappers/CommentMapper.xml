@@ -6,16 +6,26 @@
 	<insert id="insertComment">
 		insert into 
 			comment(co_bd_num, co_me_id, co_contents, co_ori_num)
-			select 
-				#{comment.co_bd_num}, 
-				#{comment.co_me_id},
-				#{comment.co_contents}, 
-				ifnull(max(co_num),0) + 1 
-			from comment
+			<if test="comment.co_ori_num == 0">
+				select 
+					#{comment.co_bd_num}, 
+					#{comment.co_me_id},
+					#{comment.co_contents}, 
+					ifnull(max(co_num),0) + 1 
+				from comment
+			</if>
+			<if test="comment.co_ori_num != 0">
+				values(
+					#{comment.co_bd_num}, 
+					#{comment.co_me_id},
+					#{comment.co_contents}, 
+					#{comment.co_ori_num})
+			</if>
 	</insert>
 	<select id="selectCommentList" resultType="kr.green.spring.vo.CommentVO">
 		select * from comment 
 			where co_bd_num = #{co_bd_num} and co_del = 'N'
+			order by co_ori_num asc, co_num asc
 			limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<select id="selectTotalCountComment" resultType="int">

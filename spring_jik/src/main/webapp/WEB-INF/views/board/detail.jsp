@@ -298,7 +298,7 @@
 				async:false,
 				type:'POST',
 				data: JSON.stringify(comment),
-				url:"<%=request.getContextPath()%>/comment/reply/insert",
+				url:"<%=request.getContextPath()%>/comment/insert",
 				dataType:"json",
 				contentType:"application/json; charset=UTF-8",
 				success : function(res){
@@ -337,10 +337,18 @@
 			var str =  
 			'<div class="comment-box">' +
 				'<input type="hidden" name="co_num" value="'+comment.co_num+'">'+
-				'<div class="co_me_id">'+comment.co_me_id+'</div>' +
-				'<div class="co_contents mt-2">'+comment.co_contents+'</div>' + 
-				'<div class="co_reg_date mt-2">'+co_reg_date+'</div>' +
-				'<button class="btn-reply-comment btn btn-outline-danger" data-num="'+comment.co_num+'">답글</button>';
+				'<div class="co_me_id">'+comment.co_me_id+'</div>';
+				
+				if(comment.co_num == comment.co_ori_num)
+					str +='<div class="co_contents mt-2">'+comment.co_contents+'</div>';
+				else
+					str +='<div class="co_contents mt-2">└댓글 : '+comment.co_contents+'</div>';
+				
+				str += '<div class="co_reg_date mt-2">'+co_reg_date+'</div>';
+				
+				if(comment.co_num == comment.co_ori_num)
+					str += '<button class="btn-reply-comment btn btn-outline-danger" data-num="'+comment.co_num+'">답글</button>';
+				
 				if('${user.me_id}' == comment.co_me_id){
 					str +=
 						'<button class="btn-mod-comment btn btn-outline-warning ml-2" data-num="'+comment.co_num+'">수정</button>'+
