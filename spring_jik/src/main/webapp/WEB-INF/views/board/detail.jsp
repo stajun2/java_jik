@@ -146,12 +146,25 @@
 				});
 			}
 		});
-		
+		$(document).on('click','.comment-list .btn-mod-comment', function(){
+			$('.co_contents2').each(function(){
+				$(this).siblings('.co_contents').show();
+				$(this).parent().children('button').show();
+				$(this).remove();
+			});
+			var contents = $(this).siblings('.co_contents').text();
+			var str = 
+				'<div class="form-group co_contents2 mt-2">'+ 
+					'<textarea class="form-control">'+contents+'</textarea>' +
+				'</div>';
+			$(this).siblings('.co_contents').hide();
+			$(this).parent().children('button').hide();
+			$(this).siblings('.co_me_id').after(str);
+		});
 		
 		//화면 로딩 후 댓글과 댓글 페이지네이션 배치
 		var co_bd_num = '${board.bd_num}';
 		readComment(co_bd_num, 1);
-		
 		
 		
 		
@@ -222,6 +235,7 @@
 		  str +='</ul>';
 		  return str;
 		}
+		
 	</script>
 </body>
 </html>
