@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="<%=request.getContextPath()%>/resources/js/comment.js"></script>
 </head>
 <body>
 	<h1>${board.typeTitle} 상세</h1>
@@ -61,7 +61,8 @@
 	
 	<script type="text/javascript">
 	var contextPath = '<%=request.getContextPath()%>';
-	
+	commentService.setContextPath(contextPath);
+	console.log(commentService.contextPath);
 	$(function(){
 		$('.btn-comment-insert').click(function(){
 			var co_me_id = '${user.me_id}';
@@ -76,21 +77,14 @@
 					co_contents : co_contents,
 					co_bd_num   : co_bd_num
 			};
-			$.ajax({
-        async:false,
-        type:'POST',
-        data:JSON.stringify(comment),
-        url: contextPath + "/comment/insert",
-        contentType:"application/json; charset=UTF-8",
-        success : function(res){
-	        if(res){
-	        	alert('댓글 등록이 완료 되었습니다.');
-	        	$('.co_contents').val('');
-	        }else{
-	        	alert('댓글 등록에 실패 했습니다.');
-	        }
+			commentService.insert(comment, '/comment/insert',function(res){
+				if(res){
+        	alert('댓글 등록이 완료 되었습니다.');
+        	$('.co_contents').val('');
+        }else{
+        	alert('댓글 등록에 실패 했습니다.');
         }
-    	});
+			});
 		});
 	});
 	
