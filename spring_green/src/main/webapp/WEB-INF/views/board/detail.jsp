@@ -52,6 +52,11 @@
 		</a>
 	</c:if>
 	
+	<div class="comment-list">
+		
+	</div>
+	<div class="comment-pagination"></div>
+	
 	<div class="input-group mb-3 mt-3">
 	  <textarea class="form-control co_contents" rows="3"></textarea>
 	  <div class="input-group-append">
@@ -86,8 +91,41 @@
         }
 			});
 		});
+		
+		$.ajax({
+	    async:false,
+	    type:'get',
+	    url:contextPath + "/comment/list?page=1&bd_num="+'${board.bd_num}',
+	    dataType:"json",
+	    success : function(res){
+	        console.log(res);
+	    }
+    });
 	});
-	
+	function createComment(comment, me_id){
+		var str = '';
+		str+=	'<div class="commnet-box clearfix">'
+		
+		if(comment.co_ori_num != comment.co_num){
+		str+=		'<div class="float-left" style="width:24px">└</div>'
+		str+=		'<div class="float-left" style="width: calc(100% - 24px)">'
+		}else{
+		str+=		'<div class="float-left" style="width: 100%">'
+		}
+		str+=			'<div class="co_me_id">'+comment.co_me_id+'</div>'
+		str+=			'<div class="co_contents">'+comment.co_contents+'</div>'
+		str+=			'<div class="co_reg_date">'+comment.co_reg_date+'</div>'
+		if(comment.co_ori_num == comment.co_num)
+		str+=			'<button class="btn btn-outline-success btn-rep-comment">답글</button>'
+		if(comment.co_me_id == me_id){
+		str+=			'<button class="btn btn-outline-dark btn-mod-comment">수정</button>'
+		str+=			'<button class="btn btn-outline-danger btn-del-comment">삭제</button>'
+		}
+		str+=		'</div>'
+		str+=		'<hr class="float-left" style="width:100%">'
+		str+=	'</div>'
+		return str;
+	}
 	</script>
 </body>
 </html>

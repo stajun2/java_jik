@@ -8,7 +8,7 @@ let commentService = (function(){
 		this.contextPath = contextPath;
 	}
 	
-	function ajaxGet(vo, url, success){
+	function ajaxPost(vo, url, success){
 		$.ajax({
       async:false,
       type:'POST',
@@ -25,6 +25,6 @@ let commentService = (function(){
 		name : 'CommentService',
 		contextPath : '',
 		setContextPath : setContextPath,
-		insert : ajaxGet
+		insert : ajaxPost
 	};
 })();
