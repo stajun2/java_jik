@@ -51,5 +51,49 @@
 			<button class="btn btn-outline-success">답변</button>
 		</a>
 	</c:if>
+	
+	<div class="input-group mb-3 mt-3">
+	  <textarea class="form-control co_contents" rows="3"></textarea>
+	  <div class="input-group-append">
+	    <button class="btn btn-success btn-comment-insert">등록</button>
+	  </div>
+	</div>
+	
+	<script type="text/javascript">
+	var contextPath = '<%=request.getContextPath()%>';
+	
+	$(function(){
+		$('.btn-comment-insert').click(function(){
+			var co_me_id = '${user.me_id}';
+			if(co_me_id == ''){
+				alert('댓글은 로그인한 회원만 작성 가능합니다.');
+				return;
+			}
+			var co_contents = $('.co_contents').val();
+			var co_bd_num = '${board.bd_num}';
+			var comment = {
+					co_me_id    : co_me_id,
+					co_contents : co_contents,
+					co_bd_num   : co_bd_num
+			};
+			$.ajax({
+        async:false,
+        type:'POST',
+        data:JSON.stringify(comment),
+        url: contextPath + "/comment/insert",
+        contentType:"application/json; charset=UTF-8",
+        success : function(res){
+	        if(res){
+	        	alert('댓글 등록이 완료 되었습니다.');
+	        	$('.co_contents').val('');
+	        }else{
+	        	alert('댓글 등록에 실패 했습니다.');
+	        }
+        }
+    	});
+		});
+	});
+	
+	</script>
 </body>
 </html>
