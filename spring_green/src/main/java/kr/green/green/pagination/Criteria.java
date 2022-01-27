@@ -16,6 +16,12 @@ public class Criteria {
 		this.search = "";
 		this.type ="일반";
 	}
+	public Criteria(int page, int perPageNum) {
+		this.page = page;
+		this.perPageNum = perPageNum;
+		this.search = "";
+		this.type ="일반";
+	}
 
 	public int getPageStart() {
 		return (this.page -1) * perPageNum;

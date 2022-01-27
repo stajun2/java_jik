@@ -20,11 +20,23 @@ let commentService = (function(){
       }
   	});
 	}
+	function ajaxGet(url,success){
+		$.ajax({
+	    async:false,
+	    type:'get',
+	    url:contextPath + url,
+	    dataType:"json",
+	    success : function(res){
+        success(res);
+	    }
+    });
+	}
 	
 	return {
 		name : 'CommentService',
 		contextPath : '',
 		setContextPath : setContextPath,
-		insert : ajaxPost
+		insert : ajaxPost,
+		list : ajaxGet
 	};
 })();

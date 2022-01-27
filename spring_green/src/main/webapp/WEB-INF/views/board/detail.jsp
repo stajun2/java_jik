@@ -55,7 +55,9 @@
 	<div class="comment-list">
 		
 	</div>
-	<div class="comment-pagination"></div>
+	<div class="comment-pagination">
+		
+	</div>
 	
 	<div class="input-group mb-3 mt-3">
 	  <textarea class="form-control co_contents" rows="3"></textarea>
@@ -67,7 +69,6 @@
 	<script type="text/javascript">
 	var contextPath = '<%=request.getContextPath()%>';
 	commentService.setContextPath(contextPath);
-	console.log(commentService.contextPath);
 	$(function(){
 		$('.btn-comment-insert').click(function(){
 			var co_me_id = '${user.me_id}';
@@ -75,38 +76,53 @@
 				alert('댓글은 로그인한 회원만 작성 가능합니다.');
 				return;
 			}
-			var co_contents = $('.co_contents').val();
+			var co_contents = $('textarea.co_contents').val();
 			var co_bd_num = '${board.bd_num}';
 			var comment = {
 					co_me_id    : co_me_id,
 					co_contents : co_contents,
 					co_bd_num   : co_bd_num
 			};
-			commentService.insert(comment, '/comment/insert',function(res){
-				if(res){
-        	alert('댓글 등록이 완료 되었습니다.');
-        	$('.co_contents').val('');
-        }else{
-        	alert('댓글 등록에 실패 했습니다.');
-        }
-			});
+			
+			if(co_contents == ''){
+				alert('댓글을 입력하세요.');
+				return;
+			}
+			
+			commentService.insert(comment, '/comment/insert',insertSuccess);
 		});
 		
-		$.ajax({
-	    async:false,
-	    type:'get',
-	    url:contextPath + "/comment/list?page=1&bd_num="+'${board.bd_num}',
-	    dataType:"json",
-	    success : function(res){
-	        var str = '';
-	        var me_id = '${user.me_id}';
-	        for(tmp of res.list){
-	        	str += createComment(tmp, me_id);
-	        }
-	        $('.comment-list').html(str);
-	    }
-    });
+		$(document).on('click', '.comment-pagination .page-item', function(){
+			var page = $(this).data('page');
+			//댓글 새로고침
+			var listUrl = '/comment/list?page='+page+'&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess);
+		});
+		var listUrl = '/comment/list?page=1&bd_num='+'${board.bd_num}';
+		commentService.list(listUrl,listSuccess);
 	});
+
+	function listSuccess(res){
+		var str = '';
+    var me_id = '${user.me_id}';
+    for(tmp of res.list){
+    	str += createComment(tmp, me_id);
+    }
+    $('.comment-list').html(str);
+    
+    var paginationStr = createPagenation(res.pm);
+    $('.comment-pagination').html(paginationStr);
+	}
+	function insertSuccess(res){
+		if(res){
+	   	alert('댓글 등록이 완료 되었습니다.');
+	   	$('.co_contents').val('');
+	   	var listUrl = '/comment/list?page=1&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess);
+   	}else{
+	   	alert('댓글 등록에 실패 했습니다.');
+   	}
+	}
 	function createComment(comment, me_id){
 		var str = '';
 		str+=	'<div class="commnet-box clearfix">'
@@ -129,6 +145,22 @@
 		str+=		'</div>'
 		str+=		'<hr class="float-left" style="width:100%">'
 		str+=	'</div>'
+		return str;
+	}
+	function createPagenation(pm){
+		var str = '';
+		var prevDisabled = pm.prev ? '' : 'disabled';
+		var nextDisabled = pm.next ? '' : 'disabled';
+		var page = pm.criteria.page;
+		
+		str+=	'<ul class="pagination justify-content-center">'
+		str+=    '<li class="page-item '+prevDisabled+'" data-page="'+(pm.startPage - 1)+'"><a class="page-link" href="javascript:;">이전</a></li>'
+		for(i = pm.startPage; i<= pm.endPage; i++){
+			var active = page == i ? 'active' : '';
+		str+=    '<li class="page-item '+ active +'" data-page="'+i+'"><a class="page-link" href="javascript:;">'+i+'</a></li>'
+		}
+		str+=    '<li class="page-item '+nextDisabled+'" data-page="'+(pm.endPage + 1)+'"><a class="page-link" href="javascript:;">다음</a></li>'
+		str+=  '</ul>'
 		return str;
 	}
 	</script>
