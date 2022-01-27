@@ -93,6 +93,10 @@
 		});
 		
 		$(document).on('click', '.comment-pagination .page-item', function(){
+			
+			if($(this).hasClass('disabled')){
+				return;
+			}
 			var page = $(this).data('page');
 			//댓글 새로고침
 			var listUrl = '/comment/list?page='+page+'&bd_num='+'${board.bd_num}';
