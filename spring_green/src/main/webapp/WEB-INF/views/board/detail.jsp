@@ -98,7 +98,12 @@
 	    url:contextPath + "/comment/list?page=1&bd_num="+'${board.bd_num}',
 	    dataType:"json",
 	    success : function(res){
-	        console.log(res);
+	        var str = '';
+	        var me_id = '${user.me_id}';
+	        for(tmp of res.list){
+	        	str += createComment(tmp, me_id);
+	        }
+	        $('.comment-list').html(str);
 	    }
     });
 	});
@@ -116,9 +121,9 @@
 		str+=			'<div class="co_contents">'+comment.co_contents+'</div>'
 		str+=			'<div class="co_reg_date">'+comment.co_reg_date+'</div>'
 		if(comment.co_ori_num == comment.co_num)
-		str+=			'<button class="btn btn-outline-success btn-rep-comment">답글</button>'
+		str+=			'<button class="btn btn-outline-success btn-rep-comment mr-2">답글</button>'
 		if(comment.co_me_id == me_id){
-		str+=			'<button class="btn btn-outline-dark btn-mod-comment">수정</button>'
+		str+=			'<button class="btn btn-outline-dark btn-mod-comment mr-2">수정</button>'
 		str+=			'<button class="btn btn-outline-danger btn-del-comment">삭제</button>'
 		}
 		str+=		'</div>'

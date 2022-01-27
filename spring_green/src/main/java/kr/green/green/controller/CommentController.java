@@ -32,9 +32,8 @@ public class CommentController {
 	@RequestMapping("/comment/list")
 	public Map<String, Object> commentList(Integer page, Integer bd_num) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<CommentVO> list = new ArrayList<CommentVO>();
-		CommentVO c = new CommentVO();
-		list.add(c);
+		List<CommentVO> list = commentService.selectCommentList(bd_num);
+		
 		map.put("list", list);
 		return map;
 	}
