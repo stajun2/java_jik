@@ -49,6 +49,12 @@ public class CommentController {
 		map.put("list", list);
 		return map;
 	}
+	
+	@RequestMapping("/comment/delete")
+	public boolean commentDelete(Integer co_num, HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		return commentService.deleteComment(co_num, user);
+	}
 }
 
 

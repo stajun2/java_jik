@@ -23,6 +23,13 @@
 		select count(*) from comment
 			where co_bd_num = #{bd_num} and co_del = 'N'
 	</select>
+	<select id="selectComment" resultType="kr.green.green.vo.CommentVO">
+		select * from comment
+			where co_num = #{co_num} and co_del = 'N'
+	</select>
+	<update id="deleteComment">
+		update comment set co_del = 'Y' where co_num = #{co_num}
+	</update>
 </mapper>
 
 
