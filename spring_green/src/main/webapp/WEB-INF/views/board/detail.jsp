@@ -105,6 +105,11 @@
 	function listSuccess(res){
 		var str = '';
     var me_id = '${user.me_id}';
+    if(res.list.length == 0){
+    	$('.comment-list').html('');
+    	$('.comment-pagination').html('');
+    	return;
+    }
     for(tmp of res.list){
     	str += createComment(tmp, me_id);
     }
