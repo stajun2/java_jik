@@ -11,8 +11,10 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 	<style>
-
+	.error{ color : red }
 	</style>
 </head>
 <body>
@@ -31,7 +33,7 @@
 			<button id="idCheck" type="button" class="btn btn-outline-success col-12">아이디 중복 검사</button>
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}">
+			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${user.me_pw}" id="me_pw">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호확인" name="me_pw2">
@@ -54,6 +56,7 @@
 				</label>
 			</div>
 		</div>
+		<label id="me_gender-error" class="error" for="me_gender"></label>
 		<div class="form-group">
 			<div class="form-inline mb-2">
 				<input type="text" id="postcode" placeholder="우편번호" class="form-control col-6">
@@ -149,6 +152,61 @@
 				}
 			}).open();
     }
+		
+		$("form").validate({
+      rules: {
+        me_id: {
+          required : true,
+          regex : /^[A-z]\w{4,7}$/
+        },
+        me_pw: {
+          required : true,
+          //regex: /^(?=\w{5,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/
+          regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/,
+          minlength : 5,
+          maxlength : 20
+        },
+        me_pw2: {
+          equalTo : me_pw
+        },
+        me_name: {
+          required : true
+        },
+        me_gender:{
+        	required : true
+        }
+      },
+      //규칙체크 실패시 출력될 메시지
+      messages : {
+        me_id: {
+          required : "필수로입력하세요",
+          regex : "영문자, 숫자로 이루어져 있으며 5~8자로 구성되어야 한다."
+        },
+        me_pw: {
+          required : "필수로입력하세요",
+          minlength : "최소 {0}글자이상이어야 합니다",
+          maxlength : "최대 {0}글자이하이어야 합니다",
+          regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
+        },
+        me_pw2: {
+          equalTo : "비밀번호가 일치하지 않습니다."
+        },
+        me_name: {
+          required : "필수로입력하세요"
+        },
+        me_gender: {
+        	required : "필수로입력하세요"
+        }
+      }
+    });
+		$.validator.addMethod(
+	    "regex",
+	    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+	    },
+	    "Please check your input."
+		);
 	</script>
 </body>
 </html>
