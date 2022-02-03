@@ -118,16 +118,41 @@
 			var textarea 
 				= '<textarea class="form-control co_contents2">'+text+'</textarea>';
 			$(this).siblings('.co_contents').after(textarea);
+			var co_num = $(this).data('num');
 			var button
-				= '<button class="btn btn-outline-info btn-mod-insert">댓글 수정</button>'
+				= '<button class="btn btn-outline-info btn-mod-insert" data-num="'
+					+ co_num
+					+ '">댓글 수정</button>'
 			$(this).siblings('.co_reg_date').after(button);
+		});
+		//댓글 수정 등록 버튼 클릭 이벤트
+		$(document).on('click','.btn-mod-insert',function(){
+			//댓글 번호
+			var co_num = $(this).data('num');
+			//댓글 내용
+			var co_contents = $('.co_contents2').val();
+			//var co_contents = $(this).siblings('.co_contents2').val();
+			var comment = {
+					co_num : co_num,
+					co_contents : co_contents
+			}
+			commentService.modify(comment,'/comment/modify',modifySuccess);
 		});
 		
 		//화면 로딩 준비가 끝나면 댓글 불러옴
 		var listUrl = '/comment/list?page=1&bd_num='+'${board.bd_num}';
 		commentService.list(listUrl,listSuccess);
 	});
-	
+	function modifySuccess(res){
+		if(res){
+			var page = $('.comment-pagination .active').data('page');
+			var listUrl = '/comment/list?page='+page+'&bd_num='+'${board.bd_num}';
+			commentService.list(listUrl,listSuccess);
+			alert('댓글 수정이 완료되었습니다.');
+		}else{
+			alert('댓글 수정에 실패했습니다.')
+		}
+	}
 	function getDateToString(date){
 		return "" + 
 			date.getFullYear()  + "-" + 
@@ -223,6 +248,7 @@
 		str+=  '</ul>'
 		return str;
 	}
+	
 	</script>
 </body>
 </html>
