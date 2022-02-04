@@ -10,4 +10,6 @@ public interface MemberService {
 
 	boolean idDuplicated(String id);
 
+	MemberVO updateMember(MemberVO input, MemberVO user);
+
 }

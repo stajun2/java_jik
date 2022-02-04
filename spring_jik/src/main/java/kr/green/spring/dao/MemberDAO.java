@@ -10,4 +10,6 @@ public interface MemberDAO {
 
 	void insertMember(@Param("user")MemberVO user);
 
+	void updateMember(@Param("user")MemberVO input);
+
 }

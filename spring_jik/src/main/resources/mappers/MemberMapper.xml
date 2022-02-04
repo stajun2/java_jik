@@ -12,5 +12,15 @@
   	values(#{user.me_id},#{user.me_pw},#{user.me_name},#{user.me_gender}
   	,#{user.me_birth},#{user.me_address},#{user.me_phone})
   </insert>
+  <update id="updateMember">
+  	update member set
+  		me_pw = #{user.me_pw},
+  		me_name = #{user.me_name},
+  		me_gender = #{user.me_gender},
+  		me_birth = #{user.me_birth},
+  		me_address = #{user.me_address},
+  		me_phone = #{user.me_phone}
+  	where me_id = #{user.me_id}
+  </update>
 </mapper>
 
