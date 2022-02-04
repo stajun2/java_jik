@@ -35,7 +35,7 @@
 					<label>첨부파일 없음</label>	
 				</c:if>
 			</div>
-			<div class="justify-content-center" style="display:flex">
+			<div class="justify-content-center likes-btn-box" style="display:flex">
 				<button class="btn btn-outline-primary btn-up" data-state="1">추천</button>
 				<button class="btn btn-outline-primary btn-down ml-2" data-state="-1">비추천</button>
 			</div>
@@ -310,18 +310,51 @@
 				dataType:"json",
 				contentType:"application/json; charset=UTF-8",
 				success : function(res){
-					console.log(res);
+					if(res == 1){
+						alert('추천했습니다.');
+					}else if(res == -1){
+						alert('비추천했습니다.');
+					}else if(res != "fail"){
+						var str = li_state == 1 ? '추천' : '비추천';
+						alert(str + '을 취소했습니다.')
+					}
+					viewLikes(likes);
 				}
 			});
 		});
 		//화면 로딩 후 댓글과 댓글 페이지네이션 배치
 		var co_bd_num = '${board.bd_num}';
 		readComment(co_bd_num, 1);
-		
+		viewLikes({
+			li_bd_num : '${board.bd_num}',
+			li_me_id  : '${user.me_id}'
+		});
 		
 		
 		//함수들 모음
 		
+		function viewLikes(likes){
+			$.ajax({
+				async:false,
+				type:'POST',
+				data: JSON.stringify(likes),
+				url: '<%=request.getContextPath()%>/board/view/likes',
+				dataType:"json",
+				contentType:"application/json; charset=UTF-8",
+				success : function(res){
+					$('.likes-btn-box .btn')
+							.removeClass('btn-primary')
+							.addClass('btn-outline-primary');
+					$('.likes-btn-box .btn').each(function(){
+						if($(this).data('state') == res){
+							$(this)
+								.removeClass('btn-outline-primary')
+								.addClass('btn-primary');
+						}
+					});
+				}
+			});
+		}
 		//Date 객체를 yyyy-MM-dd hh:mm형태의 문자열로 변환하는 함수
 		function getDateStr(date){
 			var year = date.getFullYear();

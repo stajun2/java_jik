@@ -186,8 +186,15 @@ public class BoardController {
 	public String boardLikes(@RequestBody LikesVO likes,
 			HttpServletRequest request){
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		System.out.println(user);
-		System.out.println(likes);
-	  return null;
+		
+	  return boardService.likes(likes, user);
+	}
+	@ResponseBody
+	@RequestMapping(value ="/view/likes")
+	public String boardViewLikes(@RequestBody LikesVO likes,
+			HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		
+	  return boardService.viewLikes(likes, user);
 	}
 }

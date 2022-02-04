@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
+import kr.green.spring.vo.LikesVO;
 import kr.green.spring.vo.MemberVO;
 
 public interface BoardService {
@@ -28,5 +29,9 @@ public interface BoardService {
 	int getTotalCount(Criteria cri);
 
 	void updateViews(Integer bd_num);
+
+	String likes(LikesVO likes, MemberVO user);
+
+	String viewLikes(LikesVO likes, MemberVO user);
 	
 }
