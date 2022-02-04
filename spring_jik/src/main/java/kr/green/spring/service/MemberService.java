@@ -12,4 +12,6 @@ public interface MemberService {
 
 	MemberVO updateMember(MemberVO input, MemberVO user);
 
+	String findId(MemberVO member);
+
 }

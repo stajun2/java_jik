@@ -22,5 +22,10 @@
   		me_phone = #{user.me_phone}
   	where me_id = #{user.me_id}
   </update>
+  <select id="findMember" resultType="kr.green.spring.vo.MemberVO">
+  	select me_id from member 
+  		where me_email = #{user.me_email} and me_name = #{user.me_name}
+  		limit 1
+  </select>
 </mapper>
 
