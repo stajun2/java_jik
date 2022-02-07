@@ -164,4 +164,11 @@ public class MemberServiceImp implements MemberService {
 		}
 		return newPw;
 	}
+
+	@Override
+	public void updateAutoLogin(MemberVO user) {
+		if(user == null)
+			return;
+		memberDao.updateAutoLogin(user);
+	}
 }

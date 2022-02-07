@@ -35,17 +35,19 @@ public class HomeController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginGet(ModelAndView mv) {
-		System.out.println("/login:get :");
 		mv.setViewName("/member/login");
 		return mv;
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
-		System.out.println("/login:post :" + member);
 		MemberVO user = memberService.login(member);
 		if(user == null) {
 			mv.setViewName("redirect:/login");
 		}else {
+			//user는 DB에서 아이디, 비번과 일치하는 회원 정보를 가져온것이기 때문에
+			//로그인 화면에서 선택한 자동 로그인 체크 유무를 알 수 없다
+			//화면에서 전달한 member에 있는 자동 로그인 체크 유무를 user에 설정
+			user.setMe_auto_login(member.getMe_auto_login());
 			mv.addObject("user",user);
 			mv.setViewName("redirect:/");
 		}
@@ -54,7 +56,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv, MemberVO user) {
-		System.out.println("/signup:get :");
 		mv.setViewName("/member/signup");
 		return mv;
 	}
@@ -63,7 +64,7 @@ public class HomeController {
 		//MemberVO user = new MemberVO();
 		//user.setMe_id(me_id);
 		//user.setMe_birth(me_birth);
-		System.out.println("/signup:Post :" + user);
+		
 		if(memberService.signup(user)) {
 			mv.setViewName("redirect:/");
 		}else {
@@ -73,7 +74,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request) {
-		System.out.println("/logout:get :");
 		//세션에 있는 유저 정보를 삭제
 		request.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");

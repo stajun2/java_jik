@@ -18,6 +18,9 @@
 			  <input type="password" class="form-control" name="me_pw">
 			</div>
 			<button class="btn btn-outline-success col-12">로그인</button>
+			<label>
+				<input type="checkbox" name="me_auto_login" value="ok"> 자동로그인
+			</label>
 		</form>
 		<a href="<%=request.getContextPath()%>/member/find">아이디/비번 찾기</a>
 	</div>
