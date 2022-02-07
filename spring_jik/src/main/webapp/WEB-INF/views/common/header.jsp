@@ -36,6 +36,11 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시글</a>
 	    </li>
+	    <c:if test="${user.me_authority == '슈퍼 관리자' }">
+	    	<li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath()%>/admin/member/list">회원관리</a>
+		    </li>
+	    </c:if>
 	  </ul>
 	</nav>
 </body>
