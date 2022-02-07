@@ -18,4 +18,6 @@ public interface MemberService {
 
 	void updateAutoLogin(MemberVO user);
 
+	MemberVO selectMemberBySessionId(String value);
+
 }

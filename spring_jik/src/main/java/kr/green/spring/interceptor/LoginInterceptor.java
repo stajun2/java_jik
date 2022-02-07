@@ -19,6 +19,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	
 	@Autowired
 	MemberService memberService;
+	
 	@Override
 	public void postHandle(
 	    HttpServletRequest request, 
