@@ -14,4 +14,6 @@ public interface MemberService {
 
 	String findId(MemberVO member);
 
+	String findPw(MemberVO member);
+
 }
