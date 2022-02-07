@@ -22,4 +22,10 @@ public interface MemberDAO {
 
 	MemberVO selectMemberBySessionId(@Param("me_session_id")String me_session_id);
 
+	MemberVO pramTest1(@Param("user")MemberVO user);
+	
+	MemberVO pramTest2(MemberVO user);
+
+	MemberVO pramTest3(@Param("me_id")String me_id, @Param("me_name")String me_name);
+
 }

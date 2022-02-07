@@ -136,6 +136,13 @@ public class HomeController {
 		
 		return memberService.findPw(member);
 	}
+	
+	@RequestMapping(value = "/param/test")
+	public ModelAndView paramTest(ModelAndView mv) {
+		memberService.paramTest();
+		mv.setViewName("/main/home");
+		return mv;
+	}
 }
 
 

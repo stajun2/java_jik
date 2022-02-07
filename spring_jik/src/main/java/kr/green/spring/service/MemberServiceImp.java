@@ -176,4 +176,14 @@ public class MemberServiceImp implements MemberService {
 	public MemberVO selectMemberBySessionId(String me_session_id) {
 		return memberDao.selectMemberBySessionId(me_session_id);
 	}
+
+	@Override
+	public void paramTest() {
+		MemberVO user = new MemberVO();
+		user.setMe_id("qwe");
+		MemberVO user1 = memberDao.pramTest1(user);
+		MemberVO user2 = memberDao.pramTest2(user);
+		MemberVO user3 = memberDao.pramTest3(user.getMe_id(), "홍길동 동생");
+		System.out.println(user3);
+	}
 }

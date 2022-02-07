@@ -20,4 +20,6 @@ public interface MemberService {
 
 	MemberVO selectMemberBySessionId(String value);
 
+	void paramTest();
+
 }

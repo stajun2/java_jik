@@ -41,5 +41,14 @@
   	select * from member 
   		where me_session_id = #{me_session_id} and me_session_limit >= now()
   </select>
+  <select id="pramTest1" resultType="kr.green.spring.vo.MemberVO">
+  	select * from member where me_id = #{user.me_id}
+  </select>
+  <select id="pramTest2" resultType="kr.green.spring.vo.MemberVO">
+  	select * from member where me_id = #{me_id}
+  </select>
+  <select id="pramTest3" resultType="kr.green.spring.vo.MemberVO">
+  	select * from member where me_id = #{me_id} and me_name= #{me_name}
+  </select>
 </mapper>
 
