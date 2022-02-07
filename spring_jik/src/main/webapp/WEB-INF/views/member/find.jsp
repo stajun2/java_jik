@@ -94,8 +94,10 @@ $('.btn-find-pw').click(function(){
 		success : function(res){
 			if(res == 'true'){
 				alert('새 비밀번호가 발급 되었습니다. 입력한 메일에서 확인하세요.');
-			}else{
+			}else if(res == 'false'){
 				alert('입력한 정보가 잘못됐습니다.');
+			}else if(res == 'error'){
+				alert('메일 전송에 실패했습니다. 관리자에게 문의하세요.');
 			}
 		}
 	});
