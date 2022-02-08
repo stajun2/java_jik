@@ -50,5 +50,14 @@
   <select id="pramTest3" resultType="kr.green.spring.vo.MemberVO">
   	select * from member where me_id = #{me_id} and me_name= #{me_name}
   </select>
+  <select id="selectMainCategory" resultType="kr.green.spring.vo.MainCategoryVO">
+  	select * from maincategory
+  </select>
+  <select id="selectMiddleCategory" resultType="kr.green.spring.vo.MiddleCategoryVO">
+  	select * from middlecategory where mi_ma_num = #{mi_ma_num}
+  </select>
+  <select id="selectSubCategory" resultType="kr.green.spring.vo.SubCategoryVO">
+  	select * from subcategory where su_mi_num = #{su_mi_num}
+  </select>
 </mapper>
 
