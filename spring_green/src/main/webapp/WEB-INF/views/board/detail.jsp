@@ -31,6 +31,10 @@
 	  	<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
 	  </c:forEach>
 	</div>
+	<div class="likes-btn-box mb-3">
+		<button class="btn btn-outline-success btn-up" data-value="1">추천</button>
+		<button class="btn btn-outline-success btn-down" data-value="-1">비추천</button>
+	</div>
 	<c:if test="${user.me_id == board.bd_me_id }">
 		<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}">
 			<button class="btn btn-outline-success">수정</button>
@@ -160,6 +164,38 @@
 					co_me_id : co_me_id
 			}
 			commentService.insert(comment, '/comment/insert',insertSuccess);
+		});
+		//추천, 비추천 버튼 클릭 이벤트 등록
+		//$('.btn-up, .btn-down')
+		$('.likes-btn-box .btn').click(function(){
+			var li_me_id = '${user.me_id}';
+			var li_bd_num = '${board.bd_num}';
+			var li_state = $(this).data('value');
+			
+			var likes = {
+					li_me_id : li_me_id,
+					li_bd_num: li_bd_num,
+					li_state : li_state
+			}
+			$.ajax({
+	      async:false,
+	      type:'POST',
+	      data:JSON.stringify(likes),
+	      url: '<%=request.getContextPath()%>/board/likes',
+	      contentType:"application/json; charset=UTF-8",
+	      success : function(res){
+	        if(res == 1)
+	        	alert('추천했습니다.');
+	        else if(res == -1)
+	        	alert('비추천했습니다.');
+	        else if(res == 0){
+	        	if(li_state == 1)
+	        		alert('추천을 취소했습니다.');
+	        	else
+	        		alert('비추천을 취소했습니다.');
+	        }
+	      }
+	  	});
 		});
 		
 		//화면 로딩 준비가 끝나면 댓글 불러옴

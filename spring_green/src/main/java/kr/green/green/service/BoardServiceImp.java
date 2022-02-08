@@ -13,6 +13,7 @@ import kr.green.green.pagination.Criteria;
 import kr.green.green.utils.UploadFileUtils;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
+import kr.green.green.vo.LikesVO;
 import kr.green.green.vo.MemberVO;
 
 @Service
@@ -159,5 +160,40 @@ public class BoardServiceImp implements BoardService {
 		if(bd_num == null || bd_num <= 0)
 			return;
 		boardDao.updateViews(bd_num);
+	}
+
+	@Override
+	public String likes(LikesVO likes, MemberVO user) {
+		if(likes == null || user == null)
+			return "";
+		if(likes.getLi_me_id() == null || 
+				!likes.getLi_me_id().equals(user.getMe_id()))
+			return "";
+		
+		
+		//처음??=>DB에 없는 경우(아이디와 게시글 번호가 일치하는 추천/비추천이 없는 경우)
+		LikesVO dbLikes = boardDao.selectLikes(likes);
+		//처음 추천/비추천한 경우 => DB에 추가
+		if(dbLikes == null) {
+			//DB에 추가
+			boardDao.insertLikes(likes);
+			//추천 상태를 리턴
+			return ""+likes.getLi_state();
+		}
+		//처음이 아닌 경우 => DB에 수정
+		else {
+			//DB에 수정
+			//취소
+			if(dbLikes.getLi_state() == likes.getLi_state()) {
+				dbLikes.setLi_state(0);
+			}
+			//기존에 눌렀던 추천/비추천과 반대되는 경우, 취소했다가 다시 누른 경우
+			else {
+				dbLikes.setLi_state(likes.getLi_state());
+			}
+			boardDao.updateLikes(dbLikes);
+		}
+			
+		return ""+dbLikes.getLi_state();
 	}
 }

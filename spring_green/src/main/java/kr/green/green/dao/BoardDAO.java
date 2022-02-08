@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.green.pagination.Criteria;
 import kr.green.green.vo.BoardVO;
 import kr.green.green.vo.FileVO;
+import kr.green.green.vo.LikesVO;
 
 public interface BoardDAO {
 
@@ -29,5 +30,11 @@ public interface BoardDAO {
 	int selectBoardCount(@Param("cri")Criteria cri);
 
 	void updateViews(@Param("bd_num")Integer bd_num);
+
+	LikesVO selectLikes(@Param("likes")LikesVO likes);
+
+	void insertLikes(@Param("likes")LikesVO likes);
+
+	void updateLikes(@Param("likes")LikesVO dbLikes);
 
 }

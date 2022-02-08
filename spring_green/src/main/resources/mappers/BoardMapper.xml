@@ -69,4 +69,19 @@
 			bd_views = bd_views + 1
 		where bd_num = #{bd_num}
 	</update>
+	<select id="selectLikes" resultType="kr.green.green.vo.LikesVO">
+		select * from likes 
+			where li_me_id = #{likes.li_me_id} 
+				and li_bd_num = #{likes.li_bd_num}
+	</select>
+	<insert id="insertLikes">
+		insert into likes(li_me_id, li_state, li_bd_num)
+		values(#{likes.li_me_id},#{likes.li_state},#{likes.li_bd_num})
+	</insert>
+	<update id="updateLikes">
+		update likes set
+			li_state = #{likes.li_state}
+		where li_bd_num = #{likes.li_bd_num} 
+			and li_me_id = #{likes.li_me_id}
+	</update>
 </mapper>
