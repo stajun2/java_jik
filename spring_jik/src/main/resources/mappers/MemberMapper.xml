@@ -19,8 +19,10 @@
   		me_gender = #{user.me_gender},
   		me_birth = #{user.me_birth},
   		me_address = #{user.me_address},
-  		me_phone = #{user.me_phone},
-  		me_authority = #{user.me_authority}
+  		me_phone = #{user.me_phone}
+  		<if test="user.me_authority != null">
+  		,me_authority = #{user.me_authority}
+  		</if>
   	where me_id = #{user.me_id}
   </update>
   <select id="findMember" resultType="kr.green.spring.vo.MemberVO">
