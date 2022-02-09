@@ -10,4 +10,6 @@ public interface MemberService {
 
 	String idCheck(String me_id);
 
+	boolean updateMember(MemberVO inputUser, MemberVO user);
+
 }

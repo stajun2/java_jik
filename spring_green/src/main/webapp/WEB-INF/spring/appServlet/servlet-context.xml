@@ -57,6 +57,7 @@
 	    <mapping path="/board/register"/>
 	    <mapping path="/board/modify"/>
 	    <mapping path="/board/delete"/>
+	    <mapping path="/mypage"/>
 	    <beans:ref bean="memberInterceptor"/>
     </interceptor>
 	</interceptors>

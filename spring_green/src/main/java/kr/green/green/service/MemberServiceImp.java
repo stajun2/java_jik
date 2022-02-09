@@ -56,4 +56,30 @@ public class MemberServiceImp implements MemberService {
 		else
 			return "false";
 	}
+
+	@Override
+	public boolean updateMember(MemberVO inputUser, MemberVO user) {
+		if(inputUser == null || user == null ||
+				inputUser.getMe_id() == null || inputUser.getMe_id().length() == 0)
+			return false;
+		
+		//아이디 덮어쓰기
+		inputUser.setMe_id(user.getMe_id());
+		//권환 덮어쓰기
+		inputUser.setMe_authority(user.getMe_authority());
+		//비밀번호
+		if(inputUser.getMe_pw() == null || inputUser.getMe_pw().length() == 0) {
+			inputUser.setMe_pw(user.getMe_pw());
+		}else {
+			String encPw = passwordEncoder.encode(inputUser.getMe_pw());
+			inputUser.setMe_pw(encPw);
+		}
+		//주소
+		if(inputUser.getMe_address() == null 
+				|| inputUser.getMe_address().length() == 0) {
+			inputUser.setMe_address(user.getMe_address());
+		}
+		memberDao.updateMember(inputUser);
+		return true;
+	}
 }

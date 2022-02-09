@@ -66,4 +66,12 @@ public class HomeController {
 	public String idcheck(String me_id){
 		return memberService.idCheck(me_id);
 	}
+	@RequestMapping(value= "/mypage")
+	public ModelAndView mypage(ModelAndView mv, MemberVO inputUser
+			, HttpServletRequest request){
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		memberService.updateMember(inputUser,user);
+    mv.setViewName("/member/mypage");
+    return mv;
+	}
 }
