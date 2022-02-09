@@ -144,4 +144,11 @@ public class BoardController {
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		return boardService.likes(likes, user);
 	}
+	@ResponseBody
+	@RequestMapping(value="/board/likes/views")
+	public String boardLikesViews(@RequestBody LikesVO likes, 
+			HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		return boardService.views(likes,user);
+	}
 }

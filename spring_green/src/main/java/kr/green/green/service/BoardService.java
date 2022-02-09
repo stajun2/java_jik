@@ -30,4 +30,6 @@ public interface BoardService {
 
 	String likes(LikesVO likes, MemberVO user);
 
+	String views(LikesVO likes, MemberVO user);
+
 }

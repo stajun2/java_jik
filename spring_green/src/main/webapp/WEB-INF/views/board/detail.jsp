@@ -32,8 +32,8 @@
 	  </c:forEach>
 	</div>
 	<div class="likes-btn-box mb-3">
-		<button class="btn btn-outline-success btn-up" data-value="1">추천</button>
-		<button class="btn btn-outline-success btn-down" data-value="-1">비추천</button>
+		<button class="btn btn-outline-primary btn-up" data-value="1">추천</button>
+		<button class="btn btn-outline-danger btn-down" data-value="-1">비추천</button>
 	</div>
 	<c:if test="${user.me_id == board.bd_me_id }">
 		<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}">
@@ -194,6 +194,9 @@
 	        	else
 	        		alert('비추천을 취소했습니다.');
 	        }
+	        loadLikes({
+						li_bd_num : '${board.bd_num}'
+					});
 	      }
 	  	});
 		});
@@ -201,7 +204,48 @@
 		//화면 로딩 준비가 끝나면 댓글 불러옴
 		var listUrl = '/comment/list?page=1&bd_num='+'${board.bd_num}';
 		commentService.list(listUrl,listSuccess);
+		//방법1
+		loadLikes({
+			li_bd_num : '${board.bd_num}'
+		});
+		
+		//방법2
+		var likes = {
+				li_bd_num : '${board.bd_num}'
+		}
+		loadLikes(likes);
 	});
+	
+	function loadLikes(likes){
+		$.ajax({
+      async:false,
+      type:'POST',
+      data:JSON.stringify(likes),
+      url: '<%=request.getContextPath()%>/board/likes/views',
+      contentType:"application/json; charset=UTF-8",
+      success : function(res){
+    	  //추천, 비추천 버튼을 초기 상태로 만듬
+        $('.btn-up')
+        	.removeClass('btn-primary')
+        	.addClass('btn-outline-primary');
+        $('.btn-down')
+		    	.removeClass('btn-danger')
+		    	.addClass('btn-outline-danger');
+    	  //비추천 상태이면 비추천 버튼을 색칠함
+        if(res == -1){
+        	$('.btn-down')
+        		.removeClass('btn-outline-danger')
+        		.addClass('btn-danger');
+        }
+    	  //추천상태이면 추천 버튼을 색칠함
+        else if(res == 1){
+        	$('.btn-up')
+        		.removeClass('btn-outline-primary')
+        		.addClass('btn-primary');
+        }
+      }
+  	});
+	}
 	function modifySuccess(res){
 		if(res){
 			var page = $('.comment-pagination .active').data('page');
