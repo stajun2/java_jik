@@ -58,10 +58,10 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override
-	public boolean updateMember(MemberVO inputUser, MemberVO user) {
+	public MemberVO updateMember(MemberVO inputUser, MemberVO user) {
 		if(inputUser == null || user == null ||
 				inputUser.getMe_id() == null || inputUser.getMe_id().length() == 0)
-			return false;
+			return null;
 		
 		//아이디 덮어쓰기
 		inputUser.setMe_id(user.getMe_id());
@@ -80,6 +80,13 @@ public class MemberServiceImp implements MemberService {
 			inputUser.setMe_address(user.getMe_address());
 		}
 		memberDao.updateMember(inputUser);
-		return true;
+		return inputUser;
+	}
+
+	@Override
+	public String selectMemberByEmail(MemberVO member) {
+		if(member == null)
+			return "";
+		return memberDao.selectIdByEmail(member);
 	}
 }

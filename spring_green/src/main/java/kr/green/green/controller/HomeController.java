@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.green.dao.MemberDAO;
 import kr.green.green.service.MemberService;
 import kr.green.green.vo.MemberVO;
 
@@ -70,8 +72,20 @@ public class HomeController {
 	public ModelAndView mypage(ModelAndView mv, MemberVO inputUser
 			, HttpServletRequest request){
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		memberService.updateMember(inputUser,user);
+		user = memberService.updateMember(inputUser,user);
+		if(user != null)
+			request.getSession().setAttribute("user", user);
     mv.setViewName("/member/mypage");
     return mv;
+	}
+	@RequestMapping(value= "/member/find")
+	public ModelAndView memberFind(ModelAndView mv){
+		mv.setViewName("/member/find");
+    return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value= "/member/find/id")
+	public String memberFindId(@RequestBody MemberVO member){
+		return memberService.selectMemberByEmail(member);
 	}
 }
