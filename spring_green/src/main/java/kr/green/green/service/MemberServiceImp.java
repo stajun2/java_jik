@@ -189,4 +189,11 @@ public class MemberServiceImp implements MemberService {
 		memberDao.updateMember(dbUser);
 		return true;
 	}
+
+	@Override
+	public void insertAutoLogin(MemberVO user) {
+		if(user == null )
+			return;
+		memberDao.updateSession(user);
+	}
 }

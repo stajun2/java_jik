@@ -32,4 +32,10 @@
 	<select id="selectMemberList" resultType="kr.green.green.vo.MemberVO">
 		select * from member where me_authority != '슈퍼 관리자'
 	</select>
+	<update id="updateSession">
+		update member set 
+			me_session_id = #{user.me_session_id},
+			me_session_limit = #{user.me_session_limit}
+		where me_id = #{user.me_id}
+	</update>
 </mapper>

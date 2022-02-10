@@ -22,4 +22,6 @@ public interface MemberService {
 
 	boolean chagneAuthority(MemberVO member, MemberVO user);
 
+	void insertAutoLogin(MemberVO user);
+
 }

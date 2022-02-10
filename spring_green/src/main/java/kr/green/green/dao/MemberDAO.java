@@ -18,4 +18,6 @@ public interface MemberDAO {
 
 	List<MemberVO> selectMemberList();
 
+	void updateSession(@Param("user")MemberVO user);
+
 }
