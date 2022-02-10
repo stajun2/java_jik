@@ -14,4 +14,6 @@ public interface MemberService {
 
 	String selectMemberByEmail(MemberVO member);
 
+	String sendPassword(MemberVO member);
+
 }
