@@ -29,4 +29,7 @@
 			where me_email = #{user.me_email} and me_name = #{user.me_name}
 			limit 1 
 	</select>
+	<select id="selectMemberList" resultType="kr.green.green.vo.MemberVO">
+		select * from member where me_authority != '슈퍼 관리자'
+	</select>
 </mapper>

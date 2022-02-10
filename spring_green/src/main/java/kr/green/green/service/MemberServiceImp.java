@@ -1,5 +1,7 @@
 package kr.green.green.service;
 
+import java.util.List;
+
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,5 +159,14 @@ public class MemberServiceImp implements MemberService {
       return false;
 	  }
 		return true;
+	}
+
+	@Override
+	public List<MemberVO> getUserList(MemberVO user) {
+		if(user == null)
+			return null;
+		if(!user.getMe_authority().equals("슈퍼 관리자"))
+			return null;
+		return memberDao.selectMemberList();
 	}
 }
