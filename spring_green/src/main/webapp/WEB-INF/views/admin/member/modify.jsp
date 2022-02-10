@@ -32,5 +32,29 @@
       </c:forEach>
     </tbody>
   </table>
+<script>
+$('.me_authority').change(function(){
+	var me_id = $(this).parents('tr').find('.me_id').text();
+	var me_authority = $(this).val();
+	var member = {
+			me_id : me_id,
+			me_authority : me_authority
+	};
+	$.ajax({
+	  async:false,
+	  type:'POST',
+	  data:JSON.stringify(member),
+	  url: '<%=request.getContextPath()%>/admin/change/authority',
+	   contentType:"application/json; charset=UTF-8",
+	   success : function(res){
+	     if(res){
+	    	 alert('권한이 변경되었습니다.');
+	     }else{
+	    	 alert('권한 변경에 실패했습니다.');
+	     }
+	   }
+	});
+});
+</script>
 </body>
 </html>

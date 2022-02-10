@@ -20,4 +20,6 @@ public interface MemberService {
 
 	List<MemberVO> getUserList(MemberVO user);
 
+	boolean chagneAuthority(MemberVO member, MemberVO user);
+
 }

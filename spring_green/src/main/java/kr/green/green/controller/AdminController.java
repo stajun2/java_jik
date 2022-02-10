@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.green.service.MemberService;
@@ -30,5 +32,12 @@ public class AdminController {
 			mv.setViewName("/admin/member/modify");
 		}
 		return mv;
+	}
+	@ResponseBody
+	@RequestMapping(value="/admin/change/authority")
+	public boolean adminChangeAuthority(@RequestBody MemberVO member,
+			HttpServletRequest request) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		return memberService.chagneAuthority(member,user);
 	}
 }
