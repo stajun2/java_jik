@@ -1,6 +1,9 @@
 package kr.green.green.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.green.green.dao.MemberDAO;
 import kr.green.green.service.MemberService;
 import kr.green.green.vo.MemberVO;
 
@@ -61,10 +63,15 @@ public class HomeController {
     return mv;
 	}
 	@RequestMapping(value= "/logout")
-	public ModelAndView logout(ModelAndView mv, HttpServletRequest r){
-		r.getSession().removeAttribute("user");
-	    mv.setViewName("redirect:/");
-	    return mv;
+	public ModelAndView logout(ModelAndView mv, HttpSession session){
+		
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		session.removeAttribute("user");
+		user.setMe_session_limit(new Date());
+		user.setMe_session_id("none");
+		memberService.insertAutoLogin(user);
+    mv.setViewName("redirect:/");
+    return mv;
 	}
 	@ResponseBody
 	@RequestMapping(value= "/idcheck")

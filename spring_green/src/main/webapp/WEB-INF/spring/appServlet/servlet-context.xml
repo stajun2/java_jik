@@ -43,6 +43,8 @@
 		class="kr.green.green.interceptor.GuestInterceptor"></beans:bean>		
 	<beans:bean id="memberInterceptor" 
 		class="kr.green.green.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="autoInterceptor" 
+		class="kr.green.green.interceptor.AutoInterceptor"></beans:bean>
 	<interceptors>
     <interceptor>
 	    <mapping path="/login"/>
@@ -59,6 +61,10 @@
 	    <mapping path="/board/delete"/>
 	    <mapping path="/mypage"/>
 	    <beans:ref bean="memberInterceptor"/>
+    </interceptor>
+    <interceptor>
+	    <mapping path="/**/"/>
+	    <beans:ref bean="autoInterceptor"/>
     </interceptor>
 	</interceptors>
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
