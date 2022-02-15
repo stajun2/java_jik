@@ -15,7 +15,9 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		Object user = request.getSession().getAttribute("user");
 		//세션에 회원정보가 없으면 => 로그인을 안했으면
 		if(user == null) {
-			StringBuffer str = request.getRequestURL();
+			//http://localhost:8080/프로젝트명/board/register에서
+			// /board/register를 가져오는 코드
+			String str = request.getServletPath();
 			request.getSession().setAttribute("prevUrl", str);
 			response.sendRedirect(request.getContextPath()+"/login");
 			return false;

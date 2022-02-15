@@ -55,14 +55,10 @@ public class HomeController {
 			//로그인 화면에서 선택한 자동 로그인 체크 유무를 알 수 없다
 			//화면에서 전달한 member에 있는 자동 로그인 체크 유무를 user에 설정
 			user.setMe_auto_login(member.getMe_auto_login());
-			StringBuffer prevUrl = (StringBuffer)request.getSession().getAttribute("prevUrl");
+			String prevUrl = (String)request.getSession().getAttribute("prevUrl");
       System.out.println(prevUrl);
       if(prevUrl != null) {
-      	String contextPath = request.getContextPath();
-      	int startIndex = prevUrl.indexOf(contextPath);
-      	startIndex += contextPath.length(); 
-      	String redirectURI = prevUrl.substring(startIndex);
-      	mv.setViewName("redirect:" + redirectURI);
+      	mv.setViewName("redirect:" + prevUrl);
       }else {
       	mv.setViewName("/member/login");	
       }
