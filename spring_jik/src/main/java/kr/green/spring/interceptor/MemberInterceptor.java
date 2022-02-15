@@ -15,9 +15,12 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		Object user = request.getSession().getAttribute("user");
 		//세션에 회원정보가 없으면 => 로그인을 안했으면
 		if(user == null) {
+			StringBuffer str = request.getRequestURL();
+			request.getSession().setAttribute("prevUrl", str);
 			response.sendRedirect(request.getContextPath()+"/login");
 			return false;
 		}
+		
 		return true;
 	}
 }
