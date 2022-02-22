@@ -87,30 +87,42 @@
 	  </c:if>
 	</div>
 	<script>
+	
 	addSearch();
+	//쿠키에 검색어 추가하는 함수로 이전에 검색했던 단어는 추가 안함.
 	function addSearch(){
-		
+		//입력한 검색어 가져옴
 		var search = '${pm.criteria.search}';
+		//구분자
 		var token = '___'
-		if(search != ''){
-			var val = getCookie('search');
-			var arr = getSearchList(val, token);
-			console.log(arr);
-			if(arr.indexOf(search) > 0)
-				return;
-			val += token;
-			val += search;
-			setCookie('search' , val, 7);
-		}
+		//검색어가 없으면 종료
+		if(search == '')
+			return;
+		//search 쿠키에 저장된 검색어들 가져옴
+		var val = getCookie('search');
+		//저장된 검색어들을 구분자를 이용하여 구분하여 배열에 저장
+		var arr = val.split(token);
+		//콘솔에 최근 검색어 출력(나중에 이부분을 활용하면 됨)
+		console.log(arr);
+		//이전에 사용했던 검색어는 중복해서 추가할 필요가 없기 때문에 그만함
+		//최신순으로 나열하고 싶다면 이 조건문을 수정해야함.
+		if(arr.indexOf(search) > 0)
+			return;
+		//이전 검색어들에 토큰과 현재 검색어를 추가
+		val += token;
+		val += search;
+		//search쿠키에 검색어들을 덮어씀
+		setCookie('search' , val, 7);
 	}
-	function getSearchList(str, token){
-		return str.split(token);
-	}
+	//쿠키의 값을 설정.
+	//name : 쿠키 이름, value : 쿠키값, expireTime : 쿠키 만료시간(일)
 	function setCookie(name, value, expireTime){
 		var date = new Date();
 		date.setTime(date.getTime() + expireTime*24*60*60*1000);
 		document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
 	}
+	//쿠키 값을 가져옴
+	//name : 쿠키이름
 	function getCookie(name) {
 	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
 	  return value? value[2] : null;
