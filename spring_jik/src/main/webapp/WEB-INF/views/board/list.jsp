@@ -86,5 +86,35 @@
 	  </a>
 	  </c:if>
 	</div>
+	<script>
+	addSearch();
+	function addSearch(){
+		
+		var search = '${pm.criteria.search}';
+		var token = '___'
+		if(search != ''){
+			var val = getCookie('search');
+			var arr = getSearchList(val, token);
+			console.log(arr);
+			if(arr.indexOf(search) > 0)
+				return;
+			val += token;
+			val += search;
+			setCookie('search' , val, 7);
+		}
+	}
+	function getSearchList(str, token){
+		return str.split(token);
+	}
+	function setCookie(name, value, expireTime){
+		var date = new Date();
+		date.setTime(date.getTime() + expireTime*24*60*60*1000);
+		document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+	}
+	function getCookie(name) {
+	  var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	  return value? value[2] : null;
+	}
+	</script>
 </body>
 </html>
