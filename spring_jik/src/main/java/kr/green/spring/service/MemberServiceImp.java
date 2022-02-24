@@ -1,5 +1,8 @@
 package kr.green.spring.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.mail.internet.MimeMessage;
@@ -121,13 +124,25 @@ public class MemberServiceImp implements MemberService {
 		user.setMe_pw(encPw);
 		memberDao.updateMember(user);
 		
+		//html 파일을 읽어와서 문자열로 만들기
+		byte[] bytes = null;
+		try {
+			bytes = Files.readAllBytes(Paths.get("D:\\JAVA_JIK\\java_jik\\spring_jik\\src\\main\\webapp\\resources\\template.html"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String template = new String(bytes);
+		
+		
 		//이메일로 새 비번을 전송(암호화 안된 비번 전송)
 		
 		String setfrom = "stajun@gmail.com";         
     String tomail  = member.getMe_email();  // 받는 사람 이메일
     String title   = "새 비밀번호입니다.";      // 제목
-    String content = "새 비밀번호는 " + newPw + "입니다.";    // 내용
-
+    String content = "";    // 내용
+    //html 문자열에 있는 newPassword 대신 원하는 비번으로 수정
+    content = template.replace("newPassword", newPw);
     try {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper 
@@ -136,7 +151,7 @@ public class MemberServiceImp implements MemberService {
         messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
         messageHelper.setTo(tomail);     // 받는사람 이메일
         messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-        messageHelper.setText(content);  // 메일 내용
+        messageHelper.setText(content,true);  // 메일 내용
 
         mailSender.send(message);
     } catch(Exception e){
