@@ -33,5 +33,7 @@ public interface BoardService {
 	String likes(LikesVO likes, MemberVO user);
 
 	String viewLikes(LikesVO likes, MemberVO user);
+
+	String semmernoteImg(MultipartFile img);
 	
 }

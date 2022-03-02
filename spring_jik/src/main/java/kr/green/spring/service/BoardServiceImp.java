@@ -165,15 +165,7 @@ public class BoardServiceImp implements BoardService {
 			return;
 		for(MultipartFile tmpFile : files) {
 			if(tmpFile != null && tmpFile.getOriginalFilename().length() !=0) {
-				try {
-					String path = UploadFileUtils.uploadFile(
-						uploadPath, tmpFile.getOriginalFilename(), tmpFile.getBytes());
-					FileVO fileVo = 
-						new FileVO(tmpFile.getOriginalFilename(), path, bd_num);
-					boardDao.insertFile(fileVo);
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
+				uploadFile(tmpFile, bd_num);
 			}
 		}
 	}
@@ -189,7 +181,20 @@ public class BoardServiceImp implements BoardService {
 			}
 		}
 	}
-
+	private String uploadFile(MultipartFile file, Integer bd_num) {
+		try {
+			String path = UploadFileUtils.uploadFile(
+				uploadPath, file.getOriginalFilename(), file.getBytes());
+			FileVO fileVo = 
+				new FileVO(file.getOriginalFilename(), path, bd_num);
+			boardDao.insertFile(fileVo);
+			return path;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	
+	}
 	@Override
 	public int getTotalCount(Criteria cri) {
 		return boardDao.selectCountBoard(cri);
@@ -235,5 +240,13 @@ public class BoardServiceImp implements BoardService {
 		if(dbLikes == null)
 			return "0";
 		return "" + dbLikes.getLi_state();
+	}
+
+	@Override
+	public String semmernoteImg(MultipartFile img) {
+		if(img != null && img.getOriginalFilename().length() != 0) {
+			return uploadFile(img, null);
+		}
+		return "";
 	}
 }

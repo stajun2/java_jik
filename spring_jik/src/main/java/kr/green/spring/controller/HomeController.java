@@ -14,10 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import kr.green.spring.service.BoardService;
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MainCategoryVO;
 import kr.green.spring.vo.MemberVO;
@@ -29,7 +32,8 @@ public class HomeController {
 	
 	@Autowired
 	MemberService memberService;
-	
+	@Autowired
+	BoardService boardService;
 	//URL을 확인하는 곳, 필수
 	//value는 localhost:8080/패키지명을 제외한 부분
 	//method는 전달 방식, GET,POST, 생략하면 둘다
@@ -181,6 +185,16 @@ public class HomeController {
 			= memberService.selectSubCategory(su_mi_num);
 		
 		map.put("list", list);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadSummernoteImageFile")
+	public Map<String, Object>  uploadSummernoteImageFile(@RequestParam("file") MultipartFile img) {
+		//file테이블에 fi_bd_num을 null허용으로 설정해야함
+		String imgUrl = boardService.semmernoteImg(img);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("imgUrl", imgUrl);
 		return map;
 	}
 }
