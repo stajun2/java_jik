@@ -25,4 +25,11 @@ public class TestControlloer {
 		
 		return mv;
 	}
+	@RequestMapping("/sample/test2")
+	public ModelAndView sampleTest2(ModelAndView mv) {
+		
+		mv.setViewName("/main/test2");
+		
+		return mv;
+	}
 }
