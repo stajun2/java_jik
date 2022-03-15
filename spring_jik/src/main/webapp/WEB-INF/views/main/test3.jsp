@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,13 +20,15 @@
 </head>
 <body>
 <div class="body container">
-	<input type="file" multiple accept="image/*" id="fileUpload" style="display: none">
+	
 	<a class="box" href="javascript:;">+</a>
-	<div id="image-holder"></div>
+	<div id="image-holder">
+		<input type="file" accept="image/*" style="display: none" name="files">
+	</div>
 </div>
 <script>
-$("#fileUpload").on('change', function () {
-
+$(document).on('change','#image-holder input[type=file]:last', function () {
+	console.log(123);
     //Get count of selected files
     var countFiles = $(this)[0].files.length;
 
@@ -49,6 +50,8 @@ $("#fileUpload").on('change', function () {
                         "src": e.target.result,
                             "class": "thumb-image"
                     }).appendTo(image_holder);
+                    var str = '<input type="file" accept="image/*" style="display: none" name="files">';
+                    $(str).appendTo(image_holder);
                 }
 
                 image_holder.show();
@@ -61,17 +64,19 @@ $("#fileUpload").on('change', function () {
     } else {
         alert("Pls select only images");
     }
+    
 });
 $('.box').click(function(){
-	$('#fileUpload').click();
+	$('#image-holder input[type=file]:last').click();
 })
-/*
+
 $(document).on('click','.thumb-image', function(){
 	if(confirm('이미지를 삭제하겠습니까?')){
+		$(this).prev().remove();
 		$(this).remove();
 	}
 });
-*/
+
 </script>
 </body>
 </html>
