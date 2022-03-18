@@ -26,8 +26,10 @@ import kr.green.spring.vo.MainCategoryVO;
 import kr.green.spring.vo.MemberVO;
 import kr.green.spring.vo.MiddleCategoryVO;
 import kr.green.spring.vo.SubCategoryVO;
+import lombok.extern.log4j.Log4j;
 //@Controller가 있어야 URL을 분석하여 처리
 @Controller
+@Log4j
 public class HomeController {
 	
 	@Autowired
@@ -39,7 +41,7 @@ public class HomeController {
 	//method는 전달 방식, GET,POST, 생략하면 둘다
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView homeGet(ModelAndView mv) {
-		
+		log.info("메시지");
 		mv.setViewName("/main/home");
 		return mv;
 	}
