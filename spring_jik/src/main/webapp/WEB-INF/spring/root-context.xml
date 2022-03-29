@@ -43,5 +43,5 @@
       </props>
     </property>
 	</bean>
-	<context:component-scan base-package="kr.green.spring.exception" /> 
+
 </beans>
