@@ -21,5 +21,13 @@ public class CommonExceptionAdvice {
 		mv.setViewName("/exception/custom404");
 		return mv;
 	}
-	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView except(Exception e) {
+		
+		ModelAndView mv = new ModelAndView();
+		log.error("예외 발생");
+		log.error(e.getMessage());
+		mv.setViewName("/exception/custom500");
+		return mv;
+	}
 }
