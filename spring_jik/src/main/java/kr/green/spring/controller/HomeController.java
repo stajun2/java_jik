@@ -42,10 +42,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView homeGet(ModelAndView mv) {
 		log.info("메시지");
+		String str = test();
+		System.out.println(str.substring(0));
 		mv.setViewName("/main/home");
 		return mv;
 	}
-	
+	public String test() {
+		return null;
+	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView loginGet(ModelAndView mv) {
 		mv.setViewName("/member/login");
