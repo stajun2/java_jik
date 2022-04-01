@@ -65,7 +65,7 @@ public class TestControlloer {
 		// root tag 
 		doc.getDocumentElement().normalize();
 		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-	// 파싱할 tag
+		// 파싱할 tag
 		NodeList nList = doc.getElementsByTagName("item");
 		//System.out.println("파싱할 리스트 수 : "+ nList.getLength());
 		
@@ -97,5 +97,11 @@ public class TestControlloer {
     if(nValue == null) 
         return null;
     return nValue.getNodeValue();
-}
+	}
+	@RequestMapping("/sample/test5")
+	public ModelAndView sampleTest5(ModelAndView mv) {
+		
+		mv.setViewName("/main/test5");
+		return mv;
+	}
 }
